@@ -29,6 +29,7 @@
     padding-left: 20px;
     font-size: 40px;
     color: white;
+    text-align: center;
 }
 
 #header__nav, #header__dropdown {
@@ -52,7 +53,7 @@
     font-size: 18px;
     color: rgba(255, 255, 255, 0.8);
     flex: 1;
-    animation: linkHide 0.5s ease 0s forwards;
+    animation: linkHide 0.3s ease 0s forwards;
 }
 
 #header__dropdown > a {
@@ -64,7 +65,7 @@
 }
 
 #header__nav > a:hover, #header__dropdown > a:hover {
-    animation: linkShow 0.5s ease 0s forwards;
+    animation: linkShow 0.3s ease 0s forwards;
 }
 
 @keyframes linkHide {

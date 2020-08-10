@@ -1,9 +1,13 @@
+require("./db/mongoose")
 const express = require("express")
 const session = require("express-session")
 const hbs = require("hbs")
 const path = require("path")
 
 const app = express()
+
+// Models
+const Post = require("./models/post")
 
 // Directories
 const partialsDir = path.join(__dirname, "/templates/partials")
@@ -27,7 +31,9 @@ app.use(session({
 
 // Routers
 const navRouter = require("./routers/nav")
+const postsRouter = require("./routers/posts")
 app.use(navRouter)
+app.use(postsRouter)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
