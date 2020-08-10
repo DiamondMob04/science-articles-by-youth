@@ -32,8 +32,10 @@ app.use(session({
 // Routers
 const navRouter = require("./routers/nav")
 const postsRouter = require("./routers/posts")
+const userRouter = require("./routers/users")
 app.use(navRouter)
 app.use(postsRouter)
+app.use(userRouter)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

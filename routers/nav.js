@@ -19,4 +19,12 @@ navRouter.get("/blog", (req, res) => {
     res.render("blog")
 })
 
+navRouter.get("/register", (req, res) => {
+    res.render("register")
+})
+
+navRouter.get("/login", (req, res) => {
+    res.render("login")
+})
+
 module.exports = navRouter

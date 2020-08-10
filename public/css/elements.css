@@ -39,7 +39,7 @@ html {
     background: black;
 }
 
-/* Defining left-right, which contains elements which should be 2 by 2. */
+/* Defining left-right, which contains elements which should be in 2 equal columns. */
 
 .left-right {
     display: grid;
@@ -190,6 +190,8 @@ html {
 .article-gallery > article:hover {
     animation: slight-grow-appear 0.6s ease forwards;
 }
+
+/* Keyframes for various shrink/grow opacity effects. */
 
 @keyframes tiny-grow-appear {
     0% {

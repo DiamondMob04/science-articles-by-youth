@@ -1,0 +1,47 @@
+.form-title {
+    font-size: 36px !important;
+    margin-bottom: 0.75em !important;
+    margin-top: 0 !important;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > label {
+    font-weight: 700;
+    margin-bottom: 0.3em;
+}
+
+form > input {
+    width: 30vw;
+    height: 5vh;
+    margin-bottom: 2vh;
+}
+
+form > button {
+    width: 15vw;
+    height: 5vh;
+    margin-top: 1vh;
+    position: relative;
+}
+
+.required::after {
+    content: " *";
+    color: red;
+    text-decoration: dashed;
+}
+
+#reg-status, #log-status {
+    color: red;
+    font-size: 14px;
+    padding-top: 2vh !important;
+}
+
+@media only screen and (max-width: 812px) {
+    form > input {
+        width: 50vw;
+    }
+}
