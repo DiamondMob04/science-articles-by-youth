@@ -1,0 +1,4 @@
+# I'm just disallowing everything for the time being.
+
+User-agent: *
+Disallow: /
