@@ -45,37 +45,86 @@
     display: none;
 }
 
-#header__nav > a, #open-dropdown, #header__dropdown > a {
-    background: linear-gradient(rgb(0, 170, 0), green);
-    padding: 1% 0;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
-    flex: 1;
-    animation: linkHide 0.3s ease 0s forwards;
-}
-
 #header__dropdown > a {
     width: 100vw;
+    z-index: 3;
+}
+
+.dropdown {
+    position: relative;
 }
 
 #header__dropdown {
     display: none;
+    position: absolute;
 }
 
-#header__nav > a:hover, #header__dropdown > a:hover {
+.side-by-side {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#header__nav > *, #open-dropdown, #header__dropdown > a, .side-by-side > a, .nav__links {
+    padding: 1% 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.8);
+    flex: 1;
+    z-index: 3;
+    animation: linkHide 0.3s ease 0s forwards;
+}
+
+.side-by-side > a {
+    border-right: 1px solid white;
+}
+
+.nav__links > a {
+    animation: linkHide 0.3s ease 0s forwards;
+}
+
+.nav__dropdown > .nav__links {
+    display: none;
+}
+
+.nav__dropdown {
+    position: relative;
+}
+
+.nav__dropdown:hover > .nav__links, .nav__dropdown > *:hover .nav__links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+}
+
+.nav__dropdown a {
+    padding: 2% 0;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+}
+
+.nav__dropdown:hover, .nav__dropdown > a:first-child {
+    cursor: default !important;
+}
+
+#header__nav > *:hover, #header__dropdown > a:hover, .nav__links > a:hover, .side-by-side > a:hover {
+    cursor: pointer;
     animation: linkShow 0.3s ease 0s forwards;
 }
 
 @keyframes linkHide {
-    0% { opacity: 0.8; }
-    100% { opacity: 1; }
+    0% { background: linear-gradient(rgb(0, 190, 0), rgb(0, 150, 0)); }
+    100% { background: linear-gradient(rgb(0, 170, 0), green); }
 }
 
 @keyframes linkShow {
-    0% { opacity: 1; }
-    100% { opacity: 0.8; }
+    0% { background: linear-gradient(rgb(0, 170, 0), green); }
+    100% { background: linear-gradient(rgb(0, 190, 0), rgb(0, 150, 0)); }
 }
 
 @media only screen and (max-width: 812px) {
@@ -95,6 +144,12 @@
         display: none;
     }
     #header__nav {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 812px) {
+    #header__dropdown > * {
         display: none;
     }
 }

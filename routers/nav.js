@@ -15,4 +15,8 @@ navRouter.get("/home", (req, res) => {
     res.render("home")
 })
 
+navRouter.get("/blog", (req, res) => {
+    res.render("blog")
+})
+
 module.exports = navRouter

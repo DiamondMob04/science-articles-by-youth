@@ -13,10 +13,23 @@ const postSchema = mongoose.Schema({
             }
         }
     },
+    author: {
+        type: String,
+        required: true
+    },
     contents: {
         type: String,
         required: true,
         minlength: 100
+    },
+    tags: {
+        type: String,
+        required: true,
+        validate(val) {
+            if (val.split(" ").length === 0) {
+                throw new Error("Please provide at least one tag for your article's content!")
+            }
+        }
     }
 })
 

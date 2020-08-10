@@ -1,0 +1,15 @@
+#footer {
+    width: 100vw;
+    background: linear-gradient(rgb(0, 170, 0), green);
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+#copyright {
+    margin-left: auto;
+    padding: 0 3vw;
+    color: white;
+}

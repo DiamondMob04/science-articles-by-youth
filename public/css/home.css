@@ -22,7 +22,7 @@
 }
 
 .fade-in {
-    animation: less-dramatic-fade-in 1s ease forwards;
+    animation: less-dramatic-fade-in 1.5s ease forwards;
 }
 
 @keyframes fade-in {

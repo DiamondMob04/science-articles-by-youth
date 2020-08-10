@@ -110,40 +110,106 @@ html {
 }
 
 .article-gallery > article {
-    background: linear-gradient(rgba(0, 170, 0, 0.8), rgba(0, 170, 0, 0.9));
+    background: linear-gradient(rgba(0, 170, 0, 0.8), rgba(0, 95, 0, 0.9));
     padding: 20px 0;
     margin: 0 2vh 2vh 2vh;
     animation: slight-grow-disappear 0.6s ease forwards;
     border-radius: 10px;
 }
 
-.article-gallery > article > h3, .article-gallery > article > p {
+.article-title, .article-desc, .article-info, .article-tags, .article-header {
     margin: 2vh 4vh 2vh 4vh;
     word-wrap: break-word;
     background: white;
     border-radius: 10px;
 }
 
-.article-gallery > article > h3 {
+.article-title {
     font-size: 24px;
     font-weight: 700;
 }
 
-.article-gallery > article > p {
+.article-info {
+    font-size: 14px;
+}
+
+.article-desc {
     line-height: 1.2rem;
     padding: 0.3rem;
     font-size: 14px;
 }
 
-.article-gallery > article > img {
-    padding: 0 4vh !important;
+.article-tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 10px;
+}
+
+.article-tags > *:before {
+    content: "";
+    display: inline-block;
+    width: 1vh;
+    height: 1vh;
+    border-radius: 1vh;
+    margin-right: 0.5vh;
+    background: white;
+}
+
+.article-tags > * {
+    background-color: rgb(80, 80, 80);
+    border-radius: 8px;
+    padding: 0.5vh 0.5vw;
+    margin: 0.25vh 0.25vw;
+    color: white;
+}
+
+.article-thumbnail {
+    padding: 0 4vh;
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
+}
+
+.read-more {
+    width: 14em;
+    height: 2em;
+    border-radius: 1em;
+    font-weight: 700;
+}
+
+.read-more:focus {
+    outline: none;
+}
+
+.no-animate > * {
+    animation: none !important;
 }
 
 .article-gallery > article:hover {
     animation: slight-grow-appear 0.6s ease forwards;
+}
+
+@keyframes tiny-grow-appear {
+    0% {
+        opacity: 70%;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 100%;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes tiny-grow-disappear {
+    0% {
+        opacity: 100%;
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 70%;
+        transform: scale(1);
+    }
 }
 
 @keyframes slight-grow-appear {
@@ -193,6 +259,12 @@ html {
 /* Media query for phones. */
 
 @media only screen and (max-width: 812px) {
+    .article-gallery > article {
+        animation: tiny-grow-disappear 0.6s ease forwards;
+    }
+    .article-gallery > article:hover {
+        animation: tiny-grow-appear 0.6s ease forwards;
+    }
     .left-right {
         grid-template-columns: 1fr;
     }
