@@ -23,6 +23,7 @@
             <div class="nav__links">
                 <a href="/register">Register</a>
                 <a href="/login">Login</a>
+                <a class="account-name" href="/account">Account</a>
             </div>
         </div>
     </div>
@@ -40,17 +41,30 @@
             <div class="side-by-side">
                 <a href="/register">Register</a>
                 <a href="/login">Login</a>
+                <a class="account-name" href="/account">Account</a>
             </div>
         </div>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $("#open-dropdown").click(() => {
-        if ($("#header__dropdown").css("display") == "none") {
-            $("#header__dropdown").css({display: "flex", flexDirection: "column"})
-        } else {
-            $("#header__dropdown").css({display: "none"})
-        }
+    $(document).ready(() => {
+        $("#open-dropdown").click(() => {
+            if ($("#header__dropdown").css("display") == "none") {
+                $("#header__dropdown").css({display: "flex", flexDirection: "column"})
+            } else {
+                $("#header__dropdown").css({display: "none"})
+            }
+        })
+        // Sanitize everything later!
+        fetch("/get-username").then(async (res) => {
+            if (res.ok) {
+                console.log(res)
+                let info = await res.json()
+                $("#account-name").html(info.username)
+            } else {
+                $("#account-name").css({display: "none", visibility: "hidden"})
+            }
+        })
     })
 </script>
