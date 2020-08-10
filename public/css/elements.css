@@ -260,6 +260,10 @@ html {
 /* Media query for phones. */
 
 @media only screen and (max-width: 812px) {
+    .text-block {
+        margin-left: 0;
+        margin-right: 0;
+    }
     .article-gallery > article {
         margin-left: 0;
         margin-right: 0;
