@@ -208,3 +208,24 @@ html {
         transform: scale(1);
     }
 }
+
+/* Media query for phones. */
+
+@media only screen and (max-width: 812px) {
+    .left-right {
+        grid-template-columns: 1fr;
+    }
+    .left-emphasis {
+        grid-template-columns: 1fr !important;
+    }
+    .button-column {
+        margin-top: 0vh;
+    }
+    .button-column > button {
+        margin-bottom: 1vh;
+    }
+    .article-gallery {
+        grid-template-columns: 1fr;
+        margin: 0 8vh;
+    }
+}

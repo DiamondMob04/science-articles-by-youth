@@ -14,4 +14,25 @@
         <a href="/">SAY Journal</a>
         <a href="/">Account</a>
     </div>
+    <div class="dropdown">
+        <span id="open-dropdown"></span>
+        <div id="header__dropdown">
+            <a href="/">Home</a>
+            <a href="/">Blog</a>
+            <a href="/">The Team</a>
+            <a href="/">Contact Us</a>
+            <a href="/">SAY Journal</a>
+            <a href="/">Account</a>
+        </div>
+    </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $("#open-dropdown").click(() => {
+        if ($("#header__dropdown").css("display") == "none") {
+            $("#header__dropdown").css({display: "flex", flexDirection: "column"})
+        } else {
+            $("#header__dropdown").css({display: "none"})
+        }
+    })
+</script>
