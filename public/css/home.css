@@ -16,7 +16,7 @@
 #space-bg > h3 {
     color: white;
     font-size: 8vh;
-    padding: 0 15vw;
+    margin: 0 15vw;
     text-align: center;
     animation: fade-in 3s ease;
 }
