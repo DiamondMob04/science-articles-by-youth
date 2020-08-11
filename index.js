@@ -15,11 +15,13 @@ const viewsDir = path.join(__dirname, "/templates/views")
 const publicDir = path.join(__dirname, "/public")
 
 // Modules
+const stripXSS = require("./middleware/xss")
 hbs.registerPartials(partialsDir)
 app.set("view engine", "hbs")
 app.set("views", viewsDir)
 app.use(express.static(publicDir))
 app.use(express.json())
+app.use(stripXSS)
 app.use(session({
     resave: true,
     saveUninitialized: true,

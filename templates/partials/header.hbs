@@ -56,7 +56,6 @@
                 $("#header__dropdown").css({display: "none"})
             }
         })
-        // Sanitize everything later!
         fetch("/get-username").then(async (res) => {
             if (res.ok) {
                 let info = await res.json()
