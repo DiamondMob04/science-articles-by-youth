@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const auth = require("../middleware/auth")
 
 const navRouter = express.Router()
 
@@ -25,6 +26,10 @@ navRouter.get("/register", (req, res) => {
 
 navRouter.get("/login", (req, res) => {
     res.render("login")
+})
+
+navRouter.get("/account", auth, (req, res) => {
+    res.render("account")
 })
 
 module.exports = navRouter

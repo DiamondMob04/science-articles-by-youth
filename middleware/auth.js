@@ -9,8 +9,8 @@ const auth = async (req, res, next) => {
         if (!user) {
             throw new Error()
         }
-        req.token = token
-        req.user = user
+        req.session.token = token
+        req.session.user = user
         next()
     } catch (error) {
         res.status(401).send("User is not authenticated.")

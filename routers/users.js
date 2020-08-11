@@ -33,7 +33,7 @@ userRouter.post("/login", async (req, res) => {
 })
 
 userRouter.get("/get-username", auth, (req, res) => {
-    return {username: req.user.username}
+    res.status(200).send({username: req.session.user.username})
 })
 
 module.exports = userRouter

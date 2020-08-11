@@ -41,6 +41,15 @@ $(document).ready(() => {
             await $("#reg-status").stop(true).hide(0).css("color", "red").html("An unexpected error occurred. The username may already be taken.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {
+            fetch("/get-username").then(async (res) => {
+                if (res.ok) {
+                    let info = await res.json()
+                    $(".account-name").show()
+                    $(".account-name").html(info.username)
+                } else {
+                    $(".account-name").css({display: "none"})
+                }
+            })
             await $("#reg-status").stop(true).hide(0).css("color", "green").html("Successfully registered as " + $("#reg-username").val() + "!").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         }
@@ -58,6 +67,15 @@ $(document).ready(() => {
             await $("#log-status").stop(true).hide(0).css("color", "red").html("Invalid username or password.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {
+            fetch("/get-username").then(async (res) => {
+                if (res.ok) {
+                    let info = await res.json()
+                    $(".account-name").show()
+                    $(".account-name").html(info.username)
+                } else {
+                    $(".account-name").css({display: "none"})
+                }
+            })
             await $("#log-status").stop(true).hide(0).css("color", "green").html("Successfully logged in as " + $("#log-username").val() + "!").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         }

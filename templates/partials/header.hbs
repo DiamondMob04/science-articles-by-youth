@@ -59,11 +59,10 @@
         // Sanitize everything later!
         fetch("/get-username").then(async (res) => {
             if (res.ok) {
-                console.log(res)
                 let info = await res.json()
-                $("#account-name").html(info.username)
+                $(".account-name").html(info.username)
             } else {
-                $("#account-name").css({display: "none", visibility: "hidden"})
+                $(".account-name").css({display: "none"})
             }
         })
     })
