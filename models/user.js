@@ -28,6 +28,17 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
+    role: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        validate(val) {
+            if (!availableRoles.includes(val.trim().toLowerCase())) {
+                throw new Error("Role assigned is not valid.")
+            }
+        }
+    },
     password: {
         type: String,
         required: true,

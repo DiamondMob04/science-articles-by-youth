@@ -6,6 +6,7 @@ const userRouter = express.Router()
 
 userRouter.post("/register", async (req, res) => {
     try {
+        req.body.role = "member"
         let user = new User(req.body)
         await user.save()
         let token = await user.generateAuthToken()
