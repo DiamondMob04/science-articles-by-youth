@@ -36,6 +36,11 @@ userRouter.post("/login", async (req, res) => {
     }
 })
 
+userRouter.get("/logout", (req, res) => {
+    req.session.destroy()
+    res.status(200).render("home")
+})
+
 userRouter.get("/get-username", (req, res) => {
     if (req.session.token) {
         res.status(200).send({username: req.session.user.username})
