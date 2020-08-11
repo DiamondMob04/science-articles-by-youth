@@ -344,10 +344,10 @@ html {
     }
     .article-gallery > article {
         opacity: 0.7;
-        transition: opacity 0.6s ease, transform 0.6 ease;
+        animation: tiny-grow-disappear 0.6 ease forwards;
     }
     .article-gallery > article:hover {
         opacity: 1;
-        transform: scale(1.05);
+        animation: tiny-grow-appear 0.6s ease forwards;
     }
 }
