@@ -40,6 +40,9 @@ form > button {
     color: red;
     font-size: 14px;
     padding-top: 2vh !important;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -150%);
 }
 
 #reg-desc {
