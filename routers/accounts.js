@@ -10,6 +10,7 @@ userRouter.post("/register", async (req, res) => {
         let user = new User(req.body)
         await user.save()
         let token = await user.generateAuthToken()
+        req.session.user = user
         req.session.token = token
         res.status(200).send({user, token})
     } catch (error) {
@@ -26,6 +27,7 @@ userRouter.post("/login", async (req, res) => {
             throw new Error("Username or password is incorrect.")
         }
         let token = await user.generateAuthToken()
+        req.session.user = user
         req.session.token = token
         res.status(200).send({user, token})
     } catch (error) {
@@ -34,8 +36,12 @@ userRouter.post("/login", async (req, res) => {
     }
 })
 
-userRouter.get("/get-username", auth, (req, res) => {
-    res.status(200).send({username: req.session.user.username})
+userRouter.get("/get-username", (req, res) => {
+    if (req.session.token) {
+        res.status(200).send({username: req.session.user.username})
+    } else {
+        res.status(401).send("User is not authenticated.")
+    }
 })
 
 module.exports = userRouter

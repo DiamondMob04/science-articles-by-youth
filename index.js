@@ -16,20 +16,14 @@ const publicDir = path.join(__dirname, "/public")
 
 // Modules
 const stripXSS = require("./middleware/xss")
+const MongoStore = require("connect-mongo")(session)
 hbs.registerPartials(partialsDir)
 app.set("view engine", "hbs")
 app.set("views", viewsDir)
 app.use(express.static(publicDir))
 app.use(express.json())
 app.use(stripXSS)
-app.use(session({
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        secure: false
-    },
-    secret: process.env.COOKIE_SECRET
-}))
+app.use(session({ store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), secret: process.env.COOKIE_SECRET, resave: true, saveUninitialized: true, cookie: {expires: 60000, httpOnly: true, secure: false} }))
 
 // Routers
 const navRouter = require("./routers/nav")
