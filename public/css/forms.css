@@ -1,7 +1,7 @@
 .form-title {
     font-size: 36px !important;
     margin-bottom: 0.75em !important;
-    margin-top: 0 !important;
+    margin-top: 10vh !important;
 }
 
 form {
@@ -19,12 +19,14 @@ form > input {
     width: 30vw;
     height: 5vh;
     margin-bottom: 2vh;
+    font-size: 18px;
 }
 
 form > button {
     width: 15vw;
     height: 5vh;
     margin-top: 1vh;
+    margin-bottom: 10vh;
     position: relative;
 }
 
@@ -38,6 +40,12 @@ form > button {
     color: red;
     font-size: 14px;
     padding-top: 2vh !important;
+}
+
+#reg-desc {
+    width: 30vw;
+    margin-bottom: 2vh;
+    resize: none;
 }
 
 @media only screen and (max-width: 812px) {

@@ -1,0 +1,35 @@
+var currentSkip = 0
+var limitation = 9
+
+async function fetchMembers() {
+    try {
+        let response = await fetch(`/users?skip=${currentSkip}&limit=${limitation}`)
+        let json = await response.json()
+        if (json.users.length == 0) {
+            $("#err-message").html(`Could not find any users.`)
+        }
+        if (!json.moreUsers) {
+            $(".find-more").css({ transform: "scale(1)", background: "gray" })
+        } else {
+            currentSkip += limitation
+        }
+        for (let i = 0; i < json.users.length; i++) {
+            let user = json.users[i]
+            $(".triple-threat").append(`<div class="member-block" onclick="window.location.href = '/user/${user.username}'"><h2 class="prof-username">${user.username}</h2><h4 class="prof-role">${user.role}</h4><img class="prof-avatar" src="../img/avatar.jpg"></div>`)
+        }
+        setTimeout(() => {
+            $(".member-block").css("animation", "none")
+        }, 1000)
+    } catch(error) {
+        $("#err-message").html(`Could not contact user database.`)
+        throw new Error("Could not contact user database.")
+    }
+}
+
+$(".find-more").click(() => {
+    fetchMembers()
+})
+
+$(document).ready(() => {
+    fetchMembers()
+})

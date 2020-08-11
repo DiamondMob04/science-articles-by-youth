@@ -33,6 +33,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 8
     },
+    description: {
+        type: String,
+        default: "No description provided",
+        minlength: 1
+    },
     tokens: [{
         token: {
             type: String,

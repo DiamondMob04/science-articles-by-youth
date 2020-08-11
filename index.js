@@ -34,10 +34,16 @@ app.use(session({
 // Routers
 const navRouter = require("./routers/nav")
 const postsRouter = require("./routers/posts")
-const userRouter = require("./routers/users")
+const accountsRouter = require("./routers/accounts")
+const userPagesRouter = require("./routers/userpages")
 app.use(navRouter)
 app.use(postsRouter)
-app.use(userRouter)
+app.use(accountsRouter)
+app.use(userPagesRouter)
+
+app.get("*", (req, res) => {
+    res.render("error")
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

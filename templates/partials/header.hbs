@@ -9,17 +9,17 @@
     <div id="header__nav">
         <a href="/home">Home</a>
         <a href="/blog">Blog</a>
-        <a href="/">SAY Journal</a>
-        <a href="/">Contact Us</a>
+        <a href="/journal">SAY Journal</a>
+        <a href="/contact">Contact Us</a>
         <div class="nav__dropdown">
-            <a href="/">The Team</a>
+            <a>The Team</a>
             <div class="nav__links">
-                <a href="/">Executive Board</a>
-                <a href="/">Members</a>
+                <a href="/executive-board">Executive Board</a>
+                <a href="/members">Members</a>
             </div>
         </div>
         <div class="nav__dropdown">
-            <a href="/">Account</a>
+            <a>Account</a>
             <div class="nav__links">
                 <a href="/register">Register</a>
                 <a href="/login">Login</a>
@@ -32,11 +32,11 @@
         <div id="header__dropdown">
             <a href="/home">Home</a>
             <a href="/blog">Blog</a>
-            <a href="/">SAY Journal</a>
-            <a href="/">Contact Us</a>
+            <a href="/journal">SAY Journal</a>
+            <a href="/contact">Contact Us</a>
             <div class="side-by-side">
-                <a href="/">Executive Board</a>
-                <a href="/">Members</a>
+                <a href="/executive-board">Executive Board</a>
+                <a href="/members">Members</a>
             </div>
             <div class="side-by-side">
                 <a href="/register">Register</a>
@@ -58,8 +58,12 @@
         })
         fetch("/get-username").then(async (res) => {
             if (res.ok) {
-                let info = await res.json()
-                $(".account-name").html(info.username)
+                try {
+                    let info = await res.json()
+                    $(".account-name").html(info.username)
+                } catch (error) {
+                    $(".account-name").css({display: "none"})
+                }
             } else {
                 $(".account-name").css({display: "none"})
             }

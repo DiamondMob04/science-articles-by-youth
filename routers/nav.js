@@ -32,4 +32,8 @@ navRouter.get("/account", auth, (req, res) => {
     res.render("account")
 })
 
+navRouter.get("/members", (req, res) => {
+    res.render("members")
+})
+
 module.exports = navRouter

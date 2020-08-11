@@ -21,13 +21,14 @@
                     <input type="password" id="reg-password" autocomplete="off" required>
                     <label for="reg-reenter" class="required">Confirm Password</label>
                     <input type="password" id="reg-reenter" autocomplete="off" required>
+                    <label for="reg-desc">About You (optional)</label>
+                    <textarea type="text" id="reg-desc" rows="4" autocomplete="off"></textarea>
                     <button type="submit">Register</button>
                 </form>
                 <p id="reg-status"></p>
             </div>
         </div>
         {{>footer}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
         <script src="/js/forms.js"></script>
     </body>
 </html>
