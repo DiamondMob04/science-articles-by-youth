@@ -301,7 +301,7 @@ html {
 @media only screen and (max-width: 612px) {
     .triple-threat {
         grid-template-columns: 1fr;
-        margin: 1vh 15vw;
+        margin: 1vh 10vw;
     }
 }
 

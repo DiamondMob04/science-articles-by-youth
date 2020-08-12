@@ -55,4 +55,7 @@ form > button {
     form > input {
         width: 50vw;
     }
+    #reg-desc {
+        width: 60vw;
+    }
 }
