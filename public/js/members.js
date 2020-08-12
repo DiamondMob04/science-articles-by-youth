@@ -15,7 +15,6 @@ async function fetchMembers() {
         }
         for (let i = 0; i < json.users.length; i++) {
             let user = json.users[i]
-            console.log(user)
             $(".triple-threat").append(`<div class="member-block" onclick="window.location.href = '/user/${user.username}'"><h2 class="prof-username">${user.username}</h2><h4 class="prof-role">${user.role}</h4><img class="prof-avatar" src="/avatar/${user._id}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture"></div>`)
         }
         setTimeout(() => {

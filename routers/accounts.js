@@ -53,7 +53,6 @@ userRouter.post("/register", async (req, res) => {
         req.session.token = token
         res.send({user, token})
     } catch (error) {
-        console.log(error)
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
         res.status(400).send({error: error.errors})
     }
