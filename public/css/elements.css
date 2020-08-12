@@ -77,7 +77,7 @@ html {
 
 .member-block {
     background: linear-gradient(rgba(0, 170, 0, 0.8), rgba(0, 95, 0, 0.9));
-    margin: 1vh 3vw;
+    margin: 1vh 2vw;
     animation: slightAppear 1s ease forwards;
     transition: transform 1s ease;
 }
@@ -289,10 +289,23 @@ html {
 
 /* Media query for phones. */
 
-@media only screen and (max-width: 812px) {
+@media only screen and (max-width: 1096px) {
     .triple-threat {
         grid-template-columns: 1fr 1fr;
     }
+    .member-block {
+        margin: 1vh 1.5vw;
+    }
+}
+
+@media only screen and (max-width: 612px) {
+    .triple-threat {
+        grid-template-columns: 1fr;
+        margin: 1vh 15vw;
+    }
+}
+
+@media only screen and (max-width: 812px) {
     .text-block {
         margin-left: 0;
         margin-right: 0;
