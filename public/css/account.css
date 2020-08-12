@@ -112,4 +112,7 @@ button:focus {
     #details > *:last-child {
         margin-bottom: 2vh !important;
     }
+    button, #submit-input {
+        width: 25vw !important;
+    }
 }
