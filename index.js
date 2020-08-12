@@ -14,7 +14,7 @@ const partialsDir = path.join(__dirname, "/templates/partials")
 const viewsDir = path.join(__dirname, "/templates/views")
 const publicDir = path.join(__dirname, "/public")
 
-// Modules
+// Modules & Middleware
 const stripXSS = require("./middleware/xss")
 const MongoStore = require("connect-mongo")(session)
 hbs.registerPartials(partialsDir)

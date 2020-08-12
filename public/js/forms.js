@@ -41,7 +41,7 @@ $(document).ready(() => {
             await $("#reg-status").stop(true).hide(0).css("color", "red").html("An unexpected error occurred. Please make sure all of your details are valid, or that user may already exist.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {
-            fetch("/get-username").then(async (res) => {
+            fetch("/info").then(async (res) => {
                 if (res.ok) {
                     let info = await res.json()
                     $(".account-name").show()
@@ -67,7 +67,7 @@ $(document).ready(() => {
             await $("#log-status").stop(true).hide(0).css("color", "red").html("Invalid username or password.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {
-            fetch("/get-username").then(async (res) => {
+            fetch("/info").then(async (res) => {
                 if (res.ok) {
                     let info = await res.json()
                     $(".account-name").show()

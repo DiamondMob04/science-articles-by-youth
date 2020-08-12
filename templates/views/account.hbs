@@ -4,18 +4,44 @@
         <title>Account - SAY</title>
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/elements.css">
-        <link rel="stylesheet" href="/css/forms.css">
+        <link rel="stylesheet" href="/css/account.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         {{>header}}
         <div class="text-block">
-            <h3>Your Account</h3><hr>
-            <p>Account customization is a work in progress. Stay tuned. :)</p>
-            <a href="/logout">Logout</a>
-            <p style="margin-bottom: 70vh; visible: none;"></p>
+            <div style="background: #efefef" class="text-block">
+                <h2>Your Profile</h2>
+                <div id="details">
+                    <div id="set-prof-pic">
+                        <div>
+                            <h3>Your Current Profile Picture</h3>
+                            <img id="current-prof-pic" src="/img/avatar.jpg" alt="User profile picture">
+                        </div>
+                        <form enctype="multipart/form-data" action="/avatar" method="post">
+                            <input id="file-input" type="file" size="10" name="avatar"><br>
+                            <input id="submit-input" type="submit"> 
+                        </form>
+                    </div>
+                    <div id="set-descriptions">
+                        <div>
+                            <h3>Your Current Username</h3>
+                            <p class="encourage-text">Usernames must be 1-16 characters long.</p>
+                            <input id="current-username"></input><br>
+                            <button id="set-username">Set Username</button>
+                            <p id="username-status"></p>
+                            <h3>Your Current Description</h3>
+                            <p class="encourage-text">We encourage you to type around 1-4 sentences for your description.</p>
+                            <textarea rows="6" id="current-desc"></textarea><br>
+                            <button id="set-desc">Set Description</button>
+                            <p id="description-status"></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="logout" onclick="window.location.href = '/logout'">Logout</button>
+            </div>
         </div>
         {{>footer}}
-        <script src="/js/forms.js"></script>
+        <script src="/js/account.js"></script>
     </body>
 </html>

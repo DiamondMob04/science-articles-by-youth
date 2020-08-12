@@ -1,20 +1,18 @@
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
-        <title>Members - SAY</title>
+        <title>Public Profile - SAY</title>
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/elements.css">
+        <link rel="stylesheet" href="/css/publicprof.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         {{>header}}
         <div class="text-block">
-            <h3>Members</h3><hr>
-            <h4 id="err-message"></h4>
-            <div class="triple-threat">
-
-            </div>
-            <button class="find-more">Find More</button>
+            <h3>{{username}}'s Profile</h3><hr>
+            <p>{{description}}</p>
+            <img id="pub-prof-icon" src="/avatar/{{id}}" onerror="$(this).attr('src', '/img/avatar.jpg')">
         </div>
         {{>footer}}
         <script src="/js/members.js"></script>

@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
         req.session.user = user
         next()
     } catch (error) {
-        res.status(401).send("User is not authenticated.")
+        res.status(401).redirect("/login")
     }
 } 
 

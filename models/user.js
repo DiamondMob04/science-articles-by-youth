@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: 1
+        minlength: 1,
+        maxlength: 16
     },
     email: {
         type: String,
@@ -47,7 +48,10 @@ const userSchema = new mongoose.Schema({
     description: {
         type: String,
         default: "No description provided",
-        minlength: 1
+        maxlength: 300
+    },
+    avatar: {
+        type: Buffer
     },
     tokens: [{
         token: {
@@ -59,7 +63,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.toJSON = function() {
     const user = this.toObject()
-    delete user._id
+    delete user.tokens
     delete user.password
     return user
 }

@@ -3,8 +3,13 @@ const User = require("../models/user")
 
 const userPagesRouter = express.Router()
 
-userPagesRouter.get("/user/:username", (req, res) => {
-    res.send(req.params.username)
+userPagesRouter.get("/user/:username", async (req, res) => {
+    const user = await User.findOne({username: req.params.username})
+    res.render("publicuser", {
+        username: user.username,
+        description: user.description,
+        id: user._id
+    })
 })
 
 userPagesRouter.get("/users", async (req, res) => {
@@ -23,7 +28,9 @@ userPagesRouter.get("/users", async (req, res) => {
         users.push({
             username: currUser.username,
             role: currUser.role,
-            description: currUser.description
+            description: currUser.description,
+            _id: currUser._id,
+            hasAvatar: currUser.avatar != undefined
         })
     }
     res.send({ users, skipQuery: req.query.skip, limitQuery: req.query.limit, moreUsers })

@@ -110,12 +110,10 @@ html {
 }
 
 .prof-avatar {
-    width: 100%;
-    height: 100%;
-    padding-left: 3vw;
-    padding-right: 3vw;
+    width: 256px;
+    height: 256px;
     margin-bottom: 2vh;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 /* Defining button-column, which denotes a column of buttons (where rows have one button each). */
