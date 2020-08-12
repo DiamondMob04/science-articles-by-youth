@@ -36,4 +36,8 @@ navRouter.get("/members", (req, res) => {
     res.render("members")
 })
 
+navRouter.get("/journal", (req, res) => {
+    res.render("journal")
+})
+
 module.exports = navRouter

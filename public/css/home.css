@@ -1,5 +1,6 @@
 /* Space background and text. */
 
+
 #space-bg {
     background-image: url("/img/space-bg.jpg");
     background-repeat: no-repeat;
@@ -54,5 +55,8 @@
 @media only screen and (max-width: 812px) {
     #space-bg {
         background-attachment: scroll;
+    }
+    #space-bg > h3 {
+        font-size: 6vh;
     }
 }
