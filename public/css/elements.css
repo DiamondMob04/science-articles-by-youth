@@ -76,7 +76,8 @@ a {
 /* Defining member block, which encapsulates a member's information. */
 
 #err-message {
-    margin: 3vh 0;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
 }
 
 .member-block {
