@@ -21,8 +21,8 @@
         <div class="nav__dropdown">
             <a>Account</a>
             <div class="nav__links">
-                <a href="/register">Register</a>
-                <a href="/login">Login</a>
+                <a class="not-logged-in" href="/register">Register</a>
+                <a class="not-logged-in" href="/login">Login</a>
                 <a class="account-name" href="/account">Account</a>
             </div>
         </div>
@@ -39,8 +39,8 @@
                 <a href="/members">Members</a>
             </div>
             <div class="side-by-side">
-                <a href="/register">Register</a>
-                <a href="/login">Login</a>
+                <a class="not-logged-in" href="/register">Register</a>
+                <a class="not-logged-in" href="/login">Login</a>
                 <a class="account-name" href="/account">Account</a>
             </div>
         </div>
@@ -61,6 +61,7 @@
                 try {
                     let info = await res.json()
                     $(".account-name").html(info.username)
+                     $(".not-logged-in").css({display: "none"})
                 } catch (error) {
                     $(".account-name").css({display: "none"})
                 }
