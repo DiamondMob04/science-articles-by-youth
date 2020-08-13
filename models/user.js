@@ -96,6 +96,12 @@ userSchema.pre("save", async function(next) {
     next()
 })  
 
+userSchema.virtual("posts", {
+    ref: "Post",
+    localField: "_id",
+    foreignField: "author"
+})
+
 const userModel = mongoose.model("User", userSchema)
 
 module.exports = userModel

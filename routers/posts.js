@@ -7,8 +7,8 @@ const postsRouter = express.Router()
 
 postsRouter.get("/article/:id", async (req, res) => {
     try {
-        const post = await Post.findOne({_id: req.params.id})
-        const user = await User.findOne({_id: post.author})
+        const post = await Post.findById(req.params.id)
+        const user = await User.findById(post.author)
         res.render("publicarticle", {
             title: post.title,
             author: user.username,
@@ -38,7 +38,14 @@ postsRouter.get("/posts", async (req, res) => {
         return res.status(400).send({error: "Invalid limit/skip query. (0 <= req.query.skip) (0 < req.query.limit <= 100)"})
     }
     // Adding one extra post to the limit to check if there are more after.
-    var postData = await Post.find({}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+    var postData = undefined
+    if (req.query.owner === undefined) {
+        postData = await Post.find({}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+    } else {
+        const user = await User.findById(req.query.owner)
+        await user.populate("posts").execPopulate()
+        postData = user.posts
+    }
     let morePosts = postData.length > req.query.limit
     if (morePosts) postData.pop()
     let posts = []

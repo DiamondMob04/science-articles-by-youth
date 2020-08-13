@@ -10,10 +10,25 @@
     <body>
         {{>header}}
         <div class="text-block">
-            <h3>{{username}}'s Profile</h3><hr>
-            <p>{{description}}</p>
-            <img id="pub-prof-icon" src="/avatar/{{id}}" onerror="$(this).attr('src', '/img/avatar.jpg')">
+            <h2>{{username}}'s Profile</h2><hr>
+            <div class="user-block">
+                <img id="pub-prof-icon" src="/avatar/{{id}}" onerror="$(this).attr('src', '/img/avatar.jpg')">
+                <p class="inline-block">{{description}}</p><span id="user-id" style="display: none;">{{id}}</span>
+            </div>
+            <div class="text-block remove-top-margin">
+                <h3>Posted Articles</h3>
+                <div class="article-gallery inline-block">
+                    <h4 id="err-message"></h4>
+                </div>
+                <button class="find-more">Find More</button>
+            </div>
         </div>
         {{>footer}}
+        <script src="/js/fetchposts.js"></script>
+        <script>
+            $(document).ready(() => {
+                fetchUserPosts($("#user-id").text())
+            })
+        </script>
     </body>
 </html>

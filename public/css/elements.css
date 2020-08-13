@@ -43,6 +43,30 @@ a {
     background: black;
 }
 
+/* User info block. */
+
+.user-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    margin: auto;
+}
+
+.user-block > * {
+    width: 50%;
+    height: 20vh;
+}
+
+.user-block > p {
+    padding: 16px 16px;
+}
+
+.inline-block {
+    background: linear-gradient(rgb(230, 230, 230), rgb(212, 212, 212));
+}
+
 /* Defining left-right, which contains elements which should be in 2 equal columns. */
 
 .left-right {
@@ -65,6 +89,10 @@ a {
     font-weight: 600;
 }
 
+.remove-top-margin {
+    margin-top: 0px !important;
+}
+
 /* Defining triple-threat, which contains elements which should be in 2 equal columns. */
 
 .triple-threat {
@@ -76,8 +104,14 @@ a {
 /* Defining member block, which encapsulates a member's information. */
 
 #err-message {
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+    grid-column: span 3;
+}
+
+.inline-block > #err-message {
     margin-top: 3vh;
-    margin-bottom: 1vh;
+    margin-bottom: 4vh;
 }
 
 .member-block {
@@ -346,6 +380,13 @@ a {
     .article-gallery > article {
         opacity: 0.9 !important;
         animation: none !important;
+    }
+    .user-block {
+        flex-direction: column;
+    }
+    .user-block > p {
+        width: 100%;
+        margin-bottom: 4vh;
     }
 }
 
