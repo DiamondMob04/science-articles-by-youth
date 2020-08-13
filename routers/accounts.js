@@ -17,9 +17,13 @@ const upload = multer({
 })
 
 userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
-    req.session.user.avatar = req.file.buffer
-    await req.session.user.save()
-    res.redirect("/account")
+    try {
+        req.session.user.avatar = req.file.buffer
+        await req.session.user.save()
+        res.redirect("/account")
+    } catch (error) {
+        res.status(400).redirect("account")
+    }
 }, (error, req, res, next) => {
     res.status(400).redirect("account")
 })
@@ -34,12 +38,12 @@ userRouter.get("/avatar/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
         if (!user || !user.avatar) {
-            throw new Error()
+            return res.render("error")
         }
         res.set("Content-Type", "image/jpg")
         res.send(user.avatar)
-    } catch (error) {
-        res.status(404).send()
+    } catch(error) {
+        return res.redirect("/error")
     }
 })
 

@@ -8,6 +8,9 @@ const postsRouter = express.Router()
 postsRouter.get("/article/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
+        if (!post) {
+            throw new Error()
+        }
         const user = await User.findById(post.author)
         res.render("publicarticle", {
             title: post.title,
@@ -15,7 +18,7 @@ postsRouter.get("/article/:id", async (req, res) => {
             contents: post.contents
         })
     } catch (error) {
-        return res.status(400).redirect("error")
+        return res.redirect("/error")
     }
 })
 

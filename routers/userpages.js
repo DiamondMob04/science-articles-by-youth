@@ -4,12 +4,16 @@ const User = require("../models/user")
 const userPagesRouter = express.Router()
 
 userPagesRouter.get("/user/:username", async (req, res) => {
-    const user = await User.findOne({username: req.params.username})
-    res.render("publicuser", {
-        username: user.username,
-        description: user.description,
-        id: user._id
-    })
+    try {
+        const user = await User.findOne({username: req.params.username})
+        res.render("publicuser", {
+            username: user.username,
+            description: user.description,
+            id: user._id
+        })
+    } catch (error) {
+        return res.redirect("/error")
+    }
 })
 
 userPagesRouter.get("/users", async (req, res) => {
