@@ -38,6 +38,8 @@ const postSchema = mongoose.Schema({
             }
         }
     }
+}, {
+    timestamps: true
 })
 
 const postModel = mongoose.model("Post", postSchema)
