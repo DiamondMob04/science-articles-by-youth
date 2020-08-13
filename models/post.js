@@ -23,6 +23,9 @@ const postSchema = mongoose.Schema({
         required: true,
         minlength: 100
     },
+    thumbnail: {
+        type: Buffer
+    },
     tags: {
         type: String,
         required: true,
