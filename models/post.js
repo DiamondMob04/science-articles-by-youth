@@ -5,6 +5,7 @@ const postSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
+        unique: true,
         minlength: 8,
         validate(val) {
             const filter = new Filter()
@@ -14,7 +15,7 @@ const postSchema = mongoose.Schema({
         }
     },
     author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     contents: {
@@ -25,8 +26,10 @@ const postSchema = mongoose.Schema({
     tags: {
         type: String,
         required: true,
+        trim: true,
+        lowercase: true,
         validate(val) {
-            if (val.split(" ").length === 0) {
+            if (val.length === 0) {
                 throw new Error("Please provide at least one tag for your article's content!")
             }
         }

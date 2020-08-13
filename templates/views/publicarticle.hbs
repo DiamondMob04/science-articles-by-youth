@@ -4,15 +4,15 @@
         <title>Public Profile - SAY</title>
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/elements.css">
-        <link rel="stylesheet" href="/css/publicprof.css">
+        <link rel="stylesheet" href="/css/publicarticle.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         {{>header}}
         <div class="text-block">
-            <h3>{{username}}'s Profile</h3><hr>
-            <p>{{description}}</p>
-            <img id="pub-prof-icon" src="/avatar/{{id}}" onerror="$(this).attr('src', '/img/avatar.jpg')">
+            <h3>{{title}}</h3>
+            <h4>Created by {{author}}</h4><hr>
+            <p id="article-contents">{{contents}}</p>
         </div>
         {{>footer}}
     </body>

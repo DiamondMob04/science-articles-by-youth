@@ -8,7 +8,7 @@
 }
 
 #header__topbar {
-    background: linear-gradient(rgb(0, 170, 0), green);
+    background: linear-gradient(rgb(0, 170, 0), rgb(0, 121, 0));
     width: 100vw;
     min-height: 4rem;
     height: 15vh;
