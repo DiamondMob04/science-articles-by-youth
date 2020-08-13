@@ -39,10 +39,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="text-block">
+                    <h3>Posted Articles</h3>
+                    <div class="article-gallery">
+                        <h4 id="err-message"></h4>
+                    </div>
+                    <button class="find-more">Find More</button>
+                </div>
                 <button id="logout" onclick="window.location.href = '/logout'">Logout</button>
             </div>
         </div>
         {{>footer}}
         <script src="/js/account.js"></script>
+        <script src="/js/fetchposts.js"></script>
+        <script>
+            $(document).ready(async () => {
+                const raw = await fetch("/info")
+                const json = await raw.json()
+                fetchUserPosts(json._id)
+            })
+        </script>
     </body>
 </html>
