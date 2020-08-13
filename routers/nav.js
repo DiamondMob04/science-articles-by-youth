@@ -40,4 +40,12 @@ navRouter.get("/journal", (req, res) => {
     res.render("journal")
 })
 
+navRouter.get("/executive-board", (req, res) => {
+    res.render("execboard")
+})
+
+navRouter.get("/contact", (req, res) => {
+    res.render("contact")
+})
+
 module.exports = navRouter

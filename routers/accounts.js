@@ -21,13 +21,13 @@ userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
     await req.session.user.save()
     res.redirect("/account")
 }, (error, req, res, next) => {
-    res.status(400).send({ error: error.message })
+    res.status(400).redirect("account")
 })
 
 userRouter.delete("/avatar", auth, async (req, res) => {
     req.session.user.avatar = undefined
     await req.session.user.save()
-    res.send()
+    res.send().redirect("account")
 })
 
 userRouter.get("/avatar/:id", async (req, res) => {
@@ -76,7 +76,7 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.get("/logout", (req, res) => {
     req.session.destroy()
-    res.status(200).render("home")
+    res.status(200).redirect("home")
 })
 
 userRouter.patch("/user", auth, async (req, res) => {
