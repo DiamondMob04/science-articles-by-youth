@@ -22,11 +22,13 @@ app.use(cors())
 app.use(express.static(publicDir))
 app.use(express.json())
 app.use(stripXSS)
+let date = new Date()
+date.setDate(date.getDate() + 7)
 app.use(session({ store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), 
 secret: process.env.COOKIE_SECRET, 
 resave: true, 
 saveUninitialized: true, 
-cookie: {httpOnly: true, secure: false} }))
+cookie: {expires: date, httpOnly: true, secure: false} }))
 
 // Routers
 const navRouter = require("./routers/nav")
