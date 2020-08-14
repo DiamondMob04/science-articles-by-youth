@@ -96,17 +96,13 @@ userRouter.patch("/user", auth, async (req, res) => {
     }
 })
 
-userRouter.get("/info", (req, res) => {
-    if (req.session.token) {
-        res.status(200).send({
-            username: req.session.user.username, 
-            _id: req.session.user._id, 
-            description: req.session.user.description,
-            hasAvatar: req.session.user.avatar != undefined
-        })
-    } else {
-        res.status(401).send("User is not authenticated.")
-    }
+userRouter.get("/info", auth, (req, res) => {
+    res.status(200).send({
+        username: req.session.user.username, 
+        _id: req.session.user._id, 
+        description: req.session.user.description,
+        hasAvatar: req.session.user.avatar != undefined
+    })
 })
 
 module.exports = userRouter

@@ -1,12 +1,9 @@
 $(document).ready(async () => {
-    var res = undefined
-    var json = undefined
-    try {
-        res = await fetch("/info")
-        json = await res.json()
-    } catch (error) {
+    const res = await fetch("/info")
+    if (!res.ok) {
         window.location.href = "/login"
     }
+    const json = await res.json()
     if (json.hasAvatar) {
         $("#current-prof-pic").attr("src", `/avatar/${json._id}`)
     }
