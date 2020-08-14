@@ -48,14 +48,14 @@ userRouter.get("/avatar/:id", async (req, res) => {
 })
 
 userRouter.post("/register", async (req, res) => {
+    req.body.role = "member"
+    let user = new User(req.body)
     try {
-        req.body.role = "member"
-        let user = new User(req.body)
         await user.save()
-        let token = await user.generateAuthToken()
+        const token = await user.generateAuthToken()
         req.session.user = user
         req.session.token = token
-        res.send({user, token})
+        res.status(201).send({user, token})
     } catch (error) {
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
         res.status(400).send({error: error.errors})
@@ -65,9 +65,6 @@ userRouter.post("/register", async (req, res) => {
 userRouter.post("/login", async (req, res) => {
     try {
         let user = await User.findByCredentials(req.body.username, req.body.password)
-        if (!user) {
-            throw new Error("Username or password is incorrect.")
-        }
         let token = await user.generateAuthToken()
         req.session.user = user
         req.session.token = token

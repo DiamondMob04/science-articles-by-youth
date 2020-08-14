@@ -1,3 +1,9 @@
+fetch("/info").then((res) => {
+    if (res.ok) {
+        window.location.href = "/account"
+    }
+})
+
 $(document).ready(() => {
     $("#reg-email").on("input", () => {
         if (!$("#reg-email").val().match(/\S+@\S+\.\S+/)) {
