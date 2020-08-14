@@ -48,4 +48,8 @@ navRouter.get("/contact", (req, res) => {
     res.render("contact")
 })
 
+navRouter.get("/create", auth, (req, res) => {
+    res.render("create")
+})
+
 module.exports = navRouter

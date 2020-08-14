@@ -2,6 +2,9 @@ const express = require("express")
 const auth = require("../middleware/auth")
 const Post = require("../models/post")
 const User = require("../models/user")
+const Image = require("../models/image")
+const multer = require("multer")
+const mongoose = require("mongoose")
 
 const postsRouter = express.Router()
 

@@ -20,18 +20,18 @@ userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
     try {
         req.session.user.avatar = req.file.buffer
         await req.session.user.save()
-        res.redirect("/account")
+        return res.redirect("/account")
     } catch (error) {
-        res.status(400).redirect("account")
+        return res.status(400).redirect("/account")
     }
 }, (error, req, res, next) => {
-    res.status(400).redirect("account")
+    return res.status(400).redirect("/account")
 })
 
 userRouter.delete("/avatar", auth, async (req, res) => {
     req.session.user.avatar = undefined
     await req.session.user.save()
-    res.send().redirect("account")
+    res.send().redirect("/account")
 })
 
 userRouter.get("/avatar/:id", async (req, res) => {

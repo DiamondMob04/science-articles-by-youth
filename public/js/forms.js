@@ -23,11 +23,11 @@ $(document).ready(() => {
     $("#register-form").submit(async (event) => {
         event.preventDefault()
         if ($("#reg-password").val() !== $("#reg-reenter").val()) {
-            await $("#reg-status").stop(true).hide(0).css("color", "red").html("Passwords do not match.").fadeIn(1000).delay(3000).fadeOut(1000)
+            await $("#reg-status").stop(true).hide(0).css("color", "red").text("Passwords do not match.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         }
         if ($("#reg-password").val().length < 8) {
-            await $("#reg-status").stop(true).hide(0).css("color", "red").html("Password must be at least 8 characters in length.").fadeIn(1000).delay(3000).fadeOut(1000)
+            await $("#reg-status").stop(true).hide(0).css("color", "red").text("Password must be at least 8 characters in length.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         }
         let res = await fetch("/register", {
@@ -38,19 +38,19 @@ $(document).ready(() => {
             body: JSON.stringify({ username: $("#reg-username").val(), email: $("#reg-email").val(), description: ($("#reg-desc").val() === "") ? undefined : $("#reg-desc").val(), password: $("#reg-password").val() })
         })
         if (!res.ok) {
-            await $("#reg-status").stop(true).hide(0).css("color", "red").html("An unexpected error occurred. Please make sure all of your details are valid, or that user may already exist.").fadeIn(1000).delay(3000).fadeOut(1000)
+            await $("#reg-status").stop(true).hide(0).css("color", "red").text("An unexpected error occurred. Please make sure all of your details are valid, or that user may already exist.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {
             fetch("/info").then(async (res) => {
                 if (res.ok) {
                     let info = await res.json()
                     $(".account-name").show()
-                    $(".account-name").html(info.username)
+                    $(".account-name").text(info.username)
                 } else {
                     $(".account-name").css({display: "none"})
                 }
             })
-            // await $("#reg-status").stop(true).hide(0).css("color", "green").html("Successfully registered as " + $("#reg-username").val() + "!").fadeIn(1000).delay(3000).fadeOut(1000)
+            // await $("#reg-status").stop(true).hide(0).css("color", "green").text("Successfully registered as " + $("#reg-username").val() + "!").fadeIn(1000).delay(3000).fadeOut(1000)
             return window.location.href = "/account"
         }
     })
@@ -64,19 +64,19 @@ $(document).ready(() => {
             body: JSON.stringify({ username: $("#log-username").val(), password: $("#log-password").val() })
         })
         if (!res.ok) {
-            await $("#log-status").stop(true).hide(0).css("color", "red").html("Invalid username or password.").fadeIn(1000).delay(3000).fadeOut(1000)
+            await $("#log-status").stop(true).hide(0).css("color", "red").text("Invalid username or password.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {
             fetch("/info").then(async (res) => {
                 if (res.ok) {
                     let info = await res.json()
                     $(".account-name").show()
-                    $(".account-name").html(info.username)
+                    $(".account-name").text(info.username)
                 } else {
                     $(".account-name").css({display: "none"})
                 }
             })
-            // await $("#log-status").stop(true).hide(0).css("color", "green").html("Successfully logged in as " + $("#log-username").val() + "!").fadeIn(1000).delay(3000).fadeOut(1000)
+            // await $("#log-status").stop(true).hide(0).css("color", "green").text("Successfully logged in as " + $("#log-username").val() + "!").fadeIn(1000).delay(3000).fadeOut(1000)
             return window.location.href = "/account"
         }
     })

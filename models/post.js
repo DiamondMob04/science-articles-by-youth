@@ -6,7 +6,8 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: 8,
+        minlength: 6,
+        maxlength: 30,
         validate(val) {
             const filter = new Filter()
             if (filter.isProfane(val)) {
@@ -22,7 +23,7 @@ const postSchema = mongoose.Schema({
     contents: {
         type: String,
         required: true,
-        minlength: 100
+        minlength: 200
     },
     thumbnail: {
         type: Buffer
@@ -33,6 +34,11 @@ const postSchema = mongoose.Schema({
         trim: true,
         lowercase: true,
         validate(val) {
+            val.split(" ").forEach((tag) => {
+                if (tag.length < 3 || tag.length > 12) {
+                    throw new Error("All tags must be in between 3-12 characters long!")
+                }
+            })
             if (val.length === 0) {
                 throw new Error("Please provide at least one tag for your article's content!")
             }

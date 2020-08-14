@@ -6,7 +6,7 @@ async function fetchMembers() {
         let response = await fetch(`/users?skip=${currentSkip}&limit=${limitation}`)
         let json = await response.json()
         if (currentSkip == 0 && json.users.length == 0) {
-            $("#err-message").html(`Could not find any users.`)
+            $("#err-message").text(`Could not find any users.`)
         }
         if (!json.moreUsers) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
@@ -21,7 +21,7 @@ async function fetchMembers() {
             $(".member-block").css("animation", "none")
         }, 1000)
     } catch(error) {
-        $("#err-message").html(`Could not contact user database.`)
+        $("#err-message").text(`Could not contact user database.`)
         throw new Error("Could not contact user database.")
     }
 }
@@ -31,7 +31,7 @@ async function fetchAdmins() {
         let response = await fetch(`/users?skip=${currentSkip}&limit=${limitation}&admin=true`)
         let json = await response.json()
         if (currentSkip == 0 && json.users.length == 0) {
-            $("#err-message").html(`Could not find any users.`)
+            $("#err-message").text(`Could not find any users.`)
         }
         if (!json.moreUsers) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
@@ -46,7 +46,7 @@ async function fetchAdmins() {
             $(".member-block").css("animation", "none")
         }, 1000)
     } catch(error) {
-        $("#err-message").html(`Could not contact user database.`)
+        $("#err-message").text(`Could not contact user database.`)
         throw new Error("Could not contact user database.")
     }
 }

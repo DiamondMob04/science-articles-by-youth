@@ -7,7 +7,7 @@ async function fetchPosts() {
         let json = await response.json()
         if (currentSkip == 0 && json.posts.length == 0) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
-            return $("#err-message").html(`Could not find any articles.`)
+            return $("#err-message").text(`Could not find any articles.`)
         }
         $("#err-message").hide()
         if (!json.morePosts) {
@@ -33,7 +33,7 @@ async function fetchPosts() {
             $(".member-block").css("animation", "none")
         }, 1000)
     } catch(error) {
-        $("#err-message").html(`Could not contact article database.`)
+        $("#err-message").text(`Could not contact article database.`)
         throw new Error("Could not contact article database.")
     }
 }
@@ -44,7 +44,7 @@ async function fetchUserPosts(id) {
         let json = await response.json()
         if (currentSkip == 0 && json.posts.length == 0) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
-            return $("#err-message").html(`Could not find any articles.`)
+            return $("#err-message").text(`Could not find any articles.`)
         }
         $("#err-message").hide()
         if (!json.morePosts) {
@@ -68,7 +68,7 @@ async function fetchUserPosts(id) {
             $(".member-block").css("animation", "none")
         }, 1000)
     } catch(error) {
-        $("#err-message").html(`Could not contact article database.`)
+        $("#err-message").text(`Could not contact article database.`)
         throw new Error("Could not contact article database.")
     }
 }

@@ -1,6 +1,12 @@
 $(document).ready(async () => {
-    const res = await fetch("/info")
-    const json = await res.json()
+    var res = undefined
+    var json = undefined
+    try {
+        res = await fetch("/info")
+        json = await res.json()
+    } catch (error) {
+        window.location.href = "/login"
+    }
     if (json.hasAvatar) {
         $("#current-prof-pic").attr("src", `/avatar/${json._id}`)
     }
@@ -35,9 +41,9 @@ $(document).ready(async () => {
             if (res.ok) {
                 $("#current-username").attr("placeholder", $("#current-username").val())
                 $("#current-username").val("")
-                $("#username-status").css("color", "green").html("Username successfully changed!").stop().show(1000).delay(3000).hide(1000)
+                $("#username-status").css("color", "green").text("Username successfully changed!").stop().show(1000).delay(3000).hide(1000)
             } else {
-                $("#username-status").css("color", "red").html("Something went wrong.").stop().show(1000).delay(3000).hide(1000)
+                $("#username-status").css("color", "red").text("Something went wrong.").stop().show(1000).delay(3000).hide(1000)
             }
         })
     })
@@ -54,9 +60,9 @@ $(document).ready(async () => {
             if (res.ok) {
                 $("#current-desc").attr("placeholder", $("#current-desc").val())
                 $("#current-desc").val("")
-                $("#description-status").css("color", "green").html("Description successfully changed!").stop().show(1000).delay(3000).hide(1000)
+                $("#description-status").css("color", "green").text("Description successfully changed!").stop().show(1000).delay(3000).hide(1000)
             } else {
-                $("#description-status").css("color", "red").html("Something went wrong.").stop().show(1000).delay(3000).hide(1000)
+                $("#description-status").css("color", "red").text("Something went wrong.").stop().show(1000).delay(3000).hide(1000)
             }
         })
     })

@@ -102,6 +102,40 @@ button:focus {
     outline: none;
 }
 
+.make-own {
+    margin-top: 1em;
+    width: 40%;
+    height: 2em;
+    font-size: 1rem;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(rgba(0, 170, 0, 0.8), rgba(0, 95, 0, 0.9));
+    transition: all 0.6s ease;
+}
+
+.make-own:hover {
+    transform: scale(1.1); 
+}
+
+.make-own:focus {
+    outline: none;
+}
+
+.make-own::before {
+    content: "+";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 0.8em;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: 700;
+    margin-right: 0.5em;
+    background: rgb(240, 255, 240);
+    color: rgba(0, 95, 0, 0.9);
+}
+
 @media only screen and (max-width: 912px) {
     #details {
         flex-direction: column;
@@ -113,6 +147,13 @@ button:focus {
         margin-bottom: 2vh !important;
     }
     button, #submit-input {
-        width: 25vw !important;
+        width: 40vw !important;
+    }
+    .article-gallery {
+        grid-template-columns: 1fr !important;
+    }
+    .article-gallery > article {
+        margin-left: 6vw;
+        margin-right: 6vw;
     }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blog - SAY</title>
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="stylesheet" href="/css/elements.css">
+        <link rel="stylesheet" href="/css/create.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        {{>header}}
+        <div class="text-block slight-gray">
+            <h2>Create an Article</h2><hr>
+            <div class="left-right condense">
+                <div id="user-input">
+                    <input id="title-input" placeholder="Include a title here. (6-30 chars)">
+                    <textarea id="contents-input" placeholder="Enter the contents of your article here! (>200 chars)"></textarea>
+                    <div class="input-button">
+                        <input id="tag-input" placeholder="Include tags. (3-12 chars)">
+                        <button id="submit-tag">Add</button>
+                        <button id="delete-tag">Delete</button>
+                    </div>
+                    <form id="thumbnail-form">
+                        <input id="file-input" type="file" size="10"><br>
+                        <input id="submit-input" type="submit" value="Use Photo"> 
+                    </form>     
+                </div>
+                <div>
+                    <article>
+                        <h3 class="article-title"></h3>
+                        <h4 class="article-info"></h4>
+                        <img class="article-thumbnail" src="/img/space-bg.jpg">
+                        <p class="article-desc"></p>
+                        <div class="article-tags"><p id="tag-example"></p></div>
+                        <button class="read-more" onclick="window.location.href='/article/${post.id}'">Read More</button>
+                    </article> 
+                </div>
+            </div>
+        </div>
+        {{>footer}}
+        <script src="/js/create.js"></script>
+    </body>
+</html>

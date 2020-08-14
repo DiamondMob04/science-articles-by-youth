@@ -1,0 +1,60 @@
+.condense > * {
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.left-right {
+    margin-top: 5vh;
+}
+
+#user-input > * {
+    margin: 0;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1vh;
+}
+
+#contents-input {
+    resize: none;
+    height: 40vh;
+    margin-bottom: 0.5vh !important;
+}
+
+input, form, textarea {
+    outline: none
+}
+
+.input-button, form {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.input-button > * {
+    padding: 0.5em;
+}
+
+#tag-input, #file-input {
+    flex: 3;
+}
+
+#submit-tag, #delete-tag, #submit-input {
+    flex: 1;
+}
+
+@media only screen and (min-width: 812px) {
+    .condense > *:first-child {
+        margin-left: 8vw !important;
+    }
+    
+    .condense > *:last-child {
+        margin-right: 8vw !important;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .condense > * {
+        margin-bottom: 4vh;
+    }
+}

@@ -10,7 +10,7 @@
     <body>
         {{>header}}
         <div class="text-block">
-            <div style="background: #efefef" class="text-block">
+            <div class="text-block slight-gray">
                 <h2>Your Profile</h2>
                 <div id="details">
                     <div id="set-prof-pic">
@@ -44,6 +44,7 @@
                     <div class="article-gallery">
                         <h4 id="err-message"></h4>
                     </div>
+                    <button onclick="window.location.href='/create'" class="make-own">Make an Article</button><br>
                     <button class="find-more">Find More</button>
                 </div>
                 <button id="logout" onclick="window.location.href = '/logout'">Logout</button>
