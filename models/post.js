@@ -35,8 +35,8 @@ const postSchema = mongoose.Schema({
         lowercase: true,
         validate(val) {
             val.split(" ").forEach((tag) => {
-                if (tag.length < 3 || tag.length > 12) {
-                    throw new Error("All tags must be in between 3-12 characters long!")
+                if (tag.length < 3 || tag.length > 16) {
+                    throw new Error("All tags must be in between 3-16 characters long!")
                 }
             })
             if (val.length === 0) {

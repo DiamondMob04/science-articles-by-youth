@@ -3,11 +3,9 @@ const express = require("express")
 const session = require("express-session")
 const hbs = require("hbs")
 const path = require("path")
+const cors = require("cors")
 
 const app = express()
-
-// Models
-const Post = require("./models/post")
 
 // Directories
 const partialsDir = path.join(__dirname, "/templates/partials")
@@ -20,10 +18,15 @@ const MongoStore = require("connect-mongo")(session)
 hbs.registerPartials(partialsDir)
 app.set("view engine", "hbs")
 app.set("views", viewsDir)
+app.use(cors())
 app.use(express.static(publicDir))
 app.use(express.json())
 app.use(stripXSS)
-app.use(session({ store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), secret: process.env.COOKIE_SECRET, resave: true, saveUninitialized: true, cookie: {expires: 60000, httpOnly: true, secure: false} }))
+app.use(session({ store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), 
+secret: process.env.COOKIE_SECRET, 
+resave: true, 
+saveUninitialized: true, 
+cookie: {httpOnly: true, secure: false} }))
 
 // Routers
 const navRouter = require("./routers/nav")
