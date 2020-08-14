@@ -65,6 +65,7 @@ postsRouter.get("/posts", async (req, res) => {
             id: currPost._id,
             title: currPost.title,
             author: user.username,
+            thumbnail: currPost.thumbnail,
             contents: currPost.contents.substr(0, 100) + "...",
             preformattedTags: currPost.tags.split(" ").map((tag) => { return `<p>${tag}</p>` }).join("")
         })
