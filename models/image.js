@@ -5,6 +5,10 @@ const imageSchema = mongoose.Schema({
         type: Buffer,
         required: true
     },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    }
 }, {
     timestamps: true
 })

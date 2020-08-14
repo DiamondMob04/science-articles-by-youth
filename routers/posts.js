@@ -30,7 +30,7 @@ postsRouter.post("/post", auth, async (req, res) => {
         req.body.author = req.session.user._id
         my_post = new Post(req.body)
         await my_post.save()
-        return res.send()
+        return res.status(200).send({url: "/article/" + my_post._id})
     } catch(error) {
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
         return res.status(400).send({error: error.errors})

@@ -72,7 +72,3 @@ async function fetchUserPosts(id) {
         throw new Error("Could not contact article database.")
     }
 }
-
-$(".find-more").click(() => {
-    fetchPosts()
-})

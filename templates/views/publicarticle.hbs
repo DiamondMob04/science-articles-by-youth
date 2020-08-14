@@ -15,5 +15,10 @@
             <p id="article-contents">{{contents}}</p>
         </div>
         {{>footer}}
+        <script>
+            $(document).ready(() => {
+                $("#article-contents").html($("#article-contents").text())
+            })
+        </script>
     </body>
 </html>

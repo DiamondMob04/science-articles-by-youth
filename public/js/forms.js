@@ -38,6 +38,8 @@ $(document).ready(() => {
             body: JSON.stringify({ username: $("#reg-username").val(), email: $("#reg-email").val(), description: ($("#reg-desc").val() === "") ? undefined : $("#reg-desc").val(), password: $("#reg-password").val() })
         })
         if (!res.ok) {
+            let parsed = await res.json()
+            console.log(parsed)
             await $("#reg-status").stop(true).hide(0).css("color", "red").text("An unexpected error occurred. Please make sure all of your details are valid, or that user may already exist.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {

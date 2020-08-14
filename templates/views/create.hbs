@@ -24,6 +24,8 @@
                         <input id="file-input" type="file" size="10"><br>
                         <input id="submit-input" type="submit" value="Use Photo"> 
                     </form>     
+                    <button id="publish-article">Publish</button>
+                    <p id="status-message"></p>
                 </div>
                 <div>
                     <article>
@@ -32,7 +34,7 @@
                         <img class="article-thumbnail" src="/img/space-bg.jpg">
                         <p class="article-desc"></p>
                         <div class="article-tags"><p id="tag-example"></p></div>
-                        <button class="read-more" onclick="window.location.href='/article/${post.id}'">Read More</button>
+                        <button class="read-more">Read More</button>
                     </article> 
                 </div>
             </div>

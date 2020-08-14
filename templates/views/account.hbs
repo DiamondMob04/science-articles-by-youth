@@ -58,6 +58,9 @@
                 const raw = await fetch("/info")
                 const json = await raw.json()
                 fetchUserPosts(json._id)
+                $(".find-more").click(() => {
+                    fetchUserPosts(json._id)
+                })
             })
         </script>
     </body>

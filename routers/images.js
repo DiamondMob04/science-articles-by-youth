@@ -18,7 +18,8 @@ const upload = multer({
 
 imageRouter.post("/image", auth, upload.single("image"), async (req, res) => {
     try {
-        let image = new Image({buffer: req.file.buffer})
+        await Image.deleteMany({owner: req.session.user._id})
+        let image = new Image({buffer: req.file.buffer, owner: req.session.user._id})
         await image.save()
         return res.status(200).send({id: image._id})
     } catch (error) {

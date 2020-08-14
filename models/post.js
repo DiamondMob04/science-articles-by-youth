@@ -26,7 +26,7 @@ const postSchema = mongoose.Schema({
         minlength: 200
     },
     thumbnail: {
-        type: Buffer
+        type: mongoose.Schema.Types.ObjectId
     },
     tags: {
         type: String,

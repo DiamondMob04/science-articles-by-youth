@@ -9,6 +9,7 @@ $(document).ready(async () => {
     const tagInput = $("#tag-input")
     const defaultTitle = "Title"
     const defaultContents = "Contents"
+    var imageId = undefined;
     var info = undefined
     var json = undefined;
     try {
@@ -86,9 +87,30 @@ $(document).ready(async () => {
         }).then((json) => { return json.json() }).then((parsed) => {
             if (!parsed.error) {
                 $(".article-thumbnail").attr("src", `/image/${parsed.id}`).attr("alt", parsed.id)
+                imageId = parsed.id
             } else {
                 alert("That file is too large or invalid.")
             }
         });
+    })
+    $("#publish-article").click(() => {
+        let formattedTags = ""
+        $(".inserted-tag").each(function() {
+            formattedTags += $(this).text() + " "
+        })
+        fetch("/post", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({title: format(titleInput.val()), thumbnail: imageId, contents: format(contentsInput.val()), tags: formattedTags})
+        }).then(async (res) => {
+            if (res.ok) {
+                let link = await res.json()
+                window.location.href = link.url
+            } else {
+                $("#status-message").stop().text("Something went wrong when trying to publish your article. Ensure that all limitations are met.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)
+            }
+        })
     })
 })

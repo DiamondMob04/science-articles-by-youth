@@ -20,7 +20,7 @@
     margin-bottom: 0.5vh !important;
 }
 
-input, form, textarea {
+input, form, textarea, button {
     outline: none
 }
 
@@ -43,6 +43,34 @@ input, form, textarea {
     flex: 1;
 }
 
+button {
+    transition: all 0.6s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#publish-article {
+    width: 16vw;
+    margin: 1.5vh 1.5vw;
+    font-size: 1.3em;
+    margin-top: 2vh;
+    border-radius: 2vh;
+    color: white;
+    border: none;
+    background: linear-gradient(rgb(0, 170, 0), green);
+}
+
+#status-message {
+    color: red;
+    display: none;
+    padding: 0 8vw;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 @media only screen and (min-width: 812px) {
     .condense > *:first-child {
         margin-left: 8vw !important;
@@ -56,5 +84,8 @@ input, form, textarea {
 @media only screen and (max-width: 812px) {
     .condense > * {
         margin-bottom: 4vh;
+    }
+    #publish-article {
+        width: 30vh;
     }
 }

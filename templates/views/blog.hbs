@@ -21,6 +21,9 @@
         <script>
             $(document).ready(() => {
                 fetchPosts()
+                $(".find-more").click(() => {
+                    fetchPosts()
+                })
             })
         </script>
     </body>
