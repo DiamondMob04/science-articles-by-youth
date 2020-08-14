@@ -21,7 +21,7 @@ async function fetchPosts() {
                 <article>
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">Created by ${post.author}</h4>
-                    <img class="article-thumbnail" src="/img/space-bg.jpg">
+                    <img class="article-thumbnail" src="/image/${post.thumbnail}">
                     <p class="article-desc">${post.contents}</p>
                     <div class="article-tags">
                         ${post.preformattedTags}
