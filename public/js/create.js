@@ -2,7 +2,15 @@ var imageId = undefined;
 
 const format = (word) => {
     // Replaces words longer than 18 characters to {thisformattinginstead}
-    return word.replace(/<[^\s]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { return `<span style="word-break: break-all !important;">${w}</span>` })
+    return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
+        return `<span style="word-break: break-all !important;">${w}</span>` 
+    })
+}
+
+const styleFormat = (word) => {
+    return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
+        return `<span style="word-break: break-all !important;">${w}</span>` 
+    })
 }
 
 $(document).ready(async () => {
@@ -45,9 +53,9 @@ $(document).ready(async () => {
             contentsInput.css("border", "1px solid black")
         }
         if (contentsInput.val().length < 100) {
-            $(".article-desc").html(format(contentsInput.val().substr(0, 100)))
+            $(".article-desc").html(styleFormat(contentsInput.val().substr(0, 100)))
         } else {
-            $(".article-desc").html(format(contentsInput.val().substr(0, 100)) + "...")
+            $(".article-desc").html(styleFormat(contentsInput.val().substr(0, 100)) + "...")
         }
     })
     tagInput.on("input", () => {
@@ -58,12 +66,12 @@ $(document).ready(async () => {
             tagInput.css("border", "1px solid black")
         }
         if (tagInput.val().length <= 16) {
-            $("#tag-example").text(tagInput.val())
+            $("#tag-example").text(format(tagInput.val()))
         }
     })
     $("#submit-tag").click(() => {
         if (tagInput.val().length >= 3 && tagInput.val().length <= 12) {
-            $(`<p class="inserted-tag">${tagInput.val()}</p>`).insertBefore("#tag-example")
+            $(`<p class="inserted-tag">${format(tagInput.val())}</p>`).insertBefore("#tag-example")
             tagInput.val("")
             $("#tag-example").text("")
         }
@@ -104,7 +112,7 @@ $(document).ready(async () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({title: format(titleInput.val()), thumbnail: imageId, contents: format(contentsInput.val()), tags: formattedTags})
+            body: JSON.stringify({title: format(titleInput.val()), thumbnail: imageId, contents: styleFormat(contentsInput.val()), tags: formattedTags})
         }).then(async (res) => {
             if (res.ok) {
                 let link = await res.json()

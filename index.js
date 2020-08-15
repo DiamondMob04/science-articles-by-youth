@@ -24,11 +24,18 @@ app.use(express.json())
 app.use(stripXSS)
 let date = new Date()
 let cookieExpiryDate = new Date(date.getFullYear() + 1, date.getMonth(), date.getDay())
-app.use(session({ store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), 
-secret: process.env.COOKIE_SECRET, 
-resave: true, 
-saveUninitialized: true, 
-cookie: {expires: cookieExpiryDate, httpOnly: true, secure: false} }))
+app.use(session({ 
+    store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), 
+    secret: process.env.COOKIE_SECRET, 
+    resave: true, 
+    saveUninitialized: true, 
+    cookie: {
+        expires: cookieExpiryDate, 
+        httpOnly: true, 
+        secure: false,
+        sameSite: "strict"
+    } 
+}))
 
 // Routers
 const navRouter = require("./routers/nav")

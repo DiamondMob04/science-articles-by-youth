@@ -17,11 +17,13 @@ async function fetchPosts() {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
+            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "./img/space-bg.jpg"
+            console.log(post.contents)
             $(".article-gallery").append(`
                 <article>
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">Created by ${post.author}</h4>
-                    <img class="article-thumbnail" src="/image/${post.thumbnail}">
+                    <img class="article-thumbnail" src=${post.imageLink}>
                     <p class="article-desc">${post.contents}</p>
                     <div class="article-tags">
                         ${post.preformattedTags}
