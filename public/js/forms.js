@@ -39,7 +39,13 @@ $(document).ready(() => {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({ username: $("#reg-username").val(), email: $("#reg-email").val(), description: ($("#reg-desc").val() === "") ? undefined : $("#reg-desc").val(), password: $("#reg-password").val() })
+            body: JSON.stringify({ 
+                username: $("#reg-username").val(), 
+                email: $("#reg-email").val(), 
+                description: ($("#reg-desc").val() === "") ? undefined : $("#reg-desc").val(), 
+                password: $("#reg-password").val(),
+                remember: $("#remember-me").is(":checked")
+            })
         })
         if (!res.ok) {
             let parsed = await res.json()
@@ -66,7 +72,11 @@ $(document).ready(() => {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({ username: $("#log-username").val(), password: $("#log-password").val() })
+            body: JSON.stringify({ 
+                username: $("#log-username").val(), 
+                password: $("#log-password").val(),
+                remember: $("#remember-me").is(":checked")
+            })
         })
         if (!res.ok) {
             await $("#log-status").stop(true).hide(0).css("color", "red").text("Invalid username or password.").fadeIn(1000).delay(3000).fadeOut(1000)

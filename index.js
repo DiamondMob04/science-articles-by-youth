@@ -30,7 +30,6 @@ app.use(session({
     resave: true, 
     saveUninitialized: true, 
     cookie: {
-        expires: cookieExpiryDate, 
         httpOnly: true, 
         secure: false,
         sameSite: "lax"

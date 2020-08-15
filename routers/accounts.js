@@ -48,13 +48,25 @@ userRouter.get("/avatar/:username", async (req, res) => {
 })
 
 userRouter.post("/register", async (req, res) => {
-    req.body.role = "member"
-    let user = new User(req.body)
+    let user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        description: req.body.description,
+        role: "member"
+    })
     try {
         await user.save()
         const token = await user.generateAuthToken()
         req.session.user = user
         req.session.token = token
+        if (req.body.remember === "true") {
+            let date = new Date()
+            let cookieExpiryDate = new Date(date.getFullYear() + 1, date.getMonth(), date.getDay())
+            req.session.cookie.expires = cookieExpiryDate
+        } else {
+            req.session.cookie.expires = false
+        }
         res.status(201).send({user, token})
     } catch (error) {
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
@@ -68,6 +80,13 @@ userRouter.post("/login", async (req, res) => {
         let token = await user.generateAuthToken()
         req.session.user = user
         req.session.token = token
+        if (req.body.remember === "true") {
+            let date = new Date()
+            let cookieExpiryDate = new Date(date.getFullYear() + 1, date.getMonth(), date.getDay())
+            req.session.cookie.expires = cookieExpiryDate
+        } else {
+            req.session.cookie.expires = false
+        }
         res.status(200).send({user, token})
     } catch (error) {
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
@@ -78,6 +97,15 @@ userRouter.post("/login", async (req, res) => {
 userRouter.get("/logout", (req, res) => {
     req.session.destroy()
     res.status(200).redirect("home")
+})
+
+userRouter.delete("/delete", auth, async (req, res) => {
+    try {
+        await req.session.user.delete()
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(404)
+    }
 })
 
 userRouter.patch("/user", auth, async (req, res) => {

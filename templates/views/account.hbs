@@ -48,6 +48,18 @@
                     <button class="find-more">Find More</button>
                 </div>
                 <button id="logout" onclick="window.location.href = '/logout'">Logout</button>
+                <button id="delete-acc">Delete</button>
+                <div id="follow-screen">
+                    <div id="delete-warning">
+                        <p>Are you sure? You will lose your...</p>
+                        <span>• Information</span>
+                        <span>• Articles</span>
+                        <span>• Friends</span>
+                        <p>And worst of all, it's nonrecoverable. :(</p>
+                        <button id="delete-deny">Cancel</button>
+                        <button id="delete-confirm" onclick="window.location.href = '/delete'">Delete</button>
+                    </div>
+                </div>
             </div>
         </div>
         {{>footer}}

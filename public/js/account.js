@@ -63,4 +63,21 @@ $(document).ready(async () => {
             }
         })
     })
+    $("#delete-acc").click(() => {
+        $("#follow-screen").fadeIn(200)
+    })
+    $("#delete-deny").click(() => {
+        $("#follow-screen").fadeOut(150)
+    })
+    $("#delete-confirm").click((e) => {
+        fetch("/delete", {
+            method: "DELETE"
+        }).then((res) => {
+            if (res.ok) {
+                window.location.href = "/home"
+            } else {
+                alert("Something went wrong!")
+            }
+        })
+    })
 })
