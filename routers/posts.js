@@ -29,9 +29,8 @@ postsRouter.post("/post", auth, async (req, res) => {
         if (duplicatePost) throw new Error("")
         myPost = new Post(req.body)
         await myPost.save()
-        return res.status(200).send({url: "/article/" + my_post.identifier})
+        return res.status(200).send({url: "/article/" + myPost.identifier})
     } catch(error) {
-        console.log(error)
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
         return res.status(400).send({error: error.errors})
     }
