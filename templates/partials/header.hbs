@@ -60,7 +60,7 @@
             if (res.ok) {
                 try {
                     let info = await res.json()
-                    $(".account-name").text(info.username)
+                    $(".account-name").text(username)
                      $(".not-logged-in").css({display: "none"})
                 } catch (error) {
                     $(".account-name").css({display: "none"})

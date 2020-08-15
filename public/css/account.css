@@ -89,6 +89,10 @@
     font-weight: 700;
 }
 
+#delete-acc {
+    background: rgb(184, 59, 59) !important;
+}
+
 #follow-screen {
     top: 0%;
     left: 0%;
@@ -204,7 +208,7 @@ button:focus {
     #details > *:last-child {
         margin-bottom: 2vh !important;
     }
-    #set-username, #set-desc, #submit-input {
+    #logout, #delete-acc, .find-more, .make-own, #set-username, #set-desc, #submit-input {
         width: 40vw !important;
     }
     .article-gallery {
