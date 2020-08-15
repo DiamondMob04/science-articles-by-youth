@@ -6,13 +6,14 @@ const userPagesRouter = express.Router()
 userPagesRouter.get("/user/:username", async (req, res) => {
     try {
         const user = await User.findOne({username: req.params.username})
-        res.render("publicuser", {
+        if (!user) return res.sendStatus(400)
+        res.status(200).render("publicuser", {
             username: user.username,
             description: user.description,
             id: user._id
         })
     } catch (error) {
-        return res.redirect("/error")
+        return res.status(400).redirect("/error")
     }
 })
 

@@ -20,7 +20,7 @@ userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
     try {
         req.session.user.avatar = req.file.buffer
         await req.session.user.save()
-        return res.redirect("/account")
+        return res.status(200).redirect("/account")
     } catch (error) {
         return res.status(400).redirect("/account")
     }
@@ -34,9 +34,9 @@ userRouter.delete("/avatar", auth, async (req, res) => {
     res.send().redirect("/account")
 })
 
-userRouter.get("/avatar/:id", async (req, res) => {
+userRouter.get("/avatar/:username", async (req, res) => {
     try {
-        const user = await User.findById(req.params.id)
+        const user = await User.findOne({username: req.params.username})
         if (!user || !user.avatar) {
             return res.render("error")
         }
@@ -99,7 +99,6 @@ userRouter.patch("/user", auth, async (req, res) => {
 userRouter.get("/info", auth, (req, res) => {
     res.status(200).send({
         username: req.session.user.username, 
-        _id: req.session.user._id, 
         description: req.session.user.description,
         hasAvatar: req.session.user.avatar != undefined
     })

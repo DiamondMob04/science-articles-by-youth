@@ -5,7 +5,6 @@ const postSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true,
         minlength: 6,
         maxlength: 30,
         validate(val) {
@@ -15,10 +14,13 @@ const postSchema = mongoose.Schema({
             }
         }
     },
+    identifier: {
+        type: String,
+        required: true
+    },
     author: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "User"
+        type: String,
+        required: true
     },
     contents: {
         type: String,

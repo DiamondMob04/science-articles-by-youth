@@ -2,7 +2,6 @@ const express = require("express")
 const auth = require("../middleware/auth")
 const Post = require("../models/post")
 const User = require("../models/user")
-const Image = require("../models/image")
 const multer = require("multer")
 const mongoose = require("mongoose")
 
@@ -10,28 +9,29 @@ const postsRouter = express.Router()
 
 postsRouter.get("/article/:id", async (req, res) => {
     try {
-        const post = await Post.findById(req.params.id)
-        if (!post) {
-            throw new Error()
-        }
-        const user = await User.findById(post.author)
-        res.render("publicarticle", {
+        const post = await Post.findOne({identifier: req.params.id})
+        if (!post) throw new Error("")
+        res.status(200).render("publicarticle", {
             title: post.title,
-            author: user.username,
+            author: post.author,
             contents: post.contents
         })
     } catch (error) {
-        return res.redirect("/error")
+        return res.redirect(400, "/error")
     }
 })
 
 postsRouter.post("/post", auth, async (req, res) => {
     try {
-        req.body.author = req.session.user._id
-        my_post = new Post(req.body)
-        await my_post.save()
-        return res.status(200).send({url: "/article/" + my_post._id})
+        req.body.author = req.session.user.username
+        req.body.identifier = req.body.title.trim().toLowerCase().replace(/[^a-zA-Z]/g, "")
+        const duplicatePost = await Post.findOne({identifier: req.body.identifier})
+        if (duplicatePost) throw new Error("")
+        myPost = new Post(req.body)
+        await myPost.save()
+        return res.status(200).send({url: "/article/" + my_post.identifier})
     } catch(error) {
+        console.log(error)
         if (!error.errors) { return res.status(400).send({error: "An unexpected problem occurred."}) }
         return res.status(400).send({error: error.errors})
     }
@@ -48,21 +48,19 @@ postsRouter.get("/posts", async (req, res) => {
     if (req.query.owner === undefined) {
         postData = await Post.find({}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
     } else {
-        const user = await User.findById(req.query.owner)
-        await user.populate("posts").execPopulate()
-        postData = user.posts
+        postData = await Post.find({author: req.query.owner}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
     }
     let morePosts = postData.length > req.query.limit
     if (morePosts) postData.pop()
     let posts = []
     for (let i = 0; i < postData.length; i++) {
         let currPost = postData[i].toObject()
-        let user = await User.findById(currPost.author)
+        let user = await User.findOne({username: currPost.author})
         if (!user) {
             continue
         }
         posts.push({
-            id: currPost._id,
+            identifier: currPost.identifier,
             title: currPost.title,
             author: user.username,
             thumbnail: currPost.thumbnail,

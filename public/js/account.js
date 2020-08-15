@@ -5,7 +5,7 @@ $(document).ready(async () => {
     }
     const json = await res.json()
     if (json.hasAvatar) {
-        $("#current-prof-pic").attr("src", `/avatar/${json._id}`)
+        $("#current-prof-pic").attr("src", `/avatar/${json.username}`)
     }
     $("#current-desc").attr("placeholder", json.description)
     $("#current-username").attr("placeholder", json.username)
@@ -38,9 +38,9 @@ $(document).ready(async () => {
             if (res.ok) {
                 $("#current-username").attr("placeholder", $("#current-username").val())
                 $("#current-username").val("")
-                $("#username-status").css("color", "green").text("Username successfully changed!").stop().show(1000).delay(3000).hide(1000)
+                $("#username-status").css("color", "green").text("Username successfully changed!").stop(true).show(1000).delay(3000).hide(1000)
             } else {
-                $("#username-status").css("color", "red").text("Something went wrong.").stop().show(1000).delay(3000).hide(1000)
+                $("#username-status").css("color", "red").text("Something went wrong.").stop(true).show(1000).delay(3000).hide(1000)
             }
         })
     })
@@ -57,9 +57,9 @@ $(document).ready(async () => {
             if (res.ok) {
                 $("#current-desc").attr("placeholder", $("#current-desc").val())
                 $("#current-desc").val("")
-                $("#description-status").css("color", "green").text("Description successfully changed!").stop().show(1000).delay(3000).hide(1000)
+                $("#description-status").css("color", "green").text("Description successfully changed!").stop(true).show(1000).delay(3000).hide(1000)
             } else {
-                $("#description-status").css("color", "red").text("Something went wrong.").stop().show(1000).delay(3000).hide(1000)
+                $("#description-status").css("color", "red").text("Something went wrong.").stop(true).show(1000).delay(3000).hide(1000)
             }
         })
     })

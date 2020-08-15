@@ -15,10 +15,6 @@
             <p id="article-contents">{{contents}}</p>
         </div>
         {{>footer}}
-        <script>
-            $(document).ready(() => {
-                $("#article-contents").html($("#article-contents").text().replace(/\n/g, "<br>"))
-            })
-        </script>
+        <script src="/js/publicarticle.js"></script>
     </body>
 </html>

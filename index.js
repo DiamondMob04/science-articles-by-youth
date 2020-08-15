@@ -33,7 +33,7 @@ app.use(session({
         expires: cookieExpiryDate, 
         httpOnly: true, 
         secure: false,
-        sameSite: "strict"
+        sameSite: "lax"
     } 
 }))
 

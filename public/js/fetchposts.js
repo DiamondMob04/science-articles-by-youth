@@ -18,7 +18,6 @@ async function fetchPosts() {
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
             post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "./img/space-bg.jpg"
-            console.log(post.contents)
             $(".article-gallery").append(`
                 <article>
                     <h3 class="article-title">${post.title}</h3>
@@ -28,7 +27,7 @@ async function fetchPosts() {
                     <div class="article-tags">
                         ${post.preformattedTags}
                     </div>
-                    <button class="read-more" onclick="window.location.href='/article/${post.id}'">Read More</button>
+                    <button class="read-more" onclick="window.location.href='/article/${post.identifier}'">Read More</button>
                 </article>`)
         }
         setTimeout(() => {
@@ -40,9 +39,9 @@ async function fetchPosts() {
     }
 }
 
-async function fetchUserPosts(id) {
+async function fetchUserPosts(username) {
     try {
-        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}&owner=${id}`)
+        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}&owner=${username}`)
         let json = await response.json()
         if (currentSkip == 0 && json.posts.length == 0) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
@@ -63,7 +62,7 @@ async function fetchUserPosts(id) {
                     <div class="article-tags">
                         ${post.preformattedTags}
                     </div>
-                    <button class="read-more" onclick="window.location.href='/article/${post.id}'">Read More</button>
+                    <button class="read-more" onclick="window.location.href='/article/${post.identifier}'">Read More</button>
                 </article>`)
         }
         setTimeout(() => {

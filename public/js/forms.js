@@ -30,6 +30,10 @@ $(document).ready(() => {
             await $("#reg-status").stop(true).hide(0).css("color", "red").text("Password must be at least 8 characters in length.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         }
+        const result = await fetch(`/user/${$("#reg-username").val()}`)
+        if (result.ok) {
+            return $("#reg-status").css("color", "red").text("That username already exists. Please choose another one.").stop(true).hide(0).fadeIn(1000).delay(3000).fadeOut(1000)
+        }
         let res = await fetch("/register", {
             method: "POST",
             headers: {
@@ -39,7 +43,6 @@ $(document).ready(() => {
         })
         if (!res.ok) {
             let parsed = await res.json()
-            console.log(parsed)
             await $("#reg-status").stop(true).hide(0).css("color", "red").text("An unexpected error occurred. Please make sure all of your details are valid, or that user may already exist.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {

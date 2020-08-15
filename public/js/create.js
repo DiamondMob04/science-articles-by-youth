@@ -70,7 +70,7 @@ $(document).ready(async () => {
         }
     })
     $("#submit-tag").click(() => {
-        if (tagInput.val().length >= 3 && tagInput.val().length <= 12) {
+        if (tagInput.val().length >= 3 && tagInput.val().length <= 16) {
             $(`<p class="inserted-tag">${format(tagInput.val())}</p>`).insertBefore("#tag-example")
             tagInput.val("")
             $("#tag-example").text("")
@@ -102,23 +102,32 @@ $(document).ready(async () => {
             }
         });
     })
-    $("#publish-article").click(() => {
+    $("#publish-article").click(async () => {
         let formattedTags = ""
         $(".inserted-tag").each(function() {
             formattedTags += $(this).text() + " "
         })
+        const res = await fetch("/article/" + titleInput.val().trim().toLowerCase().replace(/[^a-zA-Z]/g, ""))
+        if (res.ok) {
+            return $("#status-message").stop(true).text("Your title is already too close to the name of an existing article.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)
+        }
         fetch("/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({title: format(titleInput.val()), thumbnail: imageId, contents: styleFormat(contentsInput.val()), tags: formattedTags})
+            body: JSON.stringify({
+                title: format(titleInput.val()), 
+                thumbnail: imageId, 
+                contents: styleFormat(contentsInput.val()), 
+                tags: formattedTags
+            })
         }).then(async (res) => {
             if (res.ok) {
                 let link = await res.json()
                 window.location.href = link.url
             } else {
-                $("#status-message").stop().text("Something went wrong when trying to publish your article. Ensure that all limitations are met.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)
+                $("#status-message").stop(true).text("Something went wrong when trying to publish your article. Ensure that all limitations are met.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)
             }
         })
     })
