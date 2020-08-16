@@ -21,7 +21,7 @@ postsRouter.get("/article/:id", async (req, res) => {
             identifier: post.identifier
         })
     } catch (error) {
-        return res.redirect(400, "/error")
+        return res.redirect("/error")
     }
 })
 
