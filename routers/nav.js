@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const auth = require("../middleware/auth")
+const Post = require("../models/post")
 
 const navRouter = express.Router()
 

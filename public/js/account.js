@@ -70,13 +70,13 @@ $(document).ready(async () => {
         $("#follow-screen").fadeOut(150)
     })
     $("#delete-confirm").click((e) => {
-        fetch("/delete", {
+        fetch("/delete-user", {
             method: "DELETE"
         }).then((res) => {
             if (res.ok) {
                 window.location.href = "/home"
             } else {
-                alert("Something went wrong!")
+                alert("Something went wrong when trying to delete your account!")
             }
         })
     })

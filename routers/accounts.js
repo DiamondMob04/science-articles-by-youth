@@ -99,7 +99,7 @@ userRouter.get("/logout", (req, res) => {
     res.status(200).redirect("home")
 })
 
-userRouter.delete("/delete", auth, async (req, res) => {
+userRouter.delete("/delete-user", auth, async (req, res) => {
     try {
         await req.session.user.delete()
         res.sendStatus(200)

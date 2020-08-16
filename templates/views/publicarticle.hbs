@@ -10,9 +10,24 @@
     <body>
         {{>header}}
         <div class="text-block">
-            <h3>{{title}}</h3>
+            <h3>{{title}}</h3><span id="identifier" style="display: none;">{{identifier}}</span>
             <h4>Created by <span id="author">{{author}}</span></h4><hr>
+            <img id="thumbnail-image" src={{imageLink}}>
             <p id="article-contents">{{contents}}</p>
+            <div id="restricted">
+                <p id="article-notice">This isn't your article. The buttons below will not work for you.</p>
+                <div id="button-row">
+                    <button id="edit-article">Edit</button>
+                    <button id="delete-article">Delete</button>
+                </div>
+                <div id="follow-screen">
+                    <div id="delete-warning">
+                        <p>Are you sure? Deleting your article is nonrecoverable. :(</p>
+                        <button id="delete-deny">Cancel</button>
+                        <button id="delete-confirm" onclick="window.location.href = '/delete'">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
         {{>footer}}
         <script src="/js/publicarticle.js"></script>
