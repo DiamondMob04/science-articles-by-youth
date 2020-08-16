@@ -1,4 +1,10 @@
-# I'm just disallowing everything for the time being.
+# Robots are not allowed to create accounts, view user information, or article contents.
+# They can scrape basic information about the organization if they'd like to,
+# or at least get the links to the most recent articles (but not see inside).
 
 User-agent: *
-Disallow: /
+Disallow: /article/
+Disallow: /user/
+Disallow: /members
+Disallow: /register
+Disallow: /login
