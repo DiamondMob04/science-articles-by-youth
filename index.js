@@ -33,11 +33,11 @@ var sess = {
         sameSite: "lax"
     } 
 }
-if (app.get('env') === 'production') {
-    app.set('trust proxy', 1) 
-    sess.cookie.secure = true 
-    console.log("Running on production mode! Cookies are set to secure.")
-  }
+// if (app.get('env') === 'production') {
+//     app.set('trust proxy', 1) 
+//     sess.cookie.secure = true 
+//     console.log("Running on production mode! Cookies are set to secure.")
+//   }
 app.use(session(sess))
 
 // Routers
