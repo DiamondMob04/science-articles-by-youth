@@ -111,3 +111,12 @@ img {
 #delete-deny {
     background: linear-gradient(rgb(0, 170, 0), green);
 }
+
+@media only screen and (max-width: 912px) {
+    #delete-warning {
+        width: 70vw !important;
+    }
+    #edit-article, #delete-article, #delete-deny, #delete-confirm {
+        width: 30vw !important;
+    }
+}
