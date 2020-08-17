@@ -65,7 +65,7 @@ img {
     display: none;
 }
 
-#delete-warning {
+#delete-warning, #comment-delete-warning {
     background: white;
     position: absolute;
     background-attachment: fixed;
@@ -82,17 +82,17 @@ img {
     padding: 3vh 3vw;
 }
 
-#delete-warning * {
+#delete-warning *, #comment-delete-warning * {
     width: 100% !important;
     margin: 0.35vh 0;
 }
 
-#delete-warning span {
+#delete-warning span, #comment-delete-warning span {
     font-weight: 700;
     margin: 0.45vh 0;
 }
 
-#delete-warning button {
+#delete-warning button, #comment-delete-warning button {
     margin: 2vh 4vw 0 4vw;
     font-size: 1.1rem;
     height: 4vh;
@@ -103,12 +103,12 @@ img {
     font-weight: 700;
 }
 
-#delete-confirm {
+#delete-confirm, #comment-delete-confirm {
     background: rgb(223, 64, 64);
     margin-top: 1vh !important;
 }
 
-#delete-deny {
+#delete-deny, #comment-delete-deny {
     background: linear-gradient(rgb(0, 170, 0), green);
 }
 
@@ -116,7 +116,7 @@ img {
     #delete-warning {
         width: 70vw !important;
     }
-    #edit-article, #delete-article, #delete-deny, #delete-confirm {
+    #edit-article, #delete-article, #delete-deny, #delete-confirm, #comment-delete-confirm, #comment-delete-deny {
         width: 30vw !important;
     }
 }

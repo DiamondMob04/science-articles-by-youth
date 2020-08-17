@@ -27,7 +27,12 @@
                     <div id="delete-warning">
                         <p>Are you sure? Deleting your article is nonrecoverable. :(</p>
                         <button id="delete-deny">Cancel</button>
-                        <button id="delete-confirm" onclick="window.location.href = '/delete'">Delete</button>
+                        <button id="delete-confirm">Delete</button>
+                    </div>
+                    <div id="comment-delete-warning">
+                        <p>Are you sure? Deleting that comment ("<span id="comment-delete-info"></span>") is nonrecoverable. :(</p>
+                        <button id="comment-delete-deny">Cancel</button>
+                        <button id="comment-delete-confirm">Delete</button>
                     </div>
                 </div>
             </div>
@@ -35,6 +40,7 @@
                 <h2 id="comments-header">Comments</h2>
                 <div id="insert-template"></div>
                 <div id="other-comments"></div>
+                <div id="comments-message"></div>
                 <button class="find-more">More</button>
             </div>
         </div>

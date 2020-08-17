@@ -1,6 +1,7 @@
 const express = require("express")
 const auth = require("../middleware/auth")
 const Post = require("../models/post")
+const mongoose = require("mongoose")
 
 const commentsRouter = express.Router()
 
@@ -14,12 +15,13 @@ commentsRouter.post("/comment/:id", auth, async (req, res) => {
     }
     const comment = {
         author: req.session.user.username,
-        contents: req.body.message
+        contents: req.body.message,
+        _id: mongoose.Types.ObjectId()
     }
     post.comments.push(comment)
     try {
         await post.save()
-        res.sendStatus(200)
+        res.status(200).send({messageId: comment._id})
     } catch(error) {
         res.status(400).send({error: "We were not able to save your comment. Please reload and try again."})
     }
@@ -42,11 +44,27 @@ commentsRouter.get("/comments/:id", async (req, res) => {
         if (currComment.author && currComment.contents) {
             comments.push({
                 author: currComment.author,
-                contents: currComment.contents
+                contents: currComment.contents,
+                commentId: currComment._id
             })
         }
     }
     res.send({ comments, skipQuery: req.query.skip, limitQuery: req.query.limit, moreComments })
+})
+
+commentsRouter.delete("/delete-comment", auth, async (req, res) => {
+    try {
+        const post = await Post.findOne({identifier: req.body.identifier})
+        if (!post || post.author !== req.session.user.username) {
+            throw new Error("")
+        }
+        const message = post.comments.find((comment) => { return comment._id.toString() === req.body.messageId})
+        message.remove()
+        await post.save()
+        res.sendStatus(200)
+    } catch(error) {
+        res.sendStatus(400)
+    }
 })
 
 module.exports = commentsRouter

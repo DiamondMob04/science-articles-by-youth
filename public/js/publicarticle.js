@@ -4,7 +4,7 @@ $(document).ready(async () => {
     if (res.ok) {
         const json = await res.json()
         if (json.username === $("#author").text()) {
-            $("#article-notice").text("This is your article. You can choose to edit or delete it at anytime.")
+            $("#article-notice").text("This is your article. You can choose to edit or delete it at anytime. Alternatively, click on a comment to delete it.")
             $("#restricted").show()
             $("#edit-article").click(() => {
                 window.location.href = `/edit/${$("#identifier").text()}`
@@ -26,6 +26,8 @@ $(document).ready(async () => {
             })
             $("#delete-article").click(() => {
                 $("#follow-screen").fadeIn(250)
+                $("#comment-delete-warning").hide()
+                $("#delete-warning").show()
             })
             $("#delete-deny").click(() => {
                 $("#follow-screen").fadeOut(250)

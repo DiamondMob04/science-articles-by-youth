@@ -105,9 +105,18 @@
     margin-top: 1vh !important;
 }
 
+#comments-message {
+    margin-top: 3vh;
+    font-size: 1.3rem;
+    margin-bottom: 5vh;
+    font-weight: 700;
+}
+
 .find-more {
     margin-top: 0 !important;
-    width: 30% !important;
+    width: 20% !important;
+    height: 1.7em;
+    font-size: 0.9rem;
 }
 
 .find-more:hover {
