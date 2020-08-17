@@ -22,7 +22,7 @@ app.use(cors())
 app.use(express.static(publicDir))
 app.use(express.json())
 app.use(stripXSS)
-var sess = { 
+app.use(session({ 
     store: new MongoStore({db: "session", url: process.env.MONGODB_URL}), 
     secret: process.env.COOKIE_SECRET, 
     resave: true, 
@@ -32,13 +32,12 @@ var sess = {
         secure: false,
         sameSite: "lax"
     } 
-}
+}))
 // if (app.get('env') === 'production') {
 //     app.set('trust proxy', 1) 
 //     sess.cookie.secure = true 
 //     console.log("Running on production mode! Cookies are set to secure.")
 //   }
-app.use(session(sess))
 
 // Routers
 const navRouter = require("./routers/nav")

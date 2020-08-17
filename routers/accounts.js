@@ -96,7 +96,7 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.get("/logout", (req, res) => {
     req.session.destroy()
-    res.redirect(200, "home")
+    res.redirect("home")
 })
 
 userRouter.delete("/delete-user", auth, async (req, res) => {
