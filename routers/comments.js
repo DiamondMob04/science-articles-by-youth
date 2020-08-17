@@ -1,6 +1,7 @@
 const express = require("express")
 const auth = require("../middleware/auth")
 const Post = require("../models/post")
+const User = require("../models/user")
 const mongoose = require("mongoose")
 
 const commentsRouter = express.Router()
@@ -42,10 +43,12 @@ commentsRouter.get("/comments/:id", async (req, res) => {
     for (let i = 0; i < commentData.length; i++) {
         let currComment = commentData[i].toObject()
         if (currComment.author && currComment.contents) {
+            let user = await User.findOne({username: currComment.author})
             comments.push({
-                author: currComment.author,
+                author: user.username,
                 contents: currComment.contents,
-                commentId: currComment._id
+                commentId: currComment._id,
+                avatar: (user.avatar !== undefined) ? `/avatar/${user.username}` : "/img/avatar.jpg"
             })
         }
     }
