@@ -6,6 +6,7 @@
         <link rel="icon" href="/img/favicon.png">
         <link rel="canonical" href="/home">
         <link rel="stylesheet" href="/css/elements.css">
+        <link rel="stylesheet" href="/css/comments.css">
         <link rel="stylesheet" href="/css/publicarticle.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -30,8 +31,23 @@
                     </div>
                 </div>
             </div>
+            <div id="comments-section">
+                <h2 id="comments-header">Comments</h2>
+                <div id="insert-template"></div>
+                <div id="other-comments"></div>
+                <button class="find-more">More</button>
+            </div>
         </div>
         {{>footer}}
         <script src="/js/publicarticle.js"></script>
+        <script src="/js/comments.js"></script>
+        <script>
+            $(document).ready(() => {
+                fetchComments()
+                $(".find-more").click(() => {
+                    fetchComments()
+                })
+            })
+        </script>
     </body>
 </html>

@@ -124,12 +124,16 @@ userRouter.patch("/user", auth, async (req, res) => {
     }
 })
 
-userRouter.get("/info", auth, (req, res) => {
-    res.status(200).send({
-        username: req.session.user.username, 
-        description: req.session.user.description,
-        hasAvatar: req.session.user.avatar != undefined
-    })
+userRouter.get("/info", (req, res) => {
+    if (req.session.token) {
+        res.status(200).send({
+            username: req.session.user.username, 
+            description: req.session.user.description,
+            hasAvatar: req.session.user.avatar != undefined
+        })
+    } else {
+        res.sendStatus(400)
+    }
 })
 
 module.exports = userRouter

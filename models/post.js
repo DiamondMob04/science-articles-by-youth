@@ -45,7 +45,22 @@ const postSchema = mongoose.Schema({
                 throw new Error("Please provide at least one tag for your article's content!")
             }
         }
-    }
+    },
+    comments: [{
+        author: {
+            type: String
+        },
+        contents: {
+            type: String,
+            minlength: 1,
+            validate(val) {
+                const filter = new Filter()
+                if (filter.isProfane(val)) {
+                    throw new Error("We have detected profanity and your content has not been posted.")
+                }
+            }
+        }
+    }]
 }, {
     timestamps: true
 })

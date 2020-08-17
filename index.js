@@ -45,11 +45,13 @@ const postsRouter = require("./routers/posts")
 const accountsRouter = require("./routers/accounts")
 const userPagesRouter = require("./routers/userpages")
 const imageRouter = require("./routers/images")
+const commentsRouter = require("./routers/comments")
 app.use(navRouter)
 app.use(imageRouter)
 app.use(postsRouter)
 app.use(accountsRouter)
 app.use(userPagesRouter)
+app.use(commentsRouter)
 
 app.get("*", (req, res) => {
     res.render("error")
