@@ -30,6 +30,16 @@ async function fetchComments() {
             </div>`
         }
         $("#other-comments").append(textBlock)
+        $(".public-message").hover(function() {
+            $(this).css("cursor", "pointer")
+        })
+        $(".public-message").click(function() {
+            $("#follow-screen").fadeIn(250)
+            $("#comment-delete-info").text($(this).find(".comment-contents").text())
+            $("#comment-delete-warning").show()
+            $("#delete-warning").hide()
+            currentSelectedMessage = $(this)
+        })
     } catch(error) {
         $("#comments-message").text(`Could not contact comment database.`)
         throw new Error("Could not contact comment database.")
