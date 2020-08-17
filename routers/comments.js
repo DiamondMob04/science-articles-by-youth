@@ -43,12 +43,10 @@ commentsRouter.get("/comments/:id", async (req, res) => {
     for (let i = 0; i < commentData.length; i++) {
         let currComment = commentData[i].toObject()
         if (currComment.author && currComment.contents) {
-            let user = await User.findOne({username: currComment.author})
             comments.push({
-                author: user.username,
+                author: currComment.author,
                 contents: currComment.contents,
-                commentId: currComment._id,
-                avatar: (user.avatar !== undefined) ? `/avatar/${user.username}` : "/img/avatar.jpg"
+                commentId: currComment._id
             })
         }
     }

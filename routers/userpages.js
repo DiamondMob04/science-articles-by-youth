@@ -39,7 +39,6 @@ userPagesRouter.get("/users", async (req, res) => {
             username: currUser.username,
             role: currUser.role,
             description: currUser.description,
-            _id: currUser._id,
             hasAvatar: currUser.avatar != undefined
         })
     }

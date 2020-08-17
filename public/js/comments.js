@@ -21,7 +21,7 @@ async function fetchComments() {
             let comment = json.comments[i]
            textBlock += `
            <div class="message-content public-message">
-                <img class="user-pfp" src="${comment.avatar}">
+                <img class="user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg') alt="User profile picture">
                 <div class="message-content-right">
                     <span class="comment-name">${comment.author}</span>
                     <p class="comment-contents">${comment.contents}</p>
@@ -47,7 +47,6 @@ async function fetchComments() {
 }
 
 var currentUserUsername = undefined
-var currentImageLink = "/img/avatar.jpg"
 var currentSelectedComment = undefined
 
 $(document).ready(async () => {
@@ -55,12 +54,11 @@ $(document).ready(async () => {
     if (res.ok) {
         const user = await res.json()
         currentUserUsername = user.username
-        currentImageLink = user.hasAvatar ? `/avatar/${user.username}` : "/img/avatar.jpg"
         $("#insert-template").append(`
         <div class="user-message-box">
             <p id="message-name">Want to leave a message? Write a comment as ${user.username}:</p>
             <div class="message-content" style="margin: 1vh 0 !important;">
-                <img class="user-pfp" src="${user.hasAvatar ? '/avatar/' + user.username : '/img/avatar.jpg'}">
+                <img class="user-pfp" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                 <textarea id="message-box" placeholder="Type your comment message here!"></textarea>
             </div>
             <button id="send-comment">Send</button>
@@ -84,7 +82,7 @@ $(document).ready(async () => {
                 const parsed = await res.json()
                 $("#other-comments").prepend(`
                 <div class="message-content public-message">
-                     <img class="user-pfp" src="${currentImageLink}">
+                     <img class="user-pfp" src="/avatar/${currentUserUsername}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                      <div class="message-content-right">
                          <span class="comment-name">${currentUserUsername}</span>
                          <p class="comment-contents">${$("#message-box").val()}</p>
