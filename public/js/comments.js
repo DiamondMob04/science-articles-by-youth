@@ -21,7 +21,7 @@ async function fetchComments() {
             let comment = json.comments[i]
            textBlock += `
            <div class="message-content public-message">
-                <img class="user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg') alt="User profile picture">
+                <img class="user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                 <div class="message-content-right">
                     <span class="comment-name">${comment.author}</span>
                     <p class="comment-contents">${comment.contents}</p>

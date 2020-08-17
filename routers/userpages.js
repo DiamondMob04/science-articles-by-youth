@@ -38,7 +38,7 @@ userPagesRouter.get("/users", async (req, res) => {
         users.push({
             username: currUser.username,
             role: currUser.role,
-            description: currUser.description,
+            description: currUser.description !== "" ? currUser.description : "No description provided",
             hasAvatar: currUser.avatar != undefined
         })
     }
