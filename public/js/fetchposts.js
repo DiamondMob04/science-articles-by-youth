@@ -18,6 +18,7 @@ async function fetchPosts() {
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
             post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "./img/space-bg.jpg"
+            $("#template-article").hide()
             $(".article-gallery").append(`
                 <article>
                     <h3 class="article-title">${post.title}</h3>
@@ -55,6 +56,7 @@ async function fetchUserPosts(username) {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
+            $("#template-article").hide()
             $(".article-gallery").append(`
                 <article>
                     <h3 class="article-title">${post.title}</h3>

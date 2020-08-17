@@ -15,6 +15,7 @@ async function fetchMembers() {
         }
         for (let i = 0; i < json.users.length; i++) {
             let user = json.users[i]
+            $("#template-member").hide()
             $(".triple-threat").append(`
             <div class="member-block" onclick="window.location.href = '/user/${user.username}'">
             <h2 class="prof-username">${user.username}</h2>
@@ -45,6 +46,7 @@ async function fetchAdmins() {
         }
         for (let i = 0; i < json.users.length; i++) {
             let user = json.users[i]
+            $("#template-member").hide()
             $(".triple-threat").append(`
             <div class="member-block" onclick="window.location.href = '/user/${user.username}'">
             <h2 class="prof-username">${user.username}</h2>
