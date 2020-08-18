@@ -30,16 +30,18 @@ async function fetchComments() {
             </div>`
         }
         $("#other-comments").append(textBlock)
-        $(".public-message").hover(function() {
-            $(this).css("cursor", "pointer")
-        })
-        $(".public-message").click(function() {
-            $("#follow-screen").fadeIn(250)
-            $("#comment-delete-info").text($(this).find(".comment-contents").text())
-            $("#comment-delete-warning").show()
-            $("#delete-warning").hide()
-            currentSelectedMessage = $(this)
-        })
+        if (currentUserUsername == $("#author").text()) {
+            $(".public-message").hover(function() {
+                $(this).css("cursor", "pointer")
+            })
+            $(".public-message").click(function() {
+                $("#follow-screen").fadeIn(250)
+                $("#comment-delete-info").text($(this).find(".comment-contents").text())
+                $("#comment-delete-warning").show()
+                $("#delete-warning").hide()
+                currentSelectedMessage = $(this)
+            })
+        }
     } catch(error) {
         $("#comments-message").text(`Could not contact comment database.`)
         throw new Error("Could not contact comment database.")
@@ -89,16 +91,18 @@ $(document).ready(async () => {
                      </div>
                      <span class="comment-id" style="display: none;">${parsed.messageId}</span>
                 </div>`)
-                $(".public-message").hover(function() {
-                    $(this).css("cursor", "pointer")
-                })
-                $(".public-message").click(function() {
-                    $("#follow-screen").fadeIn(250)
-                    $("#comment-delete-info").text($(this).find(".comment-contents").text())
-                    $("#comment-delete-warning").show()
-                    $("#delete-warning").hide()
-                    currentSelectedMessage = $(this)
-                })
+                if (currentUserUsername == $("#author").text()) {
+                    $(".public-message").hover(function() {
+                        $(this).css("cursor", "pointer")
+                    })
+                    $(".public-message").click(function() {
+                        $("#follow-screen").fadeIn(250)
+                        $("#comment-delete-info").text($(this).find(".comment-contents").text())
+                        $("#comment-delete-warning").show()
+                        $("#delete-warning").hide()
+                        currentSelectedMessage = $(this)
+                    })
+                }
                 $("#comments-message").hide()
                 $("#message-box").val("")
                 $("#status-message").stop(true).text("Your message has been successfully sent!").css({display: "block", color: "green"}).hide().fadeIn(1000).delay(3000).fadeOut(1000)
