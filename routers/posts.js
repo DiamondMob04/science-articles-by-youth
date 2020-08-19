@@ -47,7 +47,7 @@ postsRouter.post("/post", auth, async (req, res) => {
 
 postsRouter.patch("/post/:id", auth, async (req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ["title", "contents", "tags", "thumbnail"]
+    const allowedUpdates = ["title", "contents", "tags", "thumbnail", "isPaper"]
     const validBody = updates.every((update) => allowedUpdates.includes(update))
     if (!validBody) {
         return res.sendStatus(400)
@@ -77,9 +77,17 @@ postsRouter.get("/posts", async (req, res) => {
     // Adding one extra post to the limit to check if there are more after.
     var postData = undefined
     if (req.query.owner === undefined) {
-        postData = await Post.find({}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        if (req.query.papers === "true") {
+            postData = await Post.find({isPaper: true}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        } else {
+            postData = await Post.find({isPaper: false}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        }
     } else {
-        postData = await Post.find({author: req.query.owner}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        if (req.query.papers === "true") {
+            postData = await Post.find({author: req.query.owner, isPaper: true}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        } else {
+            postData = await Post.find({author: req.query.owner, isPaper: false}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        }
     }
     let morePosts = postData.length > req.query.limit
     if (morePosts) postData.pop()
@@ -92,10 +100,10 @@ postsRouter.get("/posts", async (req, res) => {
         }
         posts.push({
             identifier: currPost.identifier,
-            title: currPost.title,
+            title: styleFormat(currPost.title),
             author: user.username,
             thumbnail: currPost.thumbnail,
-            contents: currPost.contents.substr(0, 100) + "...",
+            contents: styleFormat(currPost.contents.substr(0, 100)) + "...",
             preformattedTags: currPost.tags.split(" ").map((tag) => { return `<p>${tag}</p>` }).join("")
         })
     }

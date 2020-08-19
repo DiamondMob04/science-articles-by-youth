@@ -60,7 +60,11 @@ const postSchema = mongoose.Schema({
                 }
             }
         }
-    }]
+    }],
+    isPaper: {
+        type: Boolean,
+        required: true
+    }
 }, {
     timestamps: true
 })

@@ -127,10 +127,11 @@ $(document).ready(async () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                title: format(titleInput.val()), 
+                title: titleInput.val(), 
                 thumbnail: imageId, 
                 contents: contentsInput.val(), 
-                tags: formattedTags
+                tags: formattedTags,
+                isPaper: $("#is-paper").is(":checked")
             })
         }).then(async (res) => {
             if (res.ok) {

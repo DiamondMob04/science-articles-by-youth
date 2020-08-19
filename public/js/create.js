@@ -1,12 +1,5 @@
 var imageId = undefined;
 
-const format = (word) => {
-    // Replaces words longer than 18 characters to {thisformattinginstead}
-    return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
-        return `<span style="word-break: break-all !important;">${w}</span>` 
-    })
-}
-
 const styleFormat = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
         return `<span style="word-break: break-all !important;">${w}</span>` 
@@ -117,10 +110,11 @@ $(document).ready(async () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                title: format(titleInput.val()), 
+                title: titleInput.val(), 
                 thumbnail: imageId, 
                 contents: contentsInput.val(), 
-                tags: formattedTags
+                tags: formattedTags,
+                isPaper: $("#is-paper").is(":checked")
             })
         }).then(async (res) => {
             if (res.ok) {

@@ -74,6 +74,12 @@ button:hover {
     font-size: 0.9rem;
 }
 
+#checkbox-field {
+    font-size: 0.9rem;
+    margin: 2vh 0 0 0 !important;
+    padding: 0 !important;
+}
+
 @media only screen and (max-width: 1096px) {
     .article-gallery {
         grid-template-columns: 1fr !important;
