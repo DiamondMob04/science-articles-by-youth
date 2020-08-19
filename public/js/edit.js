@@ -129,7 +129,7 @@ $(document).ready(async () => {
             body: JSON.stringify({
                 title: format(titleInput.val()), 
                 thumbnail: imageId, 
-                contents: styleFormat(contentsInput.val()), 
+                contents: contentsInput.val(), 
                 tags: formattedTags
             })
         }).then(async (res) => {

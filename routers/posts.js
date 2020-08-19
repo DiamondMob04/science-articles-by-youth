@@ -8,6 +8,11 @@ const postsRouter = express.Router()
 const toIdentifier = (word) => {
     return word.trim().toLowerCase().replace(/[^a-zA-Z]/g, "")
 }
+const styleFormat = (word) => {
+    return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
+        return `<span style="word-break: break-all !important;">${w}</span>` 
+    })
+}
 
 postsRouter.get("/article/:id", async (req, res) => {
     try {
@@ -16,7 +21,7 @@ postsRouter.get("/article/:id", async (req, res) => {
         res.status(200).render("publicarticle", {
             title: post.title,
             author: post.author,
-            contents: post.contents,
+            contents: styleFormat(post.contents),
             imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg",
             identifier: post.identifier
         })

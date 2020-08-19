@@ -1,6 +1,12 @@
 var currentSkip = 0
 var limitation = 9
 
+const styleFormat = (word) => {
+    return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
+        return `<span style="word-break: break-all !important;">${w}</span>` 
+    })
+}
+
 async function fetchPosts() {
     try {
         let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}`)
@@ -24,7 +30,7 @@ async function fetchPosts() {
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">Created by ${post.author}</h4>
                     <img class="article-thumbnail" src=${post.imageLink}>
-                    <p class="article-desc">${post.contents}</p>
+                    <p class="article-desc">${styleFormat(post.contents)}</p>
                     <div class="article-tags">
                         ${post.preformattedTags}
                     </div>
@@ -60,7 +66,7 @@ async function fetchUserPosts(username) {
             $(".article-gallery").append(`
                 <article>
                     <h3 class="article-title">${post.title}</h3>
-                    <p class="article-desc">${post.contents}</p>
+                    <p class="article-desc">${styleFormat(post.contents)}</p>
                     <div class="article-tags">
                         ${post.preformattedTags}
                     </div>
