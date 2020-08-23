@@ -1,7 +1,9 @@
 const express = require("express")
 const auth = require("../middleware/auth")
+const adminauth = require("../middleware/adminauth")
 const Post = require("../models/post")
 const User = require("../models/user")
+const jwt = require("jsonwebtoken")
 
 const postsRouter = express.Router()
 
@@ -18,12 +20,21 @@ postsRouter.get("/article/:id", async (req, res) => {
     try {
         const post = await Post.findOne({identifier: req.params.id})
         if (!post) throw new Error("")
+        if (!post.verified) {
+            const token = req.session.token;
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            const user = await User.findOne({_id: decoded._id, "tokens.token": token})
+            if (user.role !== "admin" && user.username != post.author) {
+                throw new Error()
+            }
+        }
         res.status(200).render("publicarticle", {
-            title: post.title,
+            title: styleFormat(post.title) + ((post.verified) ? "" : " (Preview)"),
             author: post.author,
             contents: styleFormat(post.contents),
             imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg",
-            identifier: post.identifier
+            identifier: post.identifier,
+            verified: post.verified
         })
     } catch (error) {
         return res.redirect(400, "/error")
@@ -34,6 +45,7 @@ postsRouter.post("/post", auth, async (req, res) => {
     try {
         req.body.author = req.session.user.username
         req.body.identifier = toIdentifier(req.body.title)
+        req.body.verified = req.session.user.role === "admin"
         const duplicatePost = await Post.findOne({identifier: req.body.identifier})
         if (duplicatePost) throw new Error("")
         myPost = new Post(req.body)
@@ -76,17 +88,17 @@ postsRouter.get("/posts", async (req, res) => {
     }
     // Adding one extra post to the limit to check if there are more after.
     var postData = undefined
-    if (req.query.owner === undefined) {
-        if (req.query.papers === "true") {
-            postData = await Post.find({isPaper: true}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+    if (req.query.papers === undefined) {
+        if (req.query.owner === undefined) {
+            postData = await Post.find({verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
         } else {
-            postData = await Post.find({isPaper: false}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            postData = await Post.find({author: req.query.owner, verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
         }
     } else {
-        if (req.query.papers === "true") {
-            postData = await Post.find({author: req.query.owner, isPaper: true}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        if (req.query.owner === undefined) {
+            postData = await Post.find({isPaper: (req.query.papers === "true"), verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
         } else {
-            postData = await Post.find({author: req.query.owner, isPaper: false}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            postData = await Post.find({isPaper: (req.query.papers === "true"), author: req.query.owner, verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
         }
     }
     let morePosts = postData.length > req.query.limit
@@ -122,10 +134,25 @@ postsRouter.get("/edit/:id", auth, async (req, res) => {
             title: post.title,
             contents: post.contents,
             tags: post.tags,
+            isPaper: post.isPaper,
             imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
         })
     } catch(error) {
         res.status(400).redirect("/error")
+    }
+})
+
+postsRouter.get("/verify/:id", adminauth, async (req, res) => {
+    try {
+        const post = await Post.findOne({identifier: req.params.id})
+        if (!post) {
+            throw new Error("")
+        }
+        post.verified = true
+        await post.save()
+        res.status(200).redirect("/article/" + req.params.id)
+    } catch(error) {
+        res.status(400).send("/error")
     }
 })
 

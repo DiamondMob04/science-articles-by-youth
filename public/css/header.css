@@ -8,6 +8,10 @@
     font-family: "Montserrat", sans-serif;
 }
 
+.admin-only {
+    display: none;
+}
+
 #header__topbar {
     background: linear-gradient(to right, rgb(0, 125, 0), rgb(0, 170, 0), rgb(0, 125, 0));
     width: 100vw;
@@ -31,7 +35,7 @@
     width: 87px;
     height: 87px;
     border-radius: 44px;
-    margin-right: 2em;
+    margin-right: 2vw;
 }
 
 #title > h1 {
@@ -82,7 +86,7 @@
     text-decoration: none;
     font-size: 18px;
     width: 100%;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 1);
     flex: 1;
     z-index: 3;
     animation: linkHide 0.3s ease 0s forwards;

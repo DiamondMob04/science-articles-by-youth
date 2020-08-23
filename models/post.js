@@ -61,6 +61,10 @@ const postSchema = mongoose.Schema({
             }
         }
     }],
+    verified: {
+        type: Boolean,
+        default: false
+    },
     isPaper: {
         type: Boolean,
         required: true

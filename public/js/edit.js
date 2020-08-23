@@ -25,6 +25,9 @@ $(document).ready(async () => {
     const defaultContents = "Contents"
     titleInput.val($("#prev-title-input").text())
     contentsInput.val($("#prev-contents-input").text())
+    if($("#prev-is-paper").text() === "true") {
+        $("#is-paper").attr("checked", true)
+    }
     let prevTags =  $("#prev-tag-input").text().split(" ")
     for (let i = 0; i < prevTags.length; i++) {
         $(`<p class="inserted-tag">${format(prevTags[i])}</p>`).insertBefore("#tag-example")
@@ -37,7 +40,7 @@ $(document).ready(async () => {
     } catch (error) {
         window.location.href = "/login"
     }
-    $(".article-info").text(`Created by ${json.username}`)
+    $(".article-info").text(`${json.username} / January 1, 1970 / 0 Comments`)
     titleInput.on("input", () => {
         if (titleInput.val().length === 0) {
             $(".article-title").text(defaultTitle)
@@ -47,7 +50,7 @@ $(document).ready(async () => {
         } else {
             titleInput.css("border", "1px solid black")
         }
-        if (titleInput.val().length < 30) {
+        if (titleInput.val().length <= 30) {
             $(".article-title").html(format(titleInput.val()))
         }
     })

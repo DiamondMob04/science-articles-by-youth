@@ -203,6 +203,11 @@ button:focus {
     height: 200px !important;
 }
 
+.posted-err-message, .unverified-err-message {
+    margin-top: 0 !important;
+    margin-bottom: 2vh !important;
+}
+
 @media only screen and (max-width: 1098px) {
     article {
         flex-direction: column;

@@ -5,13 +5,14 @@
         <title>Edit an Article - Science Articles by Youth</title>
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/elements.css">
+        <link rel="stylesheet" href="/css/articles.css">
         <link rel="stylesheet" href="/css/create.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         {{>header}}
         <div class="text-block slight-gray">
-            <h2>Create an Article</h2><hr>
+            <h2>Edit an Article</h2><hr>
             <div class="left-right condense">
                 <div id="user-input">
                     <input id="title-input" placeholder="Include a title here. (6-30 chars)">
@@ -34,13 +35,15 @@
                 </div>
                 <div>
                     <article>
-                        <h3 class="article-title"></h3>
-                        <h4 class="article-info"></h4>
-                        <img class="article-thumbnail" src={{imageLink}} alt="Article thumbnail image">
-                        <p class="article-desc"></p>
-                        <div class="article-tags"><p id="tag-example"></p></div>
-                        <button class="read-more">Read More</button>
-                    </article> 
+                        <img class="article-thumbnail" src="/img/space-bg.jpg" alt="Template article for pre-loading">
+                        <div class="article-right">
+                            <h3 class="article-title"></h3>
+                            <h4 class="article-info"></h4>
+                            <p class="article-desc"></p>
+                            <div class="article-tags"><p id="tag-example"></p></div>
+                            <button class="read-more">Read More</button>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
@@ -48,6 +51,7 @@
             <span id="prev-title-input">{{title}}</span>
             <span id="prev-contents-input">{{contents}}</span>
             <span id="prev-tag-input">{{tags}}</span>
+            <span id="prev-is-paper">{{isPaper}}</span>
         </div>
         {{>footer}}
         <script src="/js/edit.js"></script>

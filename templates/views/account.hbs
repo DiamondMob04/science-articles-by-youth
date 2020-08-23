@@ -43,11 +43,19 @@
                 </div>
                 <div class="text-block">
                     <h3>Posted Articles / Papers</h3>
-                    <div class="article-gallery">
-                        <h4 id="err-message"></h4>
+                    <div class="posted-articles article-gallery">
+                        <h4 class="posted-err-message"></h4>
                     </div>
                     <button onclick="window.location.href='/create'" class="make-own">Make an Article</button><br>
-                    <button class="find-more">Find More</button>
+                    <button class="posted-find-more find-more">Find More</button>
+                </div>
+                <div class="text-block">
+                    <h3>Unverified Articles / Papers</h3>
+                    <div class="unverified-articles article-gallery">
+                        <h4 class="unverified-err-message"></h4>
+                    </div>
+                    <button onclick="window.location.href='/create'" class="make-own">Make an Article</button><br>
+                    <button class="unverified-find-more find-more">Find More</button>
                 </div>
                 <button id="logout" onclick="window.location.href = '/logout'">Logout</button>
                 <button id="delete-acc">Delete</button>
@@ -71,9 +79,13 @@
             $(document).ready(async () => {
                 const raw = await fetch("/info")
                 const json = await raw.json()
-                fetchUserPosts(json.username)
-                $(".find-more").click(() => {
-                    fetchUserPosts(json.username)
+                fetchUserPosts(json.username, false)
+                fetchUserPosts(json.username, true)
+                $(".posted-find-more").click(() => {
+                    fetchUserPosts(json.username, false)
+                })
+                $(".unverified-find-more").click(() => {
+                    fetchUserPosts(json.username, true)
                 })
             })
         </script>

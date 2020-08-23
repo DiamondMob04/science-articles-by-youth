@@ -13,10 +13,18 @@
     <body>
         {{>header}}
         <div class="text-block">
-            <h3>{{title}}</h3><span id="identifier" style="display: none;">{{identifier}}</span>
+            <h3 id="article-title">{{title}}</h3>
+            <span id="identifier" style="display: none;">{{identifier}}</span>
+            <span id="verified" style="display: none;">{{verified}}</span>
             <h4>Created by <span id="author">{{author}}</span></h4><hr>
             <img id="thumbnail-image" src={{imageLink}} alt="Article thumbnail image">
             <p id="article-contents">{{contents}}</p>
+            <div id="preview">
+                <p id="preview-notice">You are currently viewing the preview of this article. Only the creator of the article and administrators will be allowed to view it until it is verified.</p>
+                <div id="button-row">
+                    <button id="verify-article">Verify</button>
+                </div>
+            </div>
             <div id="restricted">
                 <p id="article-notice">This isn't your article. The buttons below will not work for you.</p>
                 <div id="button-row">

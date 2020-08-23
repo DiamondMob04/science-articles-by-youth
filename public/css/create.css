@@ -12,6 +12,7 @@
     width: 100%;
     padding: 0.5em;
     margin-bottom: 1vh;
+    margin-top: 2vh;
 }
 
 #contents-input {
@@ -80,14 +81,38 @@ button:hover {
     padding: 0 !important;
 }
 
-@media only screen and (max-width: 1096px) {
+article {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 3vh;
+}
+.article-thumbnail {
+    margin: 0 2vw;
+}
+.article-title {
+    margin-top: 1vh;
+}
+.article-title, .article-desc, .article-info, .article-tags, .article-header, .read-more {
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+.article-tags {
+    justify-content: center;
+}
+
+@media only screen and (max-width: 968px) {
     .article-gallery {
         grid-template-columns: 1fr !important;
         margin: 0 4vw;
     }
+    .left-right {
+        grid-template-columns: 1fr !important;
+    }
 }
 
-@media only screen and (min-width: 812px) {
+@media only screen and (min-width: 968px) {
     .condense > *:first-child {
         margin-left: 8vw !important;
     }

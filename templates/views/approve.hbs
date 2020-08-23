@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Approve Articles - Science Articles by Youth</title>
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="stylesheet" href="/css/elements.css">
+        <link rel="stylesheet" href="/css/articles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        {{>header}}
+        <div class="text-block">
+            <h2>Unverified Articles</h2><hr>
+            <h4 id="err-message" style="margin-top: 6vh;"></h4>
+            <container class="article-gallery">
+                <article class="template-article" style="visibility: hidden;">
+                    <img class="article-thumbnail" src="/img/space-bg.jpg" alt="Template article for pre-loading">
+                    <div class="article-right">
+                        <h3 class="article-title">Lorem ipsum...</h3>
+                        <h4 class="article-info">LWCoding / August 22, 2020</h4>
+                        <p class="article-desc">Sample text.</p>
+                        <div class="article-tags">
+                            <p>Lorem ipsum...</p>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </article>
+                <article class="template-article" style="visibility: hidden;">
+                    <img class="article-thumbnail" src="/img/space-bg.jpg" alt="Template article for pre-loading">
+                    <div class="article-right">
+                        <h3 class="article-title">Lorem ipsum...</h3>
+                        <h4 class="article-info">LWCoding / August 22, 2020</h4>
+                        <p class="article-desc">Sample text.</p>
+                        <div class="article-tags">
+                            <p>Lorem ipsum...</p>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </article>
+            </container>
+            <button class="find-more">Find More</button>
+        </div>
+        {{>footer}}
+        <script src="/js/fetchposts.js"></script>
+        <script>
+            $(document).ready(() => {
+                fetchUnverifiedPosts()
+                $(".find-more").click(() => {
+                    fetchUnverifiedPosts()
+                })
+            })
+        </script>
+    </body>
+</html>

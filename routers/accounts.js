@@ -129,6 +129,7 @@ userRouter.get("/info", (req, res) => {
         res.status(200).send({
             username: req.session.user.username, 
             description: req.session.user.description,
+            role: req.session.user.role,
             hasAvatar: req.session.user.avatar != undefined
         })
     } else {

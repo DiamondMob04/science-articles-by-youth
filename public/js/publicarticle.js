@@ -1,13 +1,25 @@
 $(document).ready(async () => {
+    var isVerified = $("#verified").text()
+    const identifier = $("#identifier").text()
+    $("#article-title").html($("#article-title").text())
     $("#article-contents").html($("#article-contents").text().replace(/\n/g, "<br>"))
+    if (isVerified === "true") {
+        $("#preview").remove()
+    }
     const res = await fetch("/info")
     if (res.ok) {
         const json = await res.json()
+        if (json.role !== "admin") {
+            $("#verify-article").remove()
+        }
         if (json.username === $("#author").text()) {
             $("#article-notice").text("This is your article. You can choose to edit or delete it at anytime. Alternatively, click on a comment to delete it.")
             $("#restricted").show()
+            $("#verify-article").click(() => {
+                window.location.href = `/verify/${identifier}`
+            })
             $("#edit-article").click(() => {
-                window.location.href = `/edit/${$("#identifier").text()}`
+                window.location.href = `/edit/${identifier}`
             })
             $("#delete-confirm").click(() => {
                 fetch("/delete-article", {
@@ -32,6 +44,10 @@ $(document).ready(async () => {
             $("#delete-deny").click(() => {
                 $("#follow-screen").fadeOut(250)
             })
+        } else {
+            $("#restricted").remove()
         }
+        $("#verified").remove()
+        $("#indentifier").remove()
     }
 })

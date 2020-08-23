@@ -22,20 +22,20 @@ img {
     border: none;
 }
 
-#restricted button:focus {
+#restricted button:focus, #preview button:focus {
     outline: none;
 }
 
-#restricted button {
+#restricted button, #preview button {
     transition: all 0.6s ease;
 }
 
-#restricted button:hover {
+#restricted button:hover, #preview button:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-#edit-article {
+#edit-article, #verify-article {
     background: linear-gradient(rgb(0, 170, 0), green);
 }
 
@@ -47,12 +47,15 @@ img {
     display: none;
 }
 
-#article-notice {
+#article-notice, #preview-notice {
     font-size: 0.9rem;
     padding: 0 4vw;
     margin-bottom: 1vh;
 }
 
+#preview {
+    margin-bottom: 1vh;
+}
 
 #follow-screen {
     top: 0%;
@@ -116,7 +119,7 @@ img {
     #delete-warning {
         width: 70vw !important;
     }
-    #edit-article, #delete-article, #delete-deny, #delete-confirm, #comment-delete-confirm, #comment-delete-deny {
+    #verify-article, #edit-article, #delete-article, #delete-deny, #delete-confirm, #comment-delete-confirm, #comment-delete-deny {
         width: 30vw !important;
     }
 }

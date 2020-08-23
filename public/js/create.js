@@ -22,7 +22,7 @@ $(document).ready(async () => {
     }
     $(".article-title").text(defaultTitle)
     $(".article-desc").text(defaultContents)
-    $(".article-info").text(`Created by ${json.username}`)
+    $(".article-info").text(`${json.username} / January 1, 1970 / 0 Comments`)
     titleInput.on("input", () => {
         if (titleInput.val().length === 0) {
             $(".article-title").text(defaultTitle)
@@ -32,8 +32,8 @@ $(document).ready(async () => {
         } else {
             titleInput.css("border", "1px solid black")
         }
-        if (titleInput.val().length < 30) {
-            $(".article-title").html(format(titleInput.val()))
+        if (titleInput.val().length <= 30) {
+            $(".article-title").html(styleFormat(titleInput.val()))
         }
     })
     contentsInput.on("input", () => {
@@ -59,12 +59,12 @@ $(document).ready(async () => {
             tagInput.css("border", "1px solid black")
         }
         if (tagInput.val().length <= 16) {
-            $("#tag-example").text(format(tagInput.val()))
+            $("#tag-example").text(styleFormat(tagInput.val()))
         }
     })
     $("#submit-tag").click(() => {
         if (tagInput.val().length >= 3 && tagInput.val().length <= 16) {
-            $(`<p class="inserted-tag">${format(tagInput.val())}</p>`).insertBefore("#tag-example")
+            $(`<p class="inserted-tag">${styleFormat(tagInput.val())}</p>`).insertBefore("#tag-example")
             tagInput.val("")
             $("#tag-example").text("")
         }
