@@ -25,7 +25,7 @@ article {
     flex-direction: row;
     text-align: left;
     padding-left: 1vw;
-    background: linear-gradient(rgb(233, 233, 233), rgb(219, 219, 219));
+    background: linear-gradient(rgb(233, 233, 233), rgb(216, 216, 216));
     border-radius: 0px;
     padding: 20px 0;
     margin: 0 2vw 2vh 2vw;
@@ -85,6 +85,8 @@ article {
     align-self: center;
     height: 280px;
     width: 280px;
+    padding: 10px;
+    background: white;
     margin-left: 2vw;
 }
 

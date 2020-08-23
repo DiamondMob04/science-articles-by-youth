@@ -31,10 +31,10 @@
     width: 87px;
     height: 87px;
     border-radius: 44px;
+    margin-right: 2em;
 }
 
 #title > h1 {
-    padding-left: 20px;
     font-size: 40px;
     color: white;
     text-align: center;
@@ -139,6 +139,11 @@
 }
 
 @media only screen and (max-width: 812px) {
+    #title > h1 {
+        margin: 0 15vw;
+        font-size: 37px;
+        padding-right: 0.5em;
+    }
     #open-dropdown {
         display: block;
         width: 100vw;
@@ -146,7 +151,6 @@
     #open-dropdown:before {
         content: "";
         border: solid black;
-        margin-left: 22px;
         border-width: 0 4px 4px 0;
         display: inline-block;
         padding: 6px;
