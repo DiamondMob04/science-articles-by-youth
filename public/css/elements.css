@@ -105,7 +105,6 @@ a {
 
 #err-message {
     margin-top: 4vh;
-    margin-bottom: 3vh;
     grid-column: span 3;
 }
 
@@ -201,7 +200,7 @@ a {
 
 /* Article gallery. */
 
-.article-gallery {
+/* .article-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding-top: 2vh;
@@ -215,7 +214,7 @@ article {
 }
 
 .article-title, .article-desc, .article-info, .article-tags, .article-header {
-    margin: 2vh 4vh 2vh 4vh;
+    margin: 2vh 4vw 2vh 4vw;
     overflow-wrap: break-word;
     white-space: normal;
     background: white;
@@ -284,7 +283,7 @@ article {
 
 .read-more:focus {
     outline: none;
-}
+} */
 
 .no-animate > * {
     animation: none !important;
@@ -319,24 +318,20 @@ article {
 
 /* Keyframes for various shrink/grow opacity effects. */
 
-@keyframes tiny-grow-appear {
+@keyframes tiny-grow-start {
     0% {
-        opacity: 70%;
         transform: scale(1);
     }
     100% {
-        opacity: 100%;
-        transform: scale(1.02);
+        transform: scale(1.01);
     }
 }
 
-@keyframes tiny-grow-disappear {
+@keyframes tiny-grow-end {
     0% {
-        opacity: 100%;
-        transform: scale(1.02);
+        transform: scale(1.01);
     }
     100% {
-        opacity: 70%;
         transform: scale(1);
     }
 }
@@ -419,11 +414,9 @@ article {
         transform: scale(1.2);
     }
     article {
-        opacity: 0.7;
-        animation: tiny-grow-disappear 0.6s ease forwards;
+        animation: tiny-grow-end 0.6s ease forwards;
     }
     article:hover {
-        opacity: 1;
-        animation: tiny-grow-appear 0.6s ease forwards;
+        animation: tiny-grow-start 0.6s ease forwards;
     }
 }

@@ -67,7 +67,7 @@ postsRouter.patch("/post/:id", auth, async (req, res) => {
     }
 })
 
-
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 postsRouter.get("/posts", async (req, res) => {
     if (!req.query.skip) req.query.skip = 0
     if (!req.query.limit) req.query.limit = 10
@@ -103,8 +103,10 @@ postsRouter.get("/posts", async (req, res) => {
             title: styleFormat(currPost.title),
             author: user.username,
             thumbnail: currPost.thumbnail,
-            contents: styleFormat(currPost.contents.substr(0, 100)) + "...",
-            preformattedTags: currPost.tags.split(" ").map((tag) => { return `<p>${tag}</p>` }).join("")
+            contents: styleFormat(currPost.contents.substr(0, (req.query.owner !== undefined) ? 100 : 200)) + "...",
+            preformattedTags: currPost.tags.split(" ").map((tag) => { return `<p>${tag}</p>` }).join(""),
+            timestamp: `${months[currPost.createdAt.getMonth()]} ${currPost.createdAt.getDate()}, ${currPost.createdAt.getFullYear()}`,
+            comments: `${currPost.comments.length} Comment${currPost.comments.length === 1 ? "" : "s"}`
         })
     }
     res.send({ posts, skipQuery: req.query.skip, limitQuery: req.query.limit, morePosts })

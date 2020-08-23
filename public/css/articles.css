@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.article-gallery {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4vh;
+}
+
+.article-right > * {
+    background: none;
+}
+
+.article-right > button {
+    background: white;
+}
+
+.article-title, .article-title > span {
+    font-family: "Playfair Display";
+    letter-spacing: 1.5px;
+    font-size: 2rem;
+}
+
+article {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding-left: 1vw;
+    background: linear-gradient(rgb(233, 233, 233), rgb(219, 219, 219));
+    border-radius: 0px;
+    padding: 20px 0;
+    margin: 0 2vw 2vh 2vw;
+    border-radius: 10px;
+}
+
+.article-title, .article-desc, .article-info, .article-tags, .article-header, .read-more {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.article-info {
+    font-size: 15px;
+    margin-top: 1vh;
+    color: rgb(105, 105, 105);
+    font-style: italic;
+    margin-bottom: 2vh;
+    font-weight: 500;
+}
+
+.article-tags {
+    display: flex;
+    flex-direction: row;
+    text-transform: capitalize;
+    flex-wrap: wrap;
+    font-size: 10px;
+    justify-content: left;
+    margin-top: 3vh;
+}
+
+.article-tags > *:before {
+    content: "";
+    display: inline-block;
+    width: 1vh;
+    height: 1vh;
+    border-radius: 1vh;
+    margin-right: 0.5vh;
+    background: white;
+}
+
+.article-tags > * {
+    background-color: rgb(80, 80, 80);
+    border-radius: 8px;
+    padding: 0.5vh 0.5vw;
+    margin-right: 0.25vw;
+    color: white;
+}
+
+.article-right {
+    flex: 1;
+}
+
+.article-thumbnail {
+    object-fit: cover;
+    align-self: center;
+    height: 280px;
+    width: 280px;
+    margin-left: 2vw;
+}
+
+.read-more {
+    background: white;
+    letter-spacing: 0.5px;
+    margin-top: 2vh;
+    width: 10em;
+    height: 3em;
+}
+
+.read-more:hover {
+    cursor: pointer;
+}
+
+.read-more:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 720px) {
+    article {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-left: 6vw;
+        margin-right: 6vw;
+        margin-bottom: 3vh;
+    }
+    .article-title {
+        margin-top: 1vh;
+    }
+    .article-title, .article-desc, .article-info, .article-tags, .article-header, .read-more {
+        margin-left: 3vw;
+        margin-right: 3vw;
+    }
+    .article-tags {
+        justify-content: center;
+    }
+}
