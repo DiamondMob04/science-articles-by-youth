@@ -103,7 +103,7 @@ postsRouter.get("/posts", async (req, res) => {
             title: styleFormat(currPost.title),
             author: user.username,
             thumbnail: currPost.thumbnail,
-            contents: styleFormat(currPost.contents.substr(0, (req.query.owner !== undefined) ? 100 : 200)) + "...",
+            contents: styleFormat(currPost.contents.substr(0, (req.query.owner !== undefined) ? 150 : 280)) + "...",
             preformattedTags: currPost.tags.split(" ").map((tag) => { return `<p>${tag}</p>` }).join(""),
             timestamp: `${months[currPost.createdAt.getMonth()]} ${currPost.createdAt.getDate()}, ${currPost.createdAt.getFullYear()}`,
             comments: `${currPost.comments.length} Comment${currPost.comments.length === 1 ? "" : "s"}`

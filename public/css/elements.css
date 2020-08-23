@@ -342,14 +342,6 @@ article {
     .triple-threat {
         grid-template-columns: 1fr 1fr;
     }
-    .article-gallery {
-        grid-template-columns: 1fr 1fr;
-        margin: 0 4vw;
-    }
-    .article-thumbnail {
-        width: 246px;
-        height: 246px;
-    }
     .member-block {
         margin: 1vh 1.5vw;
     }
@@ -360,21 +352,9 @@ article {
         grid-template-columns: 1fr;
         margin: 1vh 11vw;
     }
-    .article-thumbnail {
-        width: 312px;
-        height: 256px;
-    }
-    .article-gallery {
-        grid-template-columns: 1fr;
-        margin: 0 4vw;
-    }
 }
 
 @media only screen and (max-width: 812px) {
-    .article-gallery > article {
-        opacity: 0.9 !important;
-        animation: none !important;
-    }
     .left-right {
         grid-template-columns: 1fr;
     }
