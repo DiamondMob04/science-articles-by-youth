@@ -204,8 +204,8 @@ button:focus {
 }
 
 .posted-err-message, .unverified-err-message {
-    margin-top: 0 !important;
-    margin-bottom: 2vh !important;
+    margin-top: 4vh !important;
+    margin-bottom: 6vh !important;
 }
 
 @media only screen and (max-width: 1098px) {

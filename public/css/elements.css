@@ -104,8 +104,9 @@ a {
 /* Defining member block, which encapsulates a member's information. */
 
 #err-message {
-    margin-top: 4vh;
-    margin-bottom: 2vh;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    font-size: 20px;
     grid-column: span 3;
 }
 

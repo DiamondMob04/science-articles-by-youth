@@ -1,5 +1,6 @@
 const express = require("express")
 const User = require("../models/user")
+const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const auth = require("../middleware/auth")
 
@@ -124,13 +125,16 @@ userRouter.patch("/user", auth, async (req, res) => {
     }
 })
 
-userRouter.get("/info", (req, res) => {
+userRouter.get("/info", async (req, res) => {
     if (req.session.token) {
+        const token = req.session.token;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        const user = await User.findOne({_id: decoded._id, "tokens.token": token})
         res.status(200).send({
-            username: req.session.user.username, 
-            description: req.session.user.description,
-            role: req.session.user.role,
-            hasAvatar: req.session.user.avatar != undefined
+            username: user.username, 
+            description: user.description,
+            role: user.role,
+            hasAvatar: user.avatar != undefined
         })
     } else {
         res.sendStatus(400)
