@@ -56,7 +56,7 @@ commentsRouter.get("/comments/:id", async (req, res) => {
 commentsRouter.delete("/delete-comment", auth, async (req, res) => {
     try {
         const post = await Post.findOne({identifier: req.body.identifier})
-        if (!post || post.author !== req.session.user.username) {
+        if (req.session.user.role !== "admin" && (!post || post.author !== req.session.user.username)) {
             throw new Error("")
         }
         const message = post.comments.find((comment) => { return comment._id.toString() === req.body.messageId})

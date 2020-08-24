@@ -127,11 +127,12 @@ postsRouter.get("/posts", async (req, res) => {
 postsRouter.get("/edit/:id", auth, async (req, res) => {
     try {
         const post = await Post.findOne({identifier: req.params.id})
-        if (!post || post.author !== req.session.user.username) {
+        if (req.session.user.role !== "admin" && (!post || post.author !== req.session.user.username)) {
             throw new Error("")
         }
         return res.render("edit", {
             title: post.title,
+            author: post.author,
             contents: post.contents,
             tags: post.tags,
             isPaper: post.isPaper,
@@ -159,7 +160,7 @@ postsRouter.get("/verify/:id", adminauth, async (req, res) => {
 postsRouter.delete("/delete-article", auth, async (req, res) => {
     try {
         const post = await Post.findOne({identifier: req.body.identifier})
-        if (!post || post.author !== req.session.user.username) {
+        if (req.session.user.role !== "admin" && (!post || post.author !== req.session.user.username)) {
             throw new Error("")
         }
         post.delete()

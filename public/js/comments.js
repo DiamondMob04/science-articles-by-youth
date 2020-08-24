@@ -30,7 +30,9 @@ async function fetchComments() {
             </div>`
         }
         $("#other-comments").append(textBlock)
-        if (currentUserUsername == $("#author").text()) {
+        let infoResponse = await fetch("/info")
+        let user = await infoResponse.json()
+        if (user.username === $("#author").text() || user.role === "admin") {
             $(".public-message").hover(function() {
                 $(this).css("cursor", "pointer")
             })
@@ -53,9 +55,8 @@ var currentSelectedComment = undefined
 
 $(document).ready(async () => {
     const res = await fetch("/info")
+    const user = await res.json()
     if (res.ok) {
-        const user = await res.json()
-        currentUserUsername = user.username
         $("#insert-template").append(`
         <div class="user-message-box">
             <p id="message-name">Want to leave a message? Write a comment as ${user.username}:</p>
@@ -84,14 +85,14 @@ $(document).ready(async () => {
                 const parsed = await res.json()
                 $("#other-comments").prepend(`
                 <div class="message-content public-message">
-                     <img class="user-pfp" src="/avatar/${currentUserUsername}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
+                     <img class="user-pfp" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                      <div class="message-content-right">
-                         <span class="comment-name">${currentUserUsername}</span>
+                         <span class="comment-name">${user.username}</span>
                          <p class="comment-contents">${$("#message-box").val()}</p>
                      </div>
                      <span class="comment-id" style="display: none;">${parsed.messageId}</span>
                 </div>`)
-                if (currentUserUsername == $("#author").text()) {
+                if (user.username === $("#author").text() || user.role === "admin") {
                     $(".public-message").hover(function() {
                         $(this).css("cursor", "pointer")
                     })
@@ -112,7 +113,7 @@ $(document).ready(async () => {
             }
         })
     })
-    if (currentUserUsername == $("#author").text()) {
+    if (user.username == $("#author").text() || user.role === "admin") {
         $(".public-message").hover(function() {
             $(this).css("cursor", "pointer")
         })

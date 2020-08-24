@@ -40,7 +40,7 @@ $(document).ready(async () => {
     } catch (error) {
         window.location.href = "/login"
     }
-    $(".article-info").text(`${json.username} / January 1, 1970 / 0 Comments`)
+    $(".article-info").text(`${$("#prev-author").text()} / January 1, 1970 / 0 Comments`)
     titleInput.on("input", () => {
         if (titleInput.val().length === 0) {
             $(".article-title").text(defaultTitle)
