@@ -93,7 +93,7 @@ async function fetchUserPostsSingular(username) {
     try {
         let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation / 3}&owner=${username}`)
         let json = await response.json()
-        $(".template-article").remove()
+        console.log(json)
         if (currentSkip == 0 && json.posts.length == 0) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
             return $("#err-message").text(`Could not find any articles.`)
@@ -102,7 +102,7 @@ async function fetchUserPostsSingular(username) {
         if (!json.morePosts) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
         } else {
-            currentSkip += limitation
+            currentSkip += limitation / 3
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]

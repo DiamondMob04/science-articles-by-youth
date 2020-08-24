@@ -18,8 +18,9 @@
             </div>
             <div class="text-block remove-top-margin">
                 <h3>Posted Articles</h3>
+                <h4 id="err-message"></h4>
                 <div class="article-gallery inline-block">
-                    <h4 id="err-message"></h4>
+                    
                 </div>
                 <button class="find-more">Find More</button>
             </div>
@@ -28,7 +29,7 @@
         <script src="/js/fetchposts.js"></script>
         <script>
             $(document).ready(() => {
-                fetchUserPostsSingular(("#user-id").text())
+                fetchUserPostsSingular($("#user-id").text())
             })
         </script>
     </body>
