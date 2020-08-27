@@ -93,10 +93,11 @@ a {
     margin-top: 0px !important;
 }
 
-/* Defining triple-threat, which contains elements which should be in 2 equal columns. */
+/* Defining triple-threat, which contains elements which should be in 3 equal columns. */
 
 .triple-threat {
     display: grid;
+    padding: 2vh 2vw;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
 }
@@ -116,45 +117,62 @@ a {
 }
 
 .member-block {
-    background: linear-gradient(rgba(0, 170, 0, 0.8), rgba(0, 70, 0, 0.9));
-    border-radius: 32px 32px;
     margin: 1vh 2vw;
-    animation: slightAppear 1s ease forwards;
-    transition: transform 1s ease;
+    box-sizing: content-box;
+    min-height: 10vh;
+    position: relative;
 }
 
-@keyframes slightAppear {
-    0% {
-        transform: translateY(-3%);
-        opacity: 0.3;
-    }
-    100% {
-        transform: translateY(0%);
-        opacity: 0.8;
-    }
-}
-
-.member-block:hover {
-    transform: scale(1.05);
+.member-block .banner:hover {
+    transform: scale(1.02);
     cursor: pointer;
+}
+
+.member-block .overlay {
+    width: 100%;
+    height: 98%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+.member-block .admin-color {
+    color: rgb(230, 59, 59) !important;
+}
+
+.member-block .banner {
+    max-width: 100%;
+    min-height: 40vh;
+    max-height: 50%;
+    object-fit: cover;
+    transition: transform 1s ease;
 }
 
 .prof-username {
     color: white;
     padding-top: 2vh;
-    padding-bottom: 0.25vh;
-}
-
-.prof-role {
-    text-transform: capitalize;
-    padding-bottom: 1vh;
+    padding-bottom: 2vh;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .prof-avatar {
-    width: 256px;
-    height: 256px;
-    margin-bottom: 2vh;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background: white;
+    border: 3px solid white;
     object-fit: cover;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .slight-gray {
@@ -199,93 +217,6 @@ a {
 .button-column > button:hover {
     cursor: pointer;
 }
-
-/* Article gallery. */
-
-/* .article-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 2vh;
-}
-
-article {
-    background: linear-gradient(rgba(0, 170, 0, 0.8), rgba(0, 95, 0, 0.9));
-    padding: 20px 0;
-    margin: 0 2vh 2vh 2vh;
-    border-radius: 10px;
-}
-
-.article-title, .article-desc, .article-info, .article-tags, .article-header {
-    margin: 2vh 4vw 2vh 4vw;
-    overflow-wrap: break-word;
-    white-space: normal;
-    background: white;
-    border-radius: 10px;
-}
-
-.article-title {
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.article-info {
-    font-size: 14px;
-}
-
-.article-desc {
-    line-height: 1.2rem;
-    padding: 0.3rem;
-    font-size: 14px;
-}
-
-.article-tags {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-transform: capitalize;
-    flex-wrap: wrap;
-    font-size: 10px;
-}
-
-.article-tags > *:before {
-    content: "";
-    display: inline-block;
-    width: 1vh;
-    height: 1vh;
-    border-radius: 1vh;
-    margin-right: 0.5vh;
-    background: white;
-}
-
-.article-tags > * {
-    background-color: rgb(80, 80, 80);
-    border-radius: 8px;
-    padding: 0.5vh 0.5vw;
-    margin: 0.25vh 0.25vw;
-    color: white;
-}
-
-.article-thumbnail {
-    width: 280px;
-    height: 280px;
-    object-fit: cover;
-}
-
-.read-more {
-    background: white;
-    width: 14em;
-    height: 2em;
-    border-radius: 1em;
-    font-weight: 700;
-}
-
-.read-more:hover {
-    cursor: pointer;
-}
-
-.read-more:focus {
-    outline: none;
-} */
 
 .no-animate > * {
     animation: none !important;
@@ -353,6 +284,7 @@ article {
     .triple-threat {
         grid-template-columns: 1fr;
         margin: 1vh 11vw;
+        padding: 2vh 0;
     }
 }
 
@@ -381,12 +313,6 @@ article {
 /* Media query for devices bigger than 812px. */
 
 @media only screen and (min-width: 812px) { 
-    .member-block {
-        opacity: 0.8;
-    }
-    .member-block:hover {
-        opacity: 1;
-    }
     .button-column > button {
         opacity: 0.7;
         transition: all 0.5s ease;

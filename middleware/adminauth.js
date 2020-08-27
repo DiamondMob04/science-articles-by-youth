@@ -6,7 +6,7 @@ const adminauth = async (req, res, next) => {
     try {
         const token = req.session.token
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        const user = await User.findOne({_id: decoded, "tokens.token": token})
+        const user = await User.findOne({_id: decoded, "token": token})
         if (!user) {
             throw new Error()
         }

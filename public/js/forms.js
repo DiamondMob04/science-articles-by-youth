@@ -1,9 +1,4 @@
 $(document).ready(() => {
-    fetch("/info").then(async (res) => { 
-        if (res.ok) {
-            window.location.href = "/account"; 
-        }
-    })
     $("#reg-email").on("input", () => {
         if (!$("#reg-email").val().match(/\S+@\S+\.\S+/)) {
             $("#reg-email").css({outline: "2px solid red"})

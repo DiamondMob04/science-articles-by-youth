@@ -10,9 +10,9 @@
     </head>
     <body>
         {{>header}}
-        <div class="text-block">
+        <div class="text-block slight-gray">
             <h2>{{username}}'s Profile</h2><hr>
-            <div class="user-block">
+            <div class="text-block user-block">
                 <img id="pub-prof-icon" src="/avatar/{{username}}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="Public profile picture">
                 <p class="inline-block">{{description}}</p><span id="user-id" style="display: none;">{{id}}</span>
             </div>

@@ -32,10 +32,16 @@
 }
 
 #title > img {
-    width: 87px;
-    height: 87px;
+    width: 83px;
+    height: 83px;
     border-radius: 44px;
     margin-right: 2vw;
+    transition: transform 0.7s ease;
+}
+
+#title > img:hover {
+    transform: scale(1.03);
+    cursor: pointer;
 }
 
 #title > h1 {
@@ -45,6 +51,12 @@
     font-family: "Noto Sans JP";
     font-weight: 700;
     letter-spacing: 1px;
+    transition: transform 0.7s ease;
+}
+
+#title > h1:hover {
+    transform: scale(1.02);
+    cursor: pointer;
 }
 
 #header__nav, #header__dropdown {

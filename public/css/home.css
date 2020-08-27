@@ -1,6 +1,5 @@
 /* Space background and text. */
 
-
 #space-bg {
     background-image: url("/img/space-bg.jpg");
     background-repeat: no-repeat;
@@ -28,26 +27,22 @@
 
 @keyframes fade-in {
     0% {
-        opacity: 0.1;
-        transform: translate(0, -50px);
+        opacity: 0.1; transform: translate(0, -50px);
     }
     50% {
         opacity: 0.4;
     }
     100% {
-        opacity: 1;
-        transform: translate(0, 0);
+        opacity: 1; transform: translate(0, 0);
     }
 }
 
 @keyframes less-dramatic-fade-in {
     0% {
-        opacity: 0.1;
-        transform: translate(0, -20px);
+        opacity: 0.1; transform: translate(0, -20px);
     }
     100% {
-        opacity: 1;
-        transform: translate(0, 0);
+        opacity: 1; transform: translate(0, 0);
     }
 }
 
