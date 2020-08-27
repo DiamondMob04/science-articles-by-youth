@@ -128,6 +128,14 @@ a {
     cursor: pointer;
 }
 
+.member-block .banner:hover ~ .overlay {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.member-block .banner:hover ~ .prof-avatar {
+    border-radius: 50px;
+}
+
 .member-block .overlay {
     width: 100%;
     height: 98%;
@@ -136,6 +144,7 @@ a {
     left: 0%;
     background: rgba(0, 0, 0, 0.3);
     pointer-events: none;
+    transition: all 1s ease;
 }
 
 .member-block .admin-color {
@@ -173,6 +182,7 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    transition: all 0.7s ease;
 }
 
 .slight-gray {
