@@ -59,10 +59,6 @@ const postSchema = mongoose.Schema({
                     throw new Error("We have detected profanity and your content has not been posted.")
                 }
             }
-        },
-        createdAt: {
-            type: Date,
-            default: new Date()
         }
     }],
     verified: {
