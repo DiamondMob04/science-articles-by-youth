@@ -26,8 +26,8 @@
         {{>footer}}
         <script src="/js/fetchusers.js"></script>
         <script>
-            $(document).ready(() => {
-                fetchMembers()
+            $(document).ready(async () => {
+                await fetchMembers()
             })
         </script>
     </body>
