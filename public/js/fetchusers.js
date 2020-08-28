@@ -1,10 +1,6 @@
 var currentSkip = 0
 var limitation = 9
 
-$(document).ready(() => {
-    $(".member-block").css("visibility", "hidden").hide().fadeIn(1000)
-})
-
 async function fetchMembers() {
     try {
         let response = await fetch(`/users?skip=${currentSkip}&limit=${limitation}`)

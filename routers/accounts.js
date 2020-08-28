@@ -21,7 +21,7 @@ userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
     try {
         req.session.user.avatar = req.file.buffer
         await req.session.user.save()
-        return res.redirect(200, "/account")
+        return res.redirect("/account")
     } catch (error) {
         return res.redirect("/account")
     }
