@@ -16,6 +16,7 @@ const styleFormat = (word) => {
     })
 }
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 postsRouter.get("/article/:id", async (req, res) => {
     try {
         const post = await Post.findOne({identifier: req.params.id})
@@ -23,21 +24,36 @@ postsRouter.get("/article/:id", async (req, res) => {
         if (!post.verified) {
             const token = req.session.token;
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
-            const user = await User.findOne({_id: decoded._id, "tokens.token": token})
+            const user = await User.findOne({_id: decoded._id, "token": token})
             if (user.role !== "admin" && user.username != post.author) {
                 throw new Error()
             }
         }
+        const postAuthor = await User.findOne({username: post.author})
+        if (!postAuthor) {
+            throw new Error()
+        }
         res.status(200).render("publicarticle", {
             title: styleFormat(post.title) + ((post.verified) ? "" : " (Preview)"),
-            author: post.author,
+            author: postAuthor.username,
+            authorDesc: postAuthor.description,
             contents: styleFormat(post.contents),
             imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg",
             identifier: post.identifier,
-            verified: post.verified
+            verified: post.verified,
+            timestamp: `${months[post.createdAt.getMonth()]} ${post.createdAt.getDate()}, ${post.createdAt.getFullYear()}`
         })
     } catch (error) {
-        return res.redirect(400, "/error")
+        return res.redirect("/error")
+    }
+})
+
+postsRouter.post("/article/:id", async (req, res) => {
+    let post = await Post.findOne({identifier: req.params.id})
+    if (!post) {
+        return res.status(400).send()
+    } else {
+        return res.status(200).send()
     }
 })
 
@@ -79,7 +95,6 @@ postsRouter.patch("/post/:id", auth, async (req, res) => {
     }
 })
 
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 postsRouter.get("/posts", async (req, res) => {
     if (!req.query.skip) req.query.skip = 0
     if (!req.query.limit) req.query.limit = 10

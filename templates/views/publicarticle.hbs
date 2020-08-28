@@ -16,7 +16,7 @@
             <h3 id="article-title">{{title}}</h3>
             <span id="identifier" style="display: none;">{{identifier}}</span>
             <span id="verified" style="display: none;">{{verified}}</span>
-            <h4>Created by <span id="author">{{author}}</span></h4><hr>
+            <h4 class="subheader-text">Created on {{timestamp}}</h4><hr>
             <img id="thumbnail-image" src={{imageLink}} alt="Article thumbnail image">
             <p id="article-contents">{{contents}}</p>
             <div id="preview">
@@ -44,12 +44,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="text-block">
+            <img class="author-pfp" src="/avatar/{{author}}" onerror="$(this).attr('src', '/img/avatar.jpg')">
+            <p class="author-text">{{author}}</p>
+            <p class="author-desc">{{authorDesc}}</p>
+        </div>
+        <div class="text-block">
             <div id="comments-section">
                 <h2 id="comments-header">Comments</h2>
-                <div id="insert-template"></div>
                 <div id="other-comments"></div>
-                <div id="comments-message"></div>
                 <button class="find-more">More</button>
+                <div id="insert-template"></div>
             </div>
         </div>
         {{>footer}}

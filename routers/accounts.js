@@ -1,5 +1,6 @@
 const express = require("express")
 const User = require("../models/user")
+const Post = require("../models/post")
 const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const auth = require("../middleware/auth")
@@ -56,9 +57,9 @@ userRouter.post("/register", async (req, res) => {
         description: req.body.description,
         role: "member"
     })
+    const token = await user.generateAuthToken()
     try {
         await user.save()
-        const token = await user.generateAuthToken()
         req.session.user = user
         req.session.token = token
         if (req.body.remember === "true") {
@@ -117,8 +118,24 @@ userRouter.patch("/user", auth, async (req, res) => {
         return res.status(400).send("Invalid updates.")
     }
     try {
+        let oldUsername = undefined
+        if (req.body.username !== undefined) {
+            oldUsername = req.session.user.username
+        }
         updates.forEach((update) => req.session.user[update] = req.body[update])
         await req.session.user.save()
+        if (oldUsername !== undefined) {
+            let userPosts = await Post.find({author: oldUsername})
+            userPosts.forEach(async (post) => {
+                post.author = req.body.username
+                for (let i = 0; i < post.comments.length; i++) {
+                    if (post.comments[i].author == oldUsername) {
+                        post.comments[i].author = req.body.username
+                    }
+                }
+                await post.save()
+            })
+        }
         res.send(req.session.user)
     } catch (error) {
         res.status(400).send(error)

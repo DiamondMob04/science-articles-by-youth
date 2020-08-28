@@ -100,7 +100,9 @@ $(document).ready(async () => {
         $(".inserted-tag").each(function() {
             formattedTags += $(this).text() + " "
         })
-        const res = await fetch("/article/" + titleInput.val().trim().toLowerCase().replace(/[^a-zA-Z]/g, ""))
+        const res = await fetch("/article/" + titleInput.val().trim().toLowerCase().replace(/[^a-zA-Z]/g, ""), {
+            method: "POST"
+        })
         if (res.ok) {
             return $("#status-message").stop(true).text("Your title is already too close to the name of an existing article.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)
         }

@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const jwt = require("jsonwebtoken")
 const validator = require("validator")
 const bcrypt = require("bcryptjs")
+const Post = require("./post")
 
 /*
 Roles:
@@ -93,6 +94,11 @@ userSchema.pre("save", async function(next) {
     }
     next()
 })  
+
+userSchema.pre("remove", async function(next) {
+    await Post.deleteMany({author: this.username})
+    next()
+})
 
 userSchema.virtual("posts", {
     ref: "Post",

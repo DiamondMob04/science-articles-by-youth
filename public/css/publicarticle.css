@@ -3,6 +3,44 @@
     line-height: 1.5rem;
 }
 
+#article-title {
+    font-family: "Playfair Display";
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.subheader-text {
+    font-family: "Playfair Display";
+    font-weight: 400;
+    font-style: italic;
+    color: rgb(97, 97, 97);
+    font-size: 1.1rem;
+}
+
+.author-text {
+    font-family: "Playfair Display";
+    text-transform: uppercase;
+    font-weight: 700;
+    color: black;
+    font-size: 1.3rem;
+    margin-top: 0.4rem;
+}
+
+.author-desc {
+    font-weight: 400;
+    color: rgb(27, 27, 27);
+    font-size: 0.95rem;
+    margin-top: 0.5rem; 
+}
+
+.author-pfp {
+    height: 96px;
+    width: 96px;
+    border-radius: 64px;
+    background: white;
+}
+
 img {
     max-width: 50vw;
     max-height: 50vh;

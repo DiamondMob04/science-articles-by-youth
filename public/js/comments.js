@@ -7,12 +7,11 @@ async function fetchComments() {
         let response = await fetch(`/comments/${splitLink[splitLink.length - 1]}?skip=${currentSkip}&limit=${limitation}`)
         let json = await response.json()
         if (currentSkip == 0 && json.comments.length == 0) {
-            $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
-            return $("#comments-message").text(`This article has no comments yet.`)
+            $("#other-comments").hide()
+            return $(".find-more").hide()
         }
-        $("#comments-message").hide()
         if (!json.moreComments) {
-            $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
+            $(".find-more").hide()
         } else {
             currentSkip += limitation
         }
@@ -24,6 +23,7 @@ async function fetchComments() {
                 <img class="user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                 <div class="message-content-right">
                     <span class="comment-name">${comment.author}</span>
+                    <span class="comment-timestamp">${comment.timestamp}</span>
                     <p class="comment-contents">${comment.contents}</p>
                 </div>
                 <span class="comment-id" style="display: none;">${comment.commentId}</span>
@@ -44,14 +44,14 @@ async function fetchComments() {
                 currentSelectedMessage = $(this)
             })
         }
-    } catch(error) {
-        $("#comments-message").text(`Could not contact comment database.`)
-        throw new Error("Could not contact comment database.")
+    } catch (error) {
+        console.log(error)
     }
 }
 
 var currentUserUsername = undefined
 var currentSelectedComment = undefined
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 $(document).ready(async () => {
     const res = await fetch("/info")
@@ -83,11 +83,14 @@ $(document).ready(async () => {
         }).then(async (res) => {
             if (res.ok) {
                 const parsed = await res.json()
+                $("#other-comments").show()
+                let currentDate = new Date()
                 $("#other-comments").prepend(`
                 <div class="message-content public-message">
                      <img class="user-pfp" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                      <div class="message-content-right">
                          <span class="comment-name">${user.username}</span>
+                         <span class="comment-timestamp">${`${months[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`}</span>
                          <p class="comment-contents">${$("#message-box").val()}</p>
                      </div>
                      <span class="comment-id" style="display: none;">${parsed.messageId}</span>
@@ -104,7 +107,6 @@ $(document).ready(async () => {
                         currentSelectedMessage = $(this)
                     })
                 }
-                $("#comments-message").hide()
                 $("#message-box").val("")
                 $("#status-message").stop(true).text("Your message has been successfully sent!").css({display: "block", color: "green"}).hide().fadeIn(1000).delay(3000).fadeOut(1000)
             } else {

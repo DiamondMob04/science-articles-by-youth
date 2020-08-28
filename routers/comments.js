@@ -28,6 +28,7 @@ commentsRouter.post("/comment/:id", auth, async (req, res) => {
     }
 })
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 commentsRouter.get("/comments/:id", async (req, res) => {
     if (!req.query.skip) req.query.skip = 0
     if (!req.query.limit) req.query.limit = 10
@@ -46,7 +47,8 @@ commentsRouter.get("/comments/:id", async (req, res) => {
             comments.push({
                 author: currComment.author,
                 contents: currComment.contents,
-                commentId: currComment._id
+                commentId: currComment._id,
+                timestamp: `${months[post.createdAt.getMonth()]} ${post.createdAt.getDate()}, ${post.createdAt.getFullYear()}`
             })
         }
     }
