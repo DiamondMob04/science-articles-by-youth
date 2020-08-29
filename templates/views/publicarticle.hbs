@@ -17,7 +17,7 @@
             <span id="identifier" style="display: none;">{{identifier}}</span>
             <span id="verified" style="display: none;">{{verified}}</span>
             <h4 class="subheader-text">Created on {{timestamp}}</h4><hr>
-            <img id="thumbnail-image" src={{imageLink}} alt="Article thumbnail image">
+            <img id="thumbnail-image" src={{imageLink}} onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
             <p id="article-contents">{{contents}}</p>
             <div id="preview">
                 <p id="preview-notice">You are currently viewing the preview of this article. Only the creator of the article and administrators will be allowed to view it until it is verified.</p>

@@ -3,6 +3,7 @@ const auth = require("../middleware/auth")
 const adminauth = require("../middleware/adminauth")
 const Post = require("../models/post")
 const User = require("../models/user")
+const Image = require("../models/image")
 const jwt = require("jsonwebtoken")
 
 const postsRouter = express.Router()
@@ -85,6 +86,9 @@ postsRouter.patch("/post/:id", auth, async (req, res) => {
         return res.sendStatus(404)
     }
     try {
+        if (post.thumbnail !== undefined && req.body.thumbnail !== undefined) {
+            await Image.findOneAndDelete({_id: post.thumbnail})
+        }
         post.identifier = toIdentifier(req.body.title)
         updates.forEach((update) => post[update] = req.body[update])
         await post.save()
@@ -178,6 +182,7 @@ postsRouter.delete("/delete-article", auth, async (req, res) => {
         if (req.session.user.role !== "admin" && (!post || post.author !== req.session.user.username)) {
             throw new Error("")
         }
+        await Image.findOneAndDelete({_id: post.thumbnail})
         post.delete()
         res.sendStatus(200)
     } catch(error) {
