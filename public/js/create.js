@@ -1,5 +1,9 @@
 var imageId = undefined;
 
+window.onbeforeunload = function(e) {
+    return 'Your article contents will not be saved if you close your page. Do you wish to proceed?';
+ };
+
 const styleFormat = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
         return `<span style="word-break: break-all !important;">${w}</span>` 
@@ -100,6 +104,9 @@ $(document).ready(async () => {
         $(".inserted-tag").each(function() {
             formattedTags += $(this).text() + " "
         })
+        if ($(".article-tags").children().length <= 1) {
+            return $("#status-message").stop(true).text("Every article must have at least one category tag (to help users filter articles more easily).").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)
+        }
         const res = await fetch("/article/" + titleInput.val().trim().toLowerCase().replace(/[^a-zA-Z]/g, ""), {
             method: "POST"
         })
