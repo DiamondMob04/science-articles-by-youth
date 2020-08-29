@@ -42,12 +42,13 @@
     background: white;
 }
 
-.user-pfp:hover {
+.clickable:hover, .comment-name:hover {
     cursor: pointer;
 }
 
-.comment-name:hover {
-    cursor: pointer;
+.no-comments {
+    margin-top: 1em;
+    margin-bottom: 2em;
 }
 
 .comment-timestamp, .comment-delete {

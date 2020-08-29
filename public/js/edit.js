@@ -1,11 +1,8 @@
 var imageId = undefined;
 
-const format = (word) => {
-    // Replaces words longer than 18 characters to {thisformattinginstead}
-    return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
-        return `<span style="word-break: break-all !important;">${w}</span>` 
-    })
-}
+window.onbeforeunload = function(e) {
+    return 'Your article contents will not be saved if you close your page. Do you wish to proceed?';
+};
 
 const styleFormat = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
@@ -30,7 +27,7 @@ $(document).ready(async () => {
     }
     let prevTags =  $("#prev-tag-input").text().split(" ")
     for (let i = 0; i < prevTags.length; i++) {
-        $(`<p class="inserted-tag">${format(prevTags[i])}</p>`).insertBefore("#tag-example")
+        $(`<p class="inserted-tag">${styleFormat(prevTags[i])}</p>`).insertBefore("#tag-example")
     }
     var info = undefined
     var json = undefined;
@@ -51,7 +48,7 @@ $(document).ready(async () => {
             titleInput.css("border", "1px solid black")
         }
         if (titleInput.val().length <= 30) {
-            $(".article-title").html(format(titleInput.val()))
+            $(".article-title").html(styleFormat(titleInput.val()))
         }
     })
     contentsInput.on("input", () => {
@@ -77,12 +74,12 @@ $(document).ready(async () => {
             tagInput.css("border", "1px solid black")
         }
         if (tagInput.val().length <= 16) {
-            $("#tag-example").text(format(tagInput.val()))
+            $("#tag-example").text(styleFormat(tagInput.val()))
         }
     })
     $("#submit-tag").click(() => {
         if (tagInput.val().length >= 3 && tagInput.val().length <= 16) {
-            $(`<p class="inserted-tag">${format(tagInput.val())}</p>`).insertBefore("#tag-example")
+            $(`<p class="inserted-tag">${styleFormat(tagInput.val())}</p>`).insertBefore("#tag-example")
             tagInput.val("")
             $("#tag-example").text("")
         }
@@ -139,6 +136,7 @@ $(document).ready(async () => {
         }).then(async (res) => {
             if (res.ok) {
                 let link = await res.json()
+                window.onbeforeunload = undefined
                 window.location.href = link.url
             } else {
                 $("#status-message").stop(true).text("Something went wrong when trying to save your article. Ensure that all limitations are met.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)

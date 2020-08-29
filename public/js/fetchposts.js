@@ -27,7 +27,7 @@ async function fetchPosts() {
             post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>
@@ -68,7 +68,7 @@ async function fetchPapers() {
             post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>
@@ -108,7 +108,7 @@ async function fetchUserPostsSingular(username) {
             post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>

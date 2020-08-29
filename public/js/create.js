@@ -2,7 +2,7 @@ var imageId = undefined;
 
 window.onbeforeunload = function(e) {
     return 'Your article contents will not be saved if you close your page. Do you wish to proceed?';
- };
+};
 
 const styleFormat = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
@@ -128,6 +128,7 @@ $(document).ready(async () => {
         }).then(async (res) => {
             if (res.ok) {
                 let link = await res.json()
+                window.onbeforeunload = undefined
                 window.location.href = link.url
             } else {
                 $("#status-message").stop(true).text("Something went wrong when trying to publish your article. Ensure that all limitations are met.").css("color", "red").fadeIn(1000).delay(3000).fadeOut(1000)

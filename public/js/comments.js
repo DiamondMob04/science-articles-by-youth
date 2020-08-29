@@ -7,7 +7,7 @@ const sanitizeHTML = (word) => {
 }
 function updateComments(user) {
     if (user === undefined) return;
-    $(".user-pfp").click(function() {
+    $(".clickable").click(function() {
         window.location.href = "/user/" + $(this).parent().find(".comment-name").text()
     })
     $(".comment-name").click(function() {
@@ -33,7 +33,12 @@ async function fetchComments() {
         let response = await fetch(`/comments/${splitLink[splitLink.length - 1]}?skip=${currentSkip}&limit=${limitation}`)
         let json = await response.json()
         if (currentSkip == 0 && json.comments.length == 0) {
-            $("#other-comments").hide()
+            let res = await fetch("/info")
+            if (!res.ok) {
+                $("#other-comments").append("<h3 class='no-comments'>There are currently no comments.</h3>")
+            } else {
+                $("#other-comments").hide()
+            }
             return $(".find-more").hide()
         }
         if (!json.moreComments) {
@@ -46,7 +51,7 @@ async function fetchComments() {
             let comment = json.comments[i]
            textBlock += `
            <div class="message-content public-message">
-                <img class="user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
+                <img class="clickable user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                 <div class="message-content-right">
                     <span class="comment-name">${comment.author}</span>
                     <span class="comment-timestamp">${comment.timestamp}<span class="comment-delete">Delete</span></span>
@@ -106,7 +111,7 @@ $(document).ready(async () => {
                 let currentDate = new Date()
                 $("#other-comments").prepend(`
                 <div class="message-content public-message">
-                     <img class="user-pfp" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
+                     <img class="user-pfp clickable" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                      <div class="message-content-right">
                          <span class="comment-name">${user.username}</span>
                          <span class="comment-timestamp">${`${months[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`}<span class="comment-delete">Delete</span></span>
