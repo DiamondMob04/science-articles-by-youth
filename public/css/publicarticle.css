@@ -27,11 +27,16 @@
     margin-top: 0.4rem;
 }
 
+.author-pfp:hover, .author-text:hover {
+    cursor: pointer;
+}
+
 .author-desc {
     font-weight: 400;
     color: rgb(27, 27, 27);
     font-size: 0.95rem;
     margin-top: 0.5rem; 
+    margin-bottom: 1.5vh;
 }
 
 .author-pfp {
@@ -39,6 +44,7 @@
     width: 96px;
     border-radius: 64px;
     background: white;
+    margin-top: 1.5vh;
 }
 
 img {

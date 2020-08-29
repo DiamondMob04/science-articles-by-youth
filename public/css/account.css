@@ -28,6 +28,7 @@
     margin-top: 2vh;
     margin-bottom: 2vh;
     object-fit: cover;
+    background: white;
 }
 
 #current-username, #current-desc {

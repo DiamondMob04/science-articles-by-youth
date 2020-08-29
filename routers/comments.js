@@ -8,7 +8,7 @@ const commentsRouter = express.Router()
 
 commentsRouter.post("/comment/:id", auth, async (req, res) => {
     if (req.body.message.length === 0) {
-        return res.status(400).send({error: "Message length has to be greater than 0 characters."})
+        return res.status(400).send({error: "Message cannot be empty."})
     }
     const post = await Post.findOne({identifier: req.params.id})
     if (!post) {

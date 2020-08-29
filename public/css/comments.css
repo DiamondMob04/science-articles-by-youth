@@ -12,6 +12,7 @@
 #comments-header {
     font-family: "Playfair Display";
     font-size: 2rem;
+    margin-top: 2vh;
     margin-bottom: 2vh;
 }
 
@@ -41,7 +42,15 @@
     background: white;
 }
 
-.comment-timestamp {
+.user-pfp:hover {
+    cursor: pointer;
+}
+
+.comment-name:hover {
+    cursor: pointer;
+}
+
+.comment-timestamp, .comment-delete {
     color: #a1a1a1;
     font-family: "Open Sans";
     font-size: 0.8rem;
@@ -49,6 +58,16 @@
     font-weight: 400;
     background: white;
     margin-bottom: 0.6rem;
+}
+
+.comment-delete {
+    margin-left: 0.5em;
+    font-weight: 700;
+}
+
+.comment-delete:hover {
+    cursor: pointer;
+    color: #6ec1e4;
 }
 
 .message-content-right {
@@ -89,6 +108,10 @@
     border-radius: 10px;
     background: linear-gradient(rgba(0, 170, 0, 0.7), rgba(0, 121, 0, 0.8));
     transition: all 0.6s ease;
+}
+
+.user-message-box {
+    margin-top: 2vh;
 }
 
 #send-comment:hover {

@@ -9,6 +9,12 @@ $(document).ready(async () => {
     $("#edit-article").click(() => {
         window.location.href = `/edit/${identifier}`
     })
+    $(".author-pfp").click(function() {
+        window.location.href = "/user/" + $(this).parent().find(".author-text").text()
+    })
+    $(".author-text").click(function() {
+        window.location.href = "/user/" + $(this).text()
+    })
     $("#delete-confirm").click(() => {
         fetch("/delete-article", {
             method: "DELETE",
@@ -42,10 +48,10 @@ $(document).ready(async () => {
             $("#verify-article").remove()
         }
         if (json.username === $("#author").text()) {
-            $("#article-notice").text("This is your article. You can choose to edit or delete it at anytime. Alternatively, click on a comment to delete it.")
+            $("#article-notice").text("This is your article. You can choose to edit or delete it at anytime.")
             $("#restricted").show()
         } else if (json.role === "admin") {
-            $("#article-notice").text("Since you are an administrator, you can choose to edit or delete this article at anytime. Alternatively, click on a comment to delete it.")
+            $("#article-notice").text("Since you are an administrator, you can choose to edit or delete this article at anytime.")
             $("#restricted").show()
         } else {
             $("#restricted").remove()

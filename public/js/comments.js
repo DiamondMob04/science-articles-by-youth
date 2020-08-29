@@ -1,8 +1,30 @@
 var currentSkip = 0
 var limitation = 5
+var currentSelectedComment = undefined
 
 const sanitizeHTML = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "")
+}
+function updateComments(user) {
+    if (user === undefined) return;
+    $(".user-pfp").click(function() {
+        window.location.href = "/user/" + $(this).parent().find(".comment-name").text()
+    })
+    $(".comment-name").click(function() {
+        window.location.href = "/user/" + $(this).text()
+    })
+    if (user.username === $("#author").text() || user.role === "admin") {
+        $(".comment-delete").click(function() {
+            let container = $(this).parents().eq(2)
+            $("#follow-screen").fadeIn(250)
+            $("#comment-delete-info").text(container.find(".comment-contents").text())
+            $("#comment-delete-warning").show()
+            $("#delete-warning").hide()
+            currentSelectedMessage = container
+        })
+    } else {
+        $(".comment-delete").remove()
+    }
 }
 
 async function fetchComments() {
@@ -27,26 +49,19 @@ async function fetchComments() {
                 <img class="user-pfp" src="/avatar/${comment.author}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                 <div class="message-content-right">
                     <span class="comment-name">${comment.author}</span>
-                    <span class="comment-timestamp">${comment.timestamp}</span>
+                    <span class="comment-timestamp">${comment.timestamp}<span class="comment-delete">Delete</span></span>
                     <p class="comment-contents">${comment.contents}</p>
+                    <span class="comment-id" style="display: none;">${comment.commentId}</span>
                 </div>
-                <span class="comment-id" style="display: none;">${comment.commentId}</span>
             </div>`
         }
         $("#other-comments").append(textBlock)
         let infoResponse = await fetch("/info")
-        let user = await infoResponse.json()
-        if (user.username === $("#author").text() || user.role === "admin") {
-            $(".public-message").hover(function() {
-                $(this).css("cursor", "pointer")
-            })
-            $(".public-message").click(function() {
-                $("#follow-screen").fadeIn(250)
-                $("#comment-delete-info").text($(this).find(".comment-contents").text())
-                $("#comment-delete-warning").show()
-                $("#delete-warning").hide()
-                currentSelectedMessage = $(this)
-            })
+        if (infoResponse.ok) {
+            let user = await infoResponse.json()
+            updateComments(user)
+        } else {
+            $(".comment-delete").remove()
         }
     } catch (error) {
         console.log(error)
@@ -54,13 +69,13 @@ async function fetchComments() {
 }
 
 var currentUserUsername = undefined
-var currentSelectedComment = undefined
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 $(document).ready(async () => {
     const res = await fetch("/info")
-    const user = await res.json()
+    var user = undefined
     if (res.ok) {
+        user = await res.json()
         $("#insert-template").append(`
         <div class="user-message-box">
             <p id="message-name">Want to leave a message? Write a comment as ${user.username}:</p>
@@ -72,7 +87,7 @@ $(document).ready(async () => {
             <br><span id="status-message"></span>
         </div>`)
     } else {
-        $("#comments-section").append(`<p style='margin-top: 1vh'>You must be logged in to post comments.</p>`)
+        return
     }
     $("#send-comment").click(() => {
         const splitLink = location.href.split("/")
@@ -94,23 +109,12 @@ $(document).ready(async () => {
                      <img class="user-pfp" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
                      <div class="message-content-right">
                          <span class="comment-name">${user.username}</span>
-                         <span class="comment-timestamp">${`${months[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`}</span>
+                         <span class="comment-timestamp">${`${months[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`}<span class="comment-delete">Delete</span></span>
                          <p class="comment-contents">${sanitizeHTML($("#message-box").val())}</p>
+                         <span class="comment-id" style="display: none;">${parsed.messageId}</span>
                      </div>
-                     <span class="comment-id" style="display: none;">${parsed.messageId}</span>
                 </div>`)
-                if (user.username === $("#author").text() || user.role === "admin") {
-                    $(".public-message").hover(function() {
-                        $(this).css("cursor", "pointer")
-                    })
-                    $(".public-message").click(function() {
-                        $("#follow-screen").fadeIn(250)
-                        $("#comment-delete-info").text($(this).find(".comment-contents").text())
-                        $("#comment-delete-warning").show()
-                        $("#delete-warning").hide()
-                        currentSelectedMessage = $(this)
-                    })
-                }
+                updateComments(user)
                 $("#message-box").val("")
                 $("#status-message").stop(true).text("Your message has been successfully sent!").css({display: "block", color: "green"}).hide().fadeIn(1000).delay(3000).fadeOut(1000)
             } else {
@@ -119,17 +123,8 @@ $(document).ready(async () => {
             }
         })
     })
-    if (user.username == $("#author").text() || user.role === "admin") {
-        $(".public-message").hover(function() {
-            $(this).css("cursor", "pointer")
-        })
-        $(".public-message").click(function() {
-            $("#follow-screen").fadeIn(250)
-            $("#comment-delete-info").text($(this).find(".comment-contents").text())
-            $("#comment-delete-warning").show()
-            $("#delete-warning").hide()
-            currentSelectedMessage = $(this)
-        })
+    updateComments(user)
+    if (user.username === $("#author").text() || user.role === "admin") {
         $("#comment-delete-confirm").click(() => {
             const splitLink = location.href.split("/")
             fetch("/delete-comment", {
@@ -153,5 +148,7 @@ $(document).ready(async () => {
         $("#comment-delete-deny").click(() => {
             $("#follow-screen").fadeOut(250)
         })
+    } else {
+        $(".comment-delete").remove()
     }
 })
