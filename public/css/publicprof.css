@@ -1,6 +1,6 @@
 #pub-prof-icon {
-    width: 256px;
-    height: 256px;
+    width: 220px;
+    height: 220px;
     border-radius: 128px;
     margin-bottom: 8px;
     object-fit: cover;
@@ -10,7 +10,31 @@
     margin-top: 48px !important;
 }
 
+.article-gallery {
+    margin: 0 2vw !important;
+}
+
 #err-message {
     margin-top: 8vh;
     margin-bottom: 8vh;
+}
+
+.user-block {
+    width: 80%;
+}
+
+@media only screen and (max-width: 500px) {
+    #pub-prof-icon {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    #pub-prof-icon {
+        margin: 2vh 0;
+    }
+    .inline-block {
+        margin: 0 2vw;
+    }
 }

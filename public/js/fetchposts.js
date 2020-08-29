@@ -91,9 +91,8 @@ async function fetchPapers() {
 
 async function fetchUserPostsSingular(username) {
     try {
-        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation / 3}&owner=${username}`)
+        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation / 3}&owner=${username}&unverified=false`)
         let json = await response.json()
-        console.log(json)
         if (currentSkip == 0 && json.posts.length == 0) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
             return $("#err-message").text(`Could not find any articles.`)

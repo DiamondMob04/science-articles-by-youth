@@ -6,15 +6,16 @@
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/elements.css">
         <link rel="stylesheet" href="/css/publicprof.css">
+        <link rel="stylesheet" href="/css/articles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         {{>header}}
         <div class="text-block slight-gray">
-            <h2>{{username}}'s Profile</h2><hr>
+            <h2><span id="username">{{username}}</span>'s Profile</h2><hr>
             <div class="text-block user-block">
                 <img id="pub-prof-icon" src="/avatar/{{username}}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="Public profile picture">
-                <p class="inline-block">{{description}}</p><span id="user-id" style="display: none;">{{id}}</span>
+                <p class="inline-block">{{description}}</p>
             </div>
             <div class="text-block">
                 <h3>Posted Articles</h3>
@@ -29,7 +30,7 @@
         <script src="/js/fetchposts.js"></script>
         <script>
             $(document).ready(() => {
-                fetchUserPostsSingular($("#user-id").text())
+                fetchUserPostsSingular($("#username").text())
             })
         </script>
     </body>

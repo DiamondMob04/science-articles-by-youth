@@ -1,6 +1,10 @@
 var currentSkip = 0
 var limitation = 5
 
+const sanitizeHTML = (word) => {
+    return word.replace(/<[a-zA-Z]+>/g, "")
+}
+
 async function fetchComments() {
     try {
         const splitLink = location.href.split("/")
@@ -91,7 +95,7 @@ $(document).ready(async () => {
                      <div class="message-content-right">
                          <span class="comment-name">${user.username}</span>
                          <span class="comment-timestamp">${`${months[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`}</span>
-                         <p class="comment-contents">${$("#message-box").val()}</p>
+                         <p class="comment-contents">${sanitizeHTML($("#message-box").val())}</p>
                      </div>
                      <span class="comment-id" style="display: none;">${parsed.messageId}</span>
                 </div>`)
