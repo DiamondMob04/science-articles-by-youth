@@ -13,11 +13,10 @@ const recentlysent = async (req, res, next) => {
             return next()
         }
         if (numDaysBetween(new Date(), user.lastFormSubmitted) < 3) {
-            throw new Error("Form is too recent!")
+            throw new Error()
         }
         next()
     } catch (error) {
-        console.log(error)
         res.sendStatus(400)
     }
 } 

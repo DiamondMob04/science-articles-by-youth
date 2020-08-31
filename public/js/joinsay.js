@@ -1,13 +1,21 @@
 $(document).ready(async () => {
 
-    const recentlySent = await fetch("/email/recently-sent")
-    if (recentlySent.ok) {
-        $("#editor-message").hide()
-        $("#ambassador-message").hide()
-    } else {
+    const userAuth = await fetch("/info")
+    if (!userAuth.ok) {
         $("#editor-form").remove()
         $("#ambassador-form").remove()
+        $(".form-message").text("You are not currently logged in. Only authenticated users can submit a form.")
+    } else {
+        const recentlySent = await fetch("/email/recently-sent")
+        if (recentlySent.ok) {
+            $("#editor-message").hide()
+            $("#ambassador-message").hide()
+        } else {
+            $("#editor-form").remove()
+            $("#ambassador-form").remove()
+        }
     }
+
 
     $(".text-block").css({opacity: 0.1})
     $(".text-block").waypoint(function(direction) {
