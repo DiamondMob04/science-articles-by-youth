@@ -39,7 +39,7 @@ postsRouter.get("/article/:id", async (req, res) => {
             author: postAuthor.username,
             authorDesc: postAuthor.description,
             contents: styleFormat(post.contents),
-            imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg",
+            imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg",
             identifier: post.identifier,
             verified: post.verified,
             timestamp: `${months[post.createdAt.getMonth()]} ${post.createdAt.getDate()}, ${post.createdAt.getFullYear()}`
@@ -155,7 +155,7 @@ postsRouter.get("/edit/:id", auth, async (req, res) => {
             contents: post.contents,
             tags: post.tags,
             isPaper: post.isPaper,
-            imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
+            imageLink: (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
         })
     } catch(error) {
         res.status(400).redirect("/error")

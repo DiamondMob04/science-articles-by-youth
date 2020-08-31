@@ -1,0 +1,112 @@
+.text-block img {
+    object-fit: cover;
+    background-size: cover;
+    margin-top: 1.5em;
+}
+
+.text-item {
+    margin-left: 6em;
+    margin-top: 2vh;
+}
+
+.text-block img {
+    margin-right: 6em;
+}
+
+.writer img {
+    max-width: 70%;
+    max-height: 70%;
+}
+
+.editor img {
+    max-width: 65%;
+    max-height: 65%;
+}
+
+.ambassador img {
+    max-width: 60%;
+    max-height: 60%;
+}
+
+.left-right {
+    justify-content: center;
+    align-items: center;
+}
+
+ol {
+    margin-top: 1em;
+    text-align: left;
+    margin-left: 2em;
+}
+
+li {
+    line-height: 1.8em;
+}
+
+.writer, .editor, .ambassador {
+    position: relative;
+}
+
+.nav-area {
+    position: absolute;
+    top: -2%;
+}
+
+form {
+    margin-top: 3vh;
+}
+
+.top-bottom {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    max-width: 30vw;
+    word-wrap: break-word;
+}
+
+input, textarea {
+    width: 30vw !important;
+}
+
+button {
+    margin-bottom: 2vh !important;
+}
+
+.form-message {
+    margin: 5vh 0;
+}
+
+@media only screen and (max-width: 968px) {
+    .left-right {
+        grid-template-columns: 1fr;
+    }
+    ol {
+        margin-left: 7vw;
+    }
+    .text-item {
+        margin-left: 0;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+    .text-block img {
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 2vh;
+        width: 400px;
+        height: 400px;
+    }
+    .nav-area {
+        top: 0;
+    }
+    label {
+        max-width: 60vw;
+    }
+    input, textarea {
+        width: 60vw !important;
+    }
+}

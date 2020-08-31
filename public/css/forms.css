@@ -8,21 +8,22 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-form > label {
+form label {
     font-weight: 700;
     margin-bottom: 0.3em;
 }
 
-form > input {
+form input {
     width: 30vw;
     height: 5vh;
     margin-bottom: 2vh;
-    font-size: 18px;
+    font-size: 1rem;
 }
 
-form > button {
+form button {
     width: 15vw;
     height: 5vh;
     margin-top: 1vh;
@@ -65,9 +66,11 @@ form > button {
     transform: translate(-50%, -150%);
 }
 
-#reg-desc {
+textarea {
     width: 30vw;
+    font-size: 1rem;
     margin-bottom: 2vh;
+    padding: 0.3rem;
     resize: none;
 }
 
@@ -75,7 +78,7 @@ form > button {
     form > input {
         width: 50vw;
     }
-    #reg-desc {
+    textarea {
         width: 60vw;
     }
 }

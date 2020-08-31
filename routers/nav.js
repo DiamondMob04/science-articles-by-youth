@@ -49,6 +49,10 @@ navRouter.get("/contact", (req, res) => {
     res.render("contact")
 })
 
+navRouter.get("/join-say", (req, res) => {
+    res.render("joinsay")
+})
+
 navRouter.get("/create", auth, (req, res) => {
     res.render("create")
 })

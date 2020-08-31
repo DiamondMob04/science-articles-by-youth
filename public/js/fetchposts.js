@@ -24,10 +24,10 @@ async function fetchPosts() {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
-            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
+            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/def-thumbnail.jpg')" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>
@@ -65,10 +65,10 @@ async function fetchPapers() {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
-            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
+            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/def-thumbnail.jpg')" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>
@@ -105,10 +105,10 @@ async function fetchUserPostsSingular(username) {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
-            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
+            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/space-bg.jpg')" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/def-thumbnail.jpg')" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>
@@ -150,7 +150,7 @@ async function fetchUserPosts(username, isUnverified) {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
-            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
+            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
             $((isUnverified) ? ".unverified-articles" : ".posted-articles").append(`
             <article>
                 <img class="article-thumbnail" src="${post.imageLink}" alt="Article thumbnail image">
@@ -191,7 +191,7 @@ async function fetchUnverifiedPosts() {
         }
         for (let i = 0; i < json.posts.length; i++) {
             let post = json.posts[i]
-            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/space-bg.jpg"
+            post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
             $(".article-gallery").append(`
             <article>
                 <img class="article-thumbnail" src="${post.imageLink}" alt="Article thumbnail image">

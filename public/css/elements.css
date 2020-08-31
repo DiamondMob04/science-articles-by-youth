@@ -5,6 +5,15 @@ html {
 
 a {
     text-decoration: none;
+    color: rgb(6,69,173);
+}
+
+a:active {
+    color: rgb(6,69,173);
+}
+
+a:hover {
+    color: rgb(86, 39, 104);
 }
 
 /* Green bars. */
@@ -100,6 +109,24 @@ a {
     padding: 2vh 2vw;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+}
+
+/* Nav areas. */
+
+.nav-buttons {
+    padding: 1.5% 1%;
+    text-align: left;
+}
+
+.nav-buttons a {
+    padding: 0.5% 1%;
+    margin-left: 0.25%;
+    margin-right: 0.25%;
+    font-weight: 700;
+}
+
+.nav-buttons a:hover {
+    background: rgb(218, 218, 218);
 }
 
 /* Defining member block, which encapsulates a member's information. */
@@ -266,6 +293,19 @@ a {
 }
 
 /* Keyframes for various shrink/grow opacity effects. */
+
+.fade-in {
+    animation: less-dramatic-fade-in 1.5s ease forwards;
+}
+
+@keyframes less-dramatic-fade-in {
+    0% {
+        opacity: 0.1; transform: translate(0, -20px);
+    }
+    100% {
+        opacity: 1; transform: translate(0, 0);
+    }
+}
 
 @keyframes tiny-grow-start {
     0% {

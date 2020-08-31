@@ -20,7 +20,7 @@ async function fetchMembers() {
             let user = json.users[i]
             $(".triple-threat").append(`
             <div class="member-block" onclick="window.location.href = '/user/${user.username}'">
-            <img class="banner" src="/img/space-bg.jpg">
+            <img class="banner" src="/img/def-thumbnail.jpg">
             <div class="overlay"></div>
             <h2 class="prof-username${user.role === "admin" ? " admin-color" : ""}">${user.username}</h2>
             <img class="prof-avatar" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">
@@ -51,7 +51,7 @@ async function fetchAdmins() {
             let user = json.users[i]
             $(".triple-threat").append(`
             <div class="member-block" onclick="window.location.href = '/user/${user.username}'">
-            <img class="banner" src="/img/space-bg.jpg">
+            <img class="banner" src="/img/def-thumbnail.jpg">
             <div class="overlay"></div>
             <h2 class="prof-username admin-color">${user.username}</h2>
             <img class="prof-avatar" src="/avatar/${user.username}" onerror="$(this).attr('src', '/img/avatar.jpg')" alt="User profile picture">

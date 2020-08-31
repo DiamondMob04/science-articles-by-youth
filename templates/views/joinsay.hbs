@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Join The Team - Science Articles by Youth</title>
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="stylesheet" href="/css/elements.css">
+        <link rel="stylesheet" href="/css/forms.css">
+        <link rel="stylesheet" href="/css/joinsay.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        {{>header}}
+        <div class="text-block nav-buttons">
+            <a href="#writer-nav">Writer</a>
+            <a href="#editor-nav">Editor</a>
+            <a href="#ambassador-nav">Ambassador</a>
+        </div>
+        <div class="text-block writer">
+            <div id="writer-nav" class="nav-area"></div>
+            <h3>Interested in becoming a writer?</h3><hr>
+            <container class="left-right">
+                <div class="info-block text-item">
+                    <p>Awesome! Writing an engaging and youth-targeted article can be a very rewarding
+                        experience. Not only are you displaying your knowledge on a topic, you are also
+                        helping many other people who may not know as much about the topic as you do.</p>
+                    <ol>
+                        <li>Article topics must be related to science/technology!</li>
+                        <li>Articles must be between 500-750 words.</li>
+                        <li>Articles should contain at least 2 relevant images, not including the thumbnail.</li>
+                        <li>Articles should reference and cite at least 2 sources using MLA citation. Remember to cite images!</li>
+                        <li>Articles should be engaging and captivating, not feel like an essay.</li>
+                        <li>Define vocabulary words that may be unfamiliar to some readers.</li>
+                        <li>Spelling and grammar should be correct.</li>
+                    </ol>
+                </div>
+                <div><img src="/img/writer-img.png"></div>
+            </container>
+        </div>
+        <div class="text-block">
+            <h3>Become a Writer</h3><hr>
+            <div class="info-block" style="margin: 2%; margin-bottom: 0;">
+                <p>Becoming a writer is incredibly easy! Anybody with a SAY account can
+                    start writing their own articles.</p>
+                <ol style="margin: 2% 12%;">
+                    <li><a href="/register">Register</a> your own account with SAY!</li>
+                    <li>Go to your <a href="/account">Account Page</a> and scroll down to your articles section.</li>
+                    <li>Click <a href="/create">Make An Article</a> to view the article creation template.</li>
+                    <li>Create an article that meets the <a href="#writer-nav">Guidelines</a>. Fields will be red if they are not currently fulfilled.</li>
+                    <li>When finished, click the Publish button and wait for an admin to approve your article! You can view your unverified article on your <a href="/account">Account Page</a>.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="text-block editor">
+            <div id="editor-nav" class="nav-area"></div>
+            <h3>Interested in becoming an editor?</h3><hr>
+            <container class="left-right">
+                <div class="info-block text-item">
+                    <p>Thanks to our editors, readers like you are able to read engaging, informative,
+                        and youth-targeted articles. Our editors ensure that all articles being published
+                        are grammatically and factually-correct to prohibit the spread of false information
+                        and encourage cohesiveness within articles.</p>
+                    <ol>
+                        <li>Ensure all articles match the standard article guidelines.</li>
+                        <li>Create constructive criticism and provide helpful feedback/changes.</li>
+                        <li>Make sure that articles are engaging and captivating.</li>
+                        <li>Make sure unfamiliar vocabulary words are being defined.</li>
+                        <li>Spelling and grammar should be correct.</li>
+                    </ol>
+                </div>
+                <div><img src="/img/editor-img.png"></div>
+            </container>
+        </div>
+        <div class="text-block">
+            <h3>Become an Editor</h3><hr>
+            <div class="info-block" id="editor-message" style="margin: 2%; margin-bottom: 0;">
+                <p class="form-message">You have already submitted a form in the last 72 hours! Please wait if you want to submit another request.</p>
+            </div>
+            <form id="editor-form">
+                <div class="left-right">
+                    <div class="top-bottom">
+                        <label for="edit-name" class="required">Full Name</label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+                    <div class="top-bottom">
+                        <label for="edit-email" class="required">Email</label>
+                        <input type="text" id="edit-email" required>
+                    </div>
+                </div>
+                <div class="left-right">
+                    <div class="top-bottom">
+                        <label for="edit-exp" class="required">Have you had prior editing experience? Please describe if so. If not, put N/A.</label>
+                        <textarea id="edit-exp" rows="4" required></textarea>
+                    </div>
+                    <div class="top-bottom">
+                        <label for="edit-write-exp" class="required">Have you had prior writing experience? Please describe if so. If not, put N/A.</label>
+                        <textarea id="edit-write-exp" rows="4" required></textarea>
+                    </div>
+                </div>
+                <div class="left-right">
+                    <div class="top-bottom">
+                        <label for="edit-feedback" class="required">What's your approach to giving constructive feedback to our fellow SAY writers? </label>
+                        <textarea id="edit-feedback" rows="4" required></textarea>
+                    </div>
+                    <div class="top-bottom">
+                        <label for="edit-changes" class="required">What methods/changes would you suggest to an article to create more engaging content?</label>
+                        <textarea id="edit-changes" rows="4" required></textarea>
+                    </div>
+                </div>
+                <label for="edit-why" class="required">Why do you want this role, and what skills/qualities do you have that can help contribute to this role?</label>
+                <textarea id="edit-why" rows="4" required></textarea>
+                <button>Submit</button>
+            </form>
+        </div>
+        <div class="text-block ambassador">
+            <div id="ambassador-nav" class="nav-area"></div>
+            <h3>Interested in becoming an ambassador?</h3><hr>
+            <container class="left-right">
+                <div class="info-block text-item">
+                    <p>Ambassadors are responsible for spreading the word about SAY and gaining new SAY users.
+                        They should utilize their own social platforms as well as find youth-run organizations
+                        for the social media managers to partner with.  They should also actively try to recruit
+                        and direct new people to our social pages. Along with containing skills for basic
+                        marketing, leadership, and a passion for building connections with people all around
+                        the world, ambassadors should also have the ability to gather feedback from SAY users
+                        and provide innovative insight to the executive board.</p>
+                </div>
+                <div><img src="/img/ambassador.png"></div>
+            </container>
+        </div>
+        <div class="text-block">
+            <h3>Become an Ambassador</h3><hr>
+            <div class="info-block" id="ambassador-message" style="margin: 2%; margin-bottom: 0;">
+                <p class="form-message">You have already submitted a form in the last 72 hours! Please wait if you want to submit another request.</p>
+            </div>
+            <form id="ambassador-form">
+                <div class="left-right">
+                    <div class="top-bottom">
+                        <label for="amb-name" class="required">Full Name</label>
+                        <input type="text" id="amb-name" required>
+                    </div>
+                    <div class="top-bottom">
+                        <label for="amb-email" class="required">Email</label>
+                        <input type="text" id="amb-email" required>
+                    </div>
+                </div>
+                <div class="left-right">
+                    <div class="top-bottom">
+                        <label for="amb-article" class="required">Have you written an article for SAY or are you in the publishing process?</label>
+                        <textarea id="amb-article" rows="4" required></textarea>
+                    </div>
+                    <div class="top-bottom">
+                        <label for="amb-exp" class="required">Have you been an ambassador for other organizations before? If so, what organization and what did you do as an ambassador?</label>
+                        <textarea id="amb-exp" rows="4" required></textarea>
+                    </div>
+                </div>
+                <div class="left-right">
+                    <div class="top-bottom">
+                        <label for="amb-attract" class="required">How would you attract and direct new people to SAY (utilizing social media)?</label>
+                        <textarea id="amb-attract" rows="4" required></textarea>
+                    </div>
+                    <div class="top-bottom">
+                        <label for="amb-describe-say" class="required">Based on what you know about us, how would you describe SAY to another person?</label>
+                        <textarea id="amb-describe-say" rows="4" required></textarea>
+                    </div>
+                </div>
+                <label for="amb-social-media" class="required">How would you describe your personal social media presence?</label>
+                <textarea id="amb-social-media" rows="4" required></textarea>
+                <button>Submit</button>
+            </form>
+        </div>
+        {{>footer}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <script src="/js/joinsay.js"></script>
+    </body>
+</html>
