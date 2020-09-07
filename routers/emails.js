@@ -34,6 +34,7 @@ emailRouter.get("/recently-sent", auth, recentlysent, (req, res) => {
 })
 
 emailRouter.post("/editor-form", recentlysent, async (req, res) => {
+    if (Object.keys(req.body).length != 7) return res.sendStatus(400)
     const allowed = ["name", "email", "editExperience", "writeExperience", "feedback", "changes", "reason"]
     const isValid = Object.keys(req.body).every(attr => attr.length > 0 && allowed.includes(attr))
     if (!isValid) return res.sendStatus(400)
@@ -41,19 +42,19 @@ emailRouter.post("/editor-form", recentlysent, async (req, res) => {
         from: process.env.EMAIL_ACCOUNT,
         to: 'sciencearticlesbyyouth@gmail.com',
         subject: `Incoming Editor Form from ${req.body.name}`,
-        html: `<h3>Full Name</h3><br>
-        ${req.body.name}<br>
-        <h3>Email</h3><br>
+        html: `<h3>Full Name</h3>
+        ${req.body.name} (Username is ${req.session.user.username})<br>
+        <h3>Email</h3>
         ${req.body.email}<br>
-        <h3>Have you had prior editing experience? Please describe if so. If not, put N/A.</h3><br>
+        <h3>Have you had prior editing experience? Please describe if so. If not, put N/A.</h3>
         ${req.body.editExperience}<br>
-        <h3>Have you had prior writing experience? Please describe if so. If not, put N/A.</h3><br>
+        <h3>Have you had prior writing experience? Please describe if so. If not, put N/A.</h3>
         ${req.body.writeExperience}<br>
-        <h3>What's your approach to giving constructive feedback to our fellow SAY writers?</h3><br>
+        <h3>What's your approach to giving constructive feedback to our fellow SAY writers?</h3>
         ${req.body.feedback}<br>
-        <h3>What methods/changes would you suggest to an article to create more engaging content?</h3><br>
+        <h3>What methods/changes would you suggest to an article to create more engaging content?</h3>
         ${req.body.changes}<br>
-        <h3>Why do you want this role, and what skills/qualities do you have that can help contribute to this role?</h3><br>
+        <h3>Why do you want this role, and what skills/qualities do you have that can help contribute to this role?</h3>
         ${req.body.reason}`
     };
     const emailSent = await sendEmail(mailOptions)
@@ -85,19 +86,19 @@ emailRouter.post("/ambassador-form", recentlysent, async (req, res) => {
         from: process.env.EMAIL_ACCOUNT,
         to: 'sciencearticlesbyyouth@gmail.com',
         subject: `Incoming Ambassador Form from ${req.body.name}`,
-        html: `<h3>Full Name</h3><br>
-        ${req.body.name}<br>
-        <h3>Email</h3><br>
+        html: `<h3>Full Name</h3>
+        ${req.body.name} (Username is ${req.session.user.username})<br>
+        <h3>Email</h3>
         ${req.body.email}<br>
-        <h3>Have you written an article for SAY or are you in the publishing process?</h3><br>
+        <h3>Have you written an article for SAY or are you in the publishing process?</h3>
         ${req.body.ambExperience}<br>
-        <h3>Have you been an ambassador for other organizations before? If so, what organization and what did you do as an ambassador?</h3><br>
+        <h3>Have you been an ambassador for other organizations before? If so, what organization and what did you do as an ambassador?</h3>
         ${req.body.publishing}<br>
-        <h3>How would you attract and direct new people to SAY (utilizing social media)?</h3><br>
+        <h3>How would you attract and direct new people to SAY (utilizing social media)?</h3>
         ${req.body.attract}<br>
-        <h3>Based on what you know about us, how would you describe SAY to another person?</h3><br>
+        <h3>Based on what you know about us, how would you describe SAY to another person?</h3>
         ${req.body.describe}<br>
-        <h3>How would you describe your personal social media presence?</h3><br>
+        <h3>How would you describe your personal social media presence?</h3>
         ${req.body.socialMedia}`
     };
     const emailSent = await sendEmail(mailOptions)

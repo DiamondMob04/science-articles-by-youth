@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: 75vh;
     width: 100vw;
     position: relative;
     z-index: 1;
@@ -51,8 +51,5 @@
 @media only screen and (max-width: 812px) {
     #space-bg {
         background-attachment: scroll;
-    }
-    #space-bg > h3 {
-        font-size: 6vh;
     }
 }

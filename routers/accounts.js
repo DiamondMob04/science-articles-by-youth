@@ -143,7 +143,8 @@ userRouter.patch("/user", auth, async (req, res) => {
 })
 
 userRouter.get("/info", async (req, res) => {
-    if (req.session.token) {
+    try {
+        if (!req.session.token) throw new Error("No session found");
         const token = req.session.token;
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         const user = await User.findOne({_id: decoded._id, "token": token})
@@ -154,8 +155,8 @@ userRouter.get("/info", async (req, res) => {
             role: user.role,
             hasAvatar: user.avatar != undefined
         })
-    } else {
-        res.sendStatus(400)
+    } catch (error) {
+        res.sendStatus(400);
     }
 })
 

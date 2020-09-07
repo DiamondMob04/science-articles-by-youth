@@ -48,7 +48,6 @@ $(document).ready(() => {
             })
         })
         if (!res.ok) {
-            let parsed = await res.json()
             await $("#reg-status").stop(true).hide(0).css("color", "red").text("An unexpected error occurred. Please make sure all of your details are valid, or that user may already exist.").fadeIn(1000).delay(3000).fadeOut(1000)
             return
         } else {

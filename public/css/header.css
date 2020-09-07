@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
     margin: 0;
@@ -13,7 +13,7 @@
 }
 
 #header__topbar {
-    background: linear-gradient(to right, rgb(0, 125, 0), rgb(0, 170, 0), rgb(0, 125, 0));
+    background: rgb(32, 32, 32);
     width: 100vw;
     min-height: 4rem;
     height: 15vh;
@@ -45,10 +45,10 @@
 }
 
 #title > h1 {
-    font-size: 40px;
+    font-size: 42px;
     color: white;
     text-align: center;
-    font-family: "Open Sans";
+    font-family: "Roboto";
     font-weight: 700;
     letter-spacing: 1px;
     transition: transform 0.7s ease;
@@ -93,7 +93,7 @@
 }
 
 #header__nav > *, #open-dropdown, #header__dropdown > a, .side-by-side > a, .nav__links {
-    padding: 1% 0;
+    padding: 1.5vh 0;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
@@ -104,8 +104,16 @@
     animation: linkHide 0.3s ease 0s forwards;
 }
 
+#open-dropdown, #header__dropdown > a, .side-by-side > a {
+    padding: 1vh;
+}
+
+.nav__links {
+    padding: 0vh;
+}
+
 .side-by-side > a {
-    border-right: 1px solid white;
+    border-right: 1px solid rgb(150, 150, 150);
 }
 
 .nav__links > a {
@@ -128,7 +136,7 @@
 }
 
 .nav__dropdown a {
-    padding: 2% 0;
+    padding: 1vh 0;
     text-align: center;
     text-decoration: none;
     font-size: 18px;
@@ -145,23 +153,29 @@
 }
 
 @keyframes linkHide {
-    0% { background: linear-gradient(rgb(0, 190, 0), rgb(0, 150, 0)); }
-    100% { background: linear-gradient(rgb(0, 170, 0), green); }
+    0% { background: rgb(100, 100, 100); }
+    100% { background: rgb(40, 40, 40); }
 }
 
 @keyframes linkShow {
-    0% { background: linear-gradient(rgb(0, 170, 0), green); }
-    100% { background: linear-gradient(rgb(0, 190, 0), rgb(0, 150, 0)); }
+    0% { background: rgb(40, 40, 40); }
+    100% { background: rgb(100, 100, 100); }
 }
 
-@media only screen and (max-width: 812px) {
+@media only screen and (max-width: 612px) {
     #title > h1 {
         font-size: 30px;
         letter-spacing: 0.5px;
     }
+}
+
+@media only screen and (max-width: 812px) {
     #open-dropdown {
         display: block;
         width: 100vw;
+    }
+    #open-dropdown:hover {
+        cursor: pointer;
     }
     #open-dropdown:before {
         content: "";

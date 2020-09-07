@@ -16,7 +16,6 @@ $(document).ready(async () => {
         }
     }
 
-
     $(".text-block").css({opacity: 0.1})
     $(".text-block").waypoint(function(direction) {
         $(this[0, "element"]).addClass("fade-in")
@@ -33,10 +32,14 @@ $(document).ready(async () => {
     */
     $("#editor-form").submit((e) => {
         e.preventDefault()
+        $("#editor-form").hide()
+        $("#ambassador-form").hide()
+        $("#ambassador-message").show()
+        $("#editor-message").text("We are currently sending in your form...").fadeIn(1000)
         fetch("/email/editor-form", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify({
                 name: $("#edit-name").val(),
@@ -50,17 +53,9 @@ $(document).ready(async () => {
         }).then((res) => {
             $(".text-block").css({opacity: 1})
             if (res.ok) {
-                console.log("Email sent!")
-                $("#editor-form").remove()
-                $("#ambassador-form").remove()
-                $("#ambassador-message").show()
-                $("#editor-message").text("Your form has been successfully sent in! We will take a look and send you back an email!").fadeIn(1000)
+                $("#editor-message").text("Your form has been successfully sent in! We will take a look and send you back an email!")
             } else {
-                console.log("Email not sent.")
-                $("#editor-form").remove()
-                $("#ambassador-form").remove()
-                $("#ambassador-message").show()
-                $("#editor-message").text("Your form was not sent in successfully. Try reloading your page and trying again!").fadeIn(1000)
+                $("#editor-message").text("Your form was not sent in successfully. Try reloading your page and trying again!")
             }
         })
     })
@@ -75,8 +70,15 @@ $(document).ready(async () => {
     */
     $("#ambassador-form").submit((e) => {
         e.preventDefault()
+        $("#ambassador-form").hide()
+        $("#editor-form").hide()
+        $("#editor-message").show()
+        $("#ambassador-message").text("We are currently sending in your form...").fadeIn(1000)
         fetch("/email/ambassador-form", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
                 name: $("#amb-name").val(),
                 email: $("#amb-email").val(),
@@ -89,16 +91,8 @@ $(document).ready(async () => {
         }).then((res) => {
             $(".text-block").css({opacity: 1})
             if (res.ok) {
-                console.log("Email sent!")
-                $("#ambassador-form").remove()
-                $("#editor-form").remove()
-                $("#editor-message").show()
                 $("#ambassador-message").text("Your form has been successfully sent in! We will take a look and send you back an email!").fadeIn(1000)
             } else {
-                console.log("Email not sent.")
-                $("#ambassador-form").remove()
-                $("#editor-form").remove()
-                $("#editor-message").show()
                 $("#ambassador-message").text("Your form was not sent in successfully. Try reloading your page and trying again!").fadeIn(1000)
             }
         })
