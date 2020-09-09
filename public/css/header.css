@@ -13,7 +13,7 @@
 }
 
 #header__topbar {
-    background: rgb(32, 32, 32);
+    background: rgb(45, 45, 45);
     width: 100vw;
     min-height: 4rem;
     height: 15vh;
@@ -154,17 +154,18 @@
 
 @keyframes linkHide {
     0% { background: rgb(100, 100, 100); }
-    100% { background: rgb(40, 40, 40); }
+    100% { background: rgb(60, 60, 60); }
 }
 
 @keyframes linkShow {
-    0% { background: rgb(40, 40, 40); }
+    0% { background: rgb(60, 60, 60); }
     100% { background: rgb(100, 100, 100); }
 }
 
 @media only screen and (max-width: 612px) {
     #title > h1 {
-        font-size: 30px;
+        padding-left: 12vw;
+        padding-right: 12vw;
         letter-spacing: 0.5px;
     }
 }
