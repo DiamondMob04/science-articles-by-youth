@@ -1,5 +1,9 @@
 /* Space background and text. */
 
+article {
+    background: #efefef !important;
+}
+
 #space-bg {
     background-image: url("/img/def-thumbnail.jpg");
     background-repeat: no-repeat;
