@@ -1,5 +1,5 @@
 var currentSkip = 0
-var limitation = 3
+var limitation = 9
 
 const styleFormat = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
@@ -7,14 +7,13 @@ const styleFormat = (word) => {
     })
 }
 
-async function fetchOwnPosts(username) {
+async function fetchUnverifiedPosts() {
     try {
-        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}&owner=${username}&unverified=false`)
+        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}&unverified=true`)
         let json = await response.json()
+        $(".template-article").remove()
         if (currentSkip == 0 && json.posts.length == 0) {
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
-            $("#search-bar").hide()
-            $(".find-more").hide()
             return $("#err-message").text(`Could not find any articles.`)
         }
         $("#err-message").hide()
@@ -29,7 +28,7 @@ async function fetchOwnPosts(username) {
             post.imageLink = (post.thumbnail) ? `/image/${post.thumbnail}` : "/img/def-thumbnail.jpg"
             $(".article-gallery").append(`
             <article>
-                <img class="article-thumbnail" src="${post.imageLink}" onerror="$(this).attr('src', '/img/def-thumbnail.jpg')" alt="Article thumbnail image">
+                <img class="article-thumbnail" src="${post.imageLink}" alt="Article thumbnail image">
                 <div class="article-right">
                     <h3 class="article-title">${post.title}</h3>
                     <h4 class="article-info">${post.author} / ${post.timestamp} / ${post.comments}</h4>
