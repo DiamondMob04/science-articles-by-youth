@@ -6,12 +6,12 @@
     object-fit: cover;
 }
 
-.user-block {
-    margin-top: 48px !important;
+article {
+    background: #efefef !important;
 }
 
-.article-gallery {
-    margin: 0 2vw !important;
+.user-block {
+    margin-top: 48px !important;
 }
 
 #err-message {

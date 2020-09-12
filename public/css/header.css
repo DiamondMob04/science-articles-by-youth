@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
     margin: 0;
@@ -32,10 +33,10 @@
 }
 
 #title > img {
-    width: 83px;
-    height: 83px;
+    width: 80px;
+    height: 80px;
     border-radius: 44px;
-    margin-right: 2vw;
+    display: none;
     transition: transform 0.7s ease;
 }
 
@@ -162,11 +163,12 @@
     100% { background: rgb(100, 100, 100); }
 }
 
-@media only screen and (max-width: 612px) {
+@media only screen and (max-width: 586px) {
     #title > h1 {
-        padding-left: 12vw;
-        padding-right: 12vw;
-        letter-spacing: 0.5px;
+        display: none;
+    }
+    #title > img {
+        display: block;
     }
 }
 
@@ -185,9 +187,6 @@
         display: inline-block;
         padding: 6px;
         transform: rotate(45deg);
-    }
-    #title > img {
-        display: none;
     }
     #header__nav {
         display: none;

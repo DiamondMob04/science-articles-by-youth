@@ -70,7 +70,7 @@ $(document).ready(async () => {
         if ((tagInput.val().length < 3 || tagInput.val().length > 16) && tagInput.val().length !== 0) {
             tagInput.css("border", "1px solid red")
         } else {
-            tagInput.val(tagInput.val().replace(/\s/g, ""))
+            tagInput.val(tagInput.val().replace(/[^0-9a-zA-Z]/g, ""))
             tagInput.css("border", "1px solid black")
         }
         if (tagInput.val().length <= 16) {

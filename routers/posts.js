@@ -60,6 +60,7 @@ postsRouter.post("/article/:id", async (req, res) => {
 
 postsRouter.post("/post", auth, async (req, res) => {
     try {
+        req.body.tags.replace(/[^0-9a-zA-Z\s]/g, "")
         req.body.author = req.session.user.username
         req.body.identifier = toIdentifier(req.body.title)
         req.body.verified = req.session.user.role === "admin"
@@ -134,7 +135,7 @@ postsRouter.get("/posts", async (req, res) => {
             title: styleFormat(currPost.title),
             author: user.username,
             thumbnail: currPost.thumbnail,
-            contents: styleFormat(currPost.contents.substr(0, (req.query.owner !== undefined) ? 150 : 280)) + "...",
+            contents: styleFormat(currPost.contents.substr(0, (req.query.owner !== undefined) ? 150 : 210)) + "...",
             preformattedTags: currPost.tags.split(" ").map((tag) => { return `<p>${tag}</p>` }).join(""),
             timestamp: `${months[currPost.createdAt.getMonth()]} ${currPost.createdAt.getDate()}, ${currPost.createdAt.getFullYear()}`,
             comments: `${currPost.comments.length} Comment${currPost.comments.length === 1 ? "" : "s"}`

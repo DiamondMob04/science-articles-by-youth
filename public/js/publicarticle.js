@@ -47,7 +47,7 @@ $(document).ready(async () => {
         if (json.role !== "admin") {
             $("#verify-article").remove()
         }
-        if (json.username === $("#author").text()) {
+        if (json.username === $(".author-text").text()) {
             $("#article-notice").text("This is your article. You can choose to edit or delete it at anytime.")
             $("#restricted").show()
         } else if (json.role === "admin") {

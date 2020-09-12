@@ -11,9 +11,12 @@
     </head>
     <body>
         {{>header}}
-        <div class="text-block">
-            <h3>SAY Journal</h3><hr>
-            <h4 id="err-message" style="margin-top: 20vh; margin-bottom: 20vh;"></h4>
+        <div class="text-block article-text-block dark-gray">
+            <div id="search-bar">
+                <input id="filter-keywords" type="text" placeholder="Search by tags...">
+                <button id="filter-submit">Filter</button>
+            </div>
+            <h4 id="err-message" style="margin-top: 35vh; margin-bottom: 35vh;"></h4>
             <container class="article-gallery">
                 <article class="template-article" style="visibility: hidden;">
                     <img class="article-thumbnail" src="/img/def-thumbnail.jpg" alt="Template article for pre-loading">
@@ -43,7 +46,8 @@
             <button class="find-more">Find More</button>
         </div>
         {{>footer}}
-        <script src="/js/fetchposts.js"></script>
+        <script src="/js/posts-journal.js"></script>
+        <script src="/js/article-filter.js" async></script>
         <script>
             $(document).ready(() => {
                 fetchPapers()

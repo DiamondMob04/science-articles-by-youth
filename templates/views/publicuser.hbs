@@ -27,10 +27,10 @@
             </div>
         </div>
         {{>footer}}
-        <script src="/js/fetchposts.js"></script>
+        <script src="/js/posts-pubprof.js"></script>
         <script>
             $(document).ready(() => {
-                fetchUserPostsSingular($("#username").text())
+                fetchOwnPosts($("#username").text())
             })
         </script>
     </body>

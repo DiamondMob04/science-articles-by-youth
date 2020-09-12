@@ -17,7 +17,9 @@ navRouter.get("/home", (req, res) => {
     res.render("home")
 })
 
-navRouter.get("/blog", (req, res) => {
+/* req.query.tags is a string of keywords */
+/* article tags are also a string of keywords */
+navRouter.get("/blog", async (req, res) => {
     res.render("blog")
 })
 

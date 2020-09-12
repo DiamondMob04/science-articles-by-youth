@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+article {
+    background: #efefef !important;
+}
+
 #details > * {
     flex: 1;
 }
