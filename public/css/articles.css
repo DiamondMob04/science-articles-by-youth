@@ -47,7 +47,6 @@
 
 .article-title, .article-title > span {
     font-family: "Playfair Display";
-    letter-spacing: 1.5px;
     word-spacing: 2.5px;
     font-size: 2rem;
     font-weight: 500;
