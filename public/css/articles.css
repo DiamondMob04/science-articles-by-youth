@@ -90,6 +90,10 @@ article {
     margin-top: 2vh;
 }
 
+.article-tags > p {
+    margin-top: 3px;
+}
+
 .article-tags > *:before {
     content: "";
     display: inline-block;
