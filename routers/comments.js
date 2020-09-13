@@ -1,7 +1,6 @@
 const express = require("express")
 const auth = require("../middleware/auth")
 const Post = require("../models/post")
-const User = require("../models/user")
 const mongoose = require("mongoose")
 
 const commentsRouter = express.Router()
@@ -48,7 +47,7 @@ commentsRouter.get("/comments/:id", async (req, res) => {
                 author: currComment.author,
                 contents: currComment.contents,
                 commentId: currComment._id,
-                timestamp: `${months[post.createdAt.getMonth()]} ${post.createdAt.getDate()}, ${post.createdAt.getFullYear()}`
+                timestamp: `${months[currComment.createdAt.getMonth()]} ${currComment.createdAt.getDate()}, ${currComment.createdAt.getFullYear()}`
             })
         }
     }
