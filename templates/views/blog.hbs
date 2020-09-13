@@ -13,7 +13,8 @@
         {{>header}}
         <div class="text-block article-text-block dark-gray">
             <div id="search-bar">
-                <input id="filter-keywords" type="text" placeholder="Search by tags...">
+                <span id="current-tags" style="display: none;">{{tags}}</span>
+                <input id="filter-keywords" type="text" placeholder="Search by tags (separated by spaces)...">
                 <button id="filter-submit">Filter</button>
             </div>
             <h4 id="err-message" style="margin-top: 35vh; margin-bottom: 35vh;"></h4>

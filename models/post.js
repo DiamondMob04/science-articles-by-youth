@@ -73,6 +73,22 @@ const postSchema = mongoose.Schema({
     timestamps: true
 })
 
+postSchema.statics.findByKeywords = async function(keywords, options = { isPaper: false, skip: 0, limit: 3 }) {
+    var posts = await mongoose.models["Post"].find({}).sort({"createdAt": -1})
+    keywords = keywords.toLowerCase().split(" ")
+    posts = posts.filter((post) => {
+        var isMatch = false
+        if (post.isPaper !== options.isPaper) return false;
+        keywords.forEach((keyword) => {
+            if (post.tags.toLowerCase().includes(keyword) || post.title.toLowerCase().includes(keyword)) {
+                isMatch = true
+            }
+        })
+        return isMatch
+    })
+    return posts.splice(options.skip, options.limit)
+}
+
 const postModel = mongoose.model("Post", postSchema)
 
 module.exports = postModel

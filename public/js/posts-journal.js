@@ -1,6 +1,8 @@
 var currentSkip = 0
 var limitation = 9
 
+$("#filter-keywords").val($("#current-tags").text())
+
 const styleFormat = (word) => {
     return word.replace(/<[a-zA-Z]+>/g, "").replace(/\b[^\s]{18,}\b/g, (w) => { 
         return `<span style="word-break: break-all !important;">${w}</span>` 
@@ -9,11 +11,15 @@ const styleFormat = (word) => {
 
 async function fetchPapers() {
     try {
-        let response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}&papers=true&unverified=false`)
+        let response = undefined
+        if ($("#current-tags").text() !== "") {
+            response = await fetch(`/posts?papers=true&tags=${$("#current-tags").text()}&skip=${currentSkip}&limit=${limitation}`)
+        } else {
+            response = await fetch(`/posts?skip=${currentSkip}&limit=${limitation}&unverified=false&papers=true`)
+        }
         let json = await response.json()
         $(".template-article").remove()
         if (currentSkip == 0 && json.posts.length == 0) {
-            $("#search-bar").hide()
             $(".find-more").hide()
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
             return $("#err-message").text(`Could not find any articles.`)

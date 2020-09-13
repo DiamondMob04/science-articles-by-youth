@@ -13,6 +13,7 @@ async function fetchUnverifiedPosts() {
         let json = await response.json()
         $(".template-article").remove()
         if (currentSkip == 0 && json.posts.length == 0) {
+            $(".find-more").hide()
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
             return $("#err-message").text(`Could not find any articles.`)
         }

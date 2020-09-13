@@ -17,10 +17,10 @@ navRouter.get("/home", (req, res) => {
     res.render("home")
 })
 
-/* req.query.tags is a string of keywords */
-/* article tags are also a string of keywords */
 navRouter.get("/blog", async (req, res) => {
-    res.render("blog")
+    res.render("blog", {
+        tags: req.query.tags || ""
+    })
 })
 
 navRouter.get("/register", (req, res) => {
@@ -40,7 +40,9 @@ navRouter.get("/members", (req, res) => {
 })
 
 navRouter.get("/journal", (req, res) => {
-    res.render("journal")
+    res.render("journal", {
+        tags: req.query.tags || ""
+    })
 })
 
 navRouter.get("/executive-board", (req, res) => {

@@ -108,17 +108,21 @@ postsRouter.get("/posts", async (req, res) => {
     }
     // Adding one extra post to the limit to check if there are more after.
     var postData = undefined
-    if (req.query.papers === undefined) {
-        if (req.query.owner === undefined) {
-            postData = await Post.find({verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
-        } else {
-            postData = await Post.find({author: req.query.owner, verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
-        }
+    if (req.query.tags !== undefined) {
+        postData = await Post.findByKeywords(req.query.tags, { isPaper: req.query.papers === "true", skip: parseInt(req.query.skip), limit: parseInt(req.query.limit) })
     } else {
-        if (req.query.owner === undefined) {
-            postData = await Post.find({isPaper: (req.query.papers === "true"), verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+        if (req.query.papers === undefined) {
+            if (req.query.owner === undefined) {
+                postData = await Post.find({verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            } else {
+                postData = await Post.find({author: req.query.owner, verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            }
         } else {
-            postData = await Post.find({isPaper: (req.query.papers === "true"), author: req.query.owner, verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            if (req.query.owner === undefined) {
+                postData = await Post.find({isPaper: (req.query.papers === "true"), verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            } else {
+                postData = await Post.find({isPaper: (req.query.papers === "true"), author: req.query.owner, verified: req.query.unverified === "false"}).sort({"createdAt": -1}).skip(parseInt(req.query.skip)).limit(parseInt(req.query.limit) + 1)
+            }
         }
     }
     let morePosts = postData.length > req.query.limit
