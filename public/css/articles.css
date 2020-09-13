@@ -27,6 +27,10 @@
     border-radius: 12px;
 }
 
+#search-bar > button:hover {
+    cursor: pointer;
+}
+
 .article-gallery {
     display: flex;
     flex-direction: column;

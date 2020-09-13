@@ -247,6 +247,7 @@ a:hover {
 
 .find-more:hover {
     transform: scale(1.1); 
+    cursor: pointer;
 }
 
 .find-more:focus {

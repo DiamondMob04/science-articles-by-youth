@@ -19,7 +19,6 @@ async function fetchOwnPosts(username) {
         }
         $("#err-message").hide()
         if (!json.morePosts) {
-            $(".find-more").hide()
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
         } else {
             currentSkip += limitation

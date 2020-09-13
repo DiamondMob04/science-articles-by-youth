@@ -13,8 +13,7 @@ async function fetchUserPosts(username, isUnverified) {
         let json = await response.json()
         $(".template-article").remove()
         if (currentSkip == 0 && json.posts.length == 0) {
-            $(".find-more").hide()
-            $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
+            $((isUnverified) ? ".unverified-find-more" : ".posted-find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
             return $((isUnverified) ? ".unverified-err-message" : ".posted-err-message").text(`Could not find any articles.`)
         }
         if (isUnverified) {
@@ -23,7 +22,6 @@ async function fetchUserPosts(username, isUnverified) {
             $(".posted-err-message").hide()
         }
         if (!json.morePosts) {
-            $(".find-more").hide()
             $(".find-more").css({ transform: "scale(1)", background: "gray" }).attr("disabled", true)
         } else {
             currentSkip += limitation

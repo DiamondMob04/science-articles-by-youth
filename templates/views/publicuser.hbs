@@ -31,6 +31,9 @@
         <script>
             $(document).ready(() => {
                 fetchOwnPosts($("#username").text())
+                $(".find-more").click(() => {
+                    fetchOwnPosts($("#username").text())
+                })
             })
         </script>
     </body>
